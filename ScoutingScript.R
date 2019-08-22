@@ -1,4 +1,3 @@
-require(ggplot2)
 "
 Build an R script that can do the following:
 
@@ -15,16 +14,14 @@ Note: R1, R2, R3 mean the respective levels of the rocket ship, and CS means car
 S means Sandstorm and T means Teleop.
 
 SP means Station Pickup and GP means Ground Pickup
+
+
 "
 
 
 df <- read.csv("Bensalem Event 2019 Scouting.txt", header = FALSE) #The path is necessary for the R script to read the file.
 
 df[df == "null"] = NA
-
-
-#df <- data.frame(names = c("A", "A", "A", "A", "A", "A", "A", "B"),
-#collection = c(28, 23, 49, 29, 38, 23, 29, 21))
 
 colnames(df) <- c("Name", "Team", "Position", "Match", "Is_Start_Level_2",
                   "S_Hatch_CS", "S_Hatch_R1", "S_Hatch_R2", "S_Hatch_R3",
@@ -92,7 +89,11 @@ for (team in uniqueTeams) {
   a <- which(df$Team == team)
   
   #Sandstorm Vars
-  b <- df$Is_Start_Level_2
+  
+  #Start level is not really going to matter much for data collection only because
+  #sandstorm points are only granted when a robot crosses the line.
+  
+  #b <- df$Is_Start_Level_2
   c <- df$S_Hatch_CS
   d <- df$S_Hatch_R1
   e <- df$S_Hatch_R2
@@ -119,32 +120,36 @@ for (team in uniqueTeams) {
   u <- df$Hatch_SP
   
   v <- df$Is_Defensive
-  #u <- df$Time_For_Climb
-  #String... generally says seconds but can say minutes in extreme cases. So no stats.
+  
+  #Generally says seconds but can say something else in extreme cases. So that
+  #should also be out of the question.
+  
+  #w <- df$Time_For_Climb
   
   #Means
-  c1 <- c(c1, mean(c[a], na.rm = TRUE))
-  c2 <- c(c2, mean(d[a], na.rm = TRUE))
-  c3 <- c(c3, mean(e[a], na.rm = TRUE))
-  c4 <- c(c4, mean(f[a], na.rm = TRUE))
-  c5 <- c(c5, mean(g[a], na.rm = TRUE))
-  c6 <- c(c6, mean(h[a], na.rm = TRUE))
-  c7 <- c(c7, mean(i[a], na.rm = TRUE))
-  c8 <- c(c8, mean(j[a], na.rm = TRUE))
-  c9 <- c(c9, mean(k[a], na.rm = TRUE))
-  c10 <- c(c10, mean(l[a], na.rm = TRUE))
-  c11 <- c(c11, mean(m[a], na.rm = TRUE))
-  c12 <- c(c12, mean(n[a], na.rm = TRUE))
-  c13 <- c(c13, mean(o[a], na.rm = TRUE))
-  c14 <- c(c14, mean(p[a], na.rm = TRUE))
-  c15 <- c(c15, mean(q[a], na.rm = TRUE))
-  c16 <- c(c16, mean(r[a], na.rm = TRUE))
-  c17 <- c(c17, mean(s[a], na.rm = TRUE))
-  c18 <- c(c18, mean(pointfunction(s[a]), na.rm = TRUE))
-  c19 <- c(c19, mean(c[a] + d[a] + e[a] + f[a] + k[a] + l[a] + m[a] + n[a], na.rm = TRUE))
-  c20 <- c(c20, mean(g[a] + h[a] + i[a] + j[a] + o[a] + p[a] + q[a] + r[a], na.rm = TRUE))
-  c21 <- c(c21, mean(t[a], na.rm = TRUE))
-  c22 <- c(c22, mean(u[a], na.rm = TRUE))
+  c1 <- c(c1, mean(c[a], na.rm = TRUE)) #S Hatch CS
+  c2 <- c(c2, mean(d[a], na.rm = TRUE)) #S Hatch R1
+  c3 <- c(c3, mean(e[a], na.rm = TRUE)) #S Hatch R2
+  c4 <- c(c4, mean(f[a], na.rm = TRUE)) #S Hatch R3
+  c5 <- c(c5, mean(g[a], na.rm = TRUE)) #S Cargo CS
+  c6 <- c(c6, mean(h[a], na.rm = TRUE)) #S Cargo R1
+  c7 <- c(c7, mean(i[a], na.rm = TRUE)) #S Cargo R2
+  c8 <- c(c8, mean(j[a], na.rm = TRUE)) #S Cargo R3
+  c9 <- c(c9, mean(k[a], na.rm = TRUE)) #T Hatch CS
+  c10 <- c(c10, mean(l[a], na.rm = TRUE)) #T Hatch R1
+  c11 <- c(c11, mean(m[a], na.rm = TRUE)) #T Hatch R2
+  c12 <- c(c12, mean(n[a], na.rm = TRUE)) #T Hatch R3
+  c13 <- c(c13, mean(o[a], na.rm = TRUE)) #T Cargo CS
+  c14 <- c(c14, mean(p[a], na.rm = TRUE)) #T Cargo R1
+  c15 <- c(c15, mean(q[a], na.rm = TRUE)) #T Cargo R2
+  c16 <- c(c16, mean(r[a], na.rm = TRUE)) #T Cargo R3
+  c17 <- c(c17, mean(s[a], na.rm = TRUE)) #Hab Level
+  c18 <- c(c18, mean(pointfunction(s[a]), na.rm = TRUE)) #Mean Hab Level Points
+  c19 <- c(c19, mean(c[a] + d[a] + e[a] + f[a] + k[a] + l[a] + m[a] + n[a], na.rm = TRUE)) #Total Hatches
+  c20 <- c(c20, mean(g[a] + h[a] + i[a] + j[a] + o[a] + p[a] + q[a] + r[a], na.rm = TRUE)) #Total Cargo
+  c21 <- c(c21, mean(t[a], na.rm = TRUE)) #Hatch GP
+  c22 <- c(c22, mean(u[a], na.rm = TRUE)) #Hatch SP
+  
   #Standard Deviations
   c23 <- c(c23, sd(c[a], na.rm = TRUE))
   c24 <- c(c24, sd(d[a], na.rm = TRUE))
@@ -169,10 +174,9 @@ for (team in uniqueTeams) {
   c43 <- c(c43, sd(t[a], na.rm = TRUE))
   c44 <- c(c44, sd(u[a], na.rm = TRUE))
   #Booleans
-  c45 <- c(c45, mean(v[a], na.rm = TRUE))
+  c45 <- c(c45, mean(v[a], na.rm = TRUE)) #Is Defensive (Aka "Defensive Rating")
 }
 
-#Start level is not really going to matter much in this DF.
 df2 <- data.frame(Teams = uniqueTeams, #Identifier
                   
                   #Means
@@ -190,6 +194,7 @@ df2 <- data.frame(Teams = uniqueTeams, #Identifier
                   T_Cargo_CS_SD = c35, T_Cargo_R1_SD = c36, T_Cargo_R2_SD = c37, T_Cargo_R3_SD = c38,
                   Habitat_Level_SD = c39, Habitat_Points_SD = c40, Hatch_Total_SD = c41, Cargo_Total_SD = c42,
                   Hatch_GP_SD = c43, Hatch_SP_SD = c44,
+                  
                   #Boolean Means
                   Is_Defensive = c45)
 
@@ -205,11 +210,11 @@ print(df2)
 df2 <- df2[with(df2, order(-Cargo_Total_Mean)), ]
 print(df2)
 
-#Order by Hab Level, descending
+#Order by Hab Level, descending.
 df2 <- df2[with(df2, order(-Habitat_Level_Mean)), ]
 print(df2)
 
-#Order by Hab Points, descending
+#Order by Hab Points, descending.
 df2 <- df2[with(df2, order(-Habitat_Points_Mean)), ]
 print(df2)
 
