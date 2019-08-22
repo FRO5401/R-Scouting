@@ -214,10 +214,10 @@ df2 <- df2[with(df2, order(-Habitat_Points_Mean)), ]
 print(df2)
 
 df3 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean)
+boxplot(3 * df2$Cargo_Total_Mean + 2 * df2$Hatch_Total_Mean, main = "FRC Team Offensive Points", xlab = "Points", ylab = "FRC Teams", col = "red", horizontal = TRUE, notch = TRUE)
 
-#Yes, the plot can get pretty cramped especially at the bottom,
-#but this is probably the only plot I can do at present.
+#Yes, this plot can get pretty cramped especially at the bottom,
+#but this is one of the only plots I can do at present.
 
 plot(df3, main="FRC Teams")
 text(df3$Cargos, df3$Hatches + 0.25, labels = df2$Teams)
-boxplot(3 * df2$Cargo_Total_Mean + 2 * df2$Hatch_Total_Mean, main = "FRC Team Offensive Points", xlab = "Points", ylab = "FRC Teams", col = "red", horizontal = TRUE, notch = TRUE)
