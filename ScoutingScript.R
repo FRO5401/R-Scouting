@@ -220,3 +220,4 @@ df3 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean)
 
 plot(df3, main="FRC Teams")
 text(df3$Cargos, df3$Hatches + 0.25, labels = df2$Teams)
+boxplot(3 * df2$Cargo_Total_Mean + 2 * df2$Hatch_Total_Mean, main = "FRC Team Offensive Points", xlab = "Points", ylab = "FRC Teams", col = "red", horizontal = TRUE, notch = TRUE)
