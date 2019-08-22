@@ -1,0 +1,222 @@
+Sami,555,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Dropped cargo during sandstorm and only focused on supplying rocket and cargo ship with Cargos.  Despite this
+sami,4573,3,2,1,0,0,0,,0,0,0,0,0,1,0,0,0,0,5,0,0,0,0,2,12 secomds,Only put in cargos received
+sami,303,3,3,0,0,1,0,0,0,0,0,0,0,1,2,0,0,0,4,0,0,0,0,1,null,During the first half of the match team 303 focused on putting hatches on the rockets.  But during the second half
+sami,2016,1,4,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,0,0,2,6 seconds,focused mainly on cargos but struggled to hold onto them.  In fact
+sami,1640,3,5,1,0,0,0,0,0,0,0,0,4,1,2,0,0,2,1,2,0,0,0,0,null,Amazing ability to gather and supply cargo ships and rockets with cargos and hatches.  It was very quick and functioned very smoothly.
+Rithik Mohanty,4637,,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,2,null,null
+Rithik Mohanty,1218,,2,1,0,0,0,0,0,0,0,0,1,0,1,0,0,0,3,0,0,0,0,3,null,Worked well all around and can get to level 2 of rocket at least
+Rithik Mohanty,1089,,3,1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,0,2,0,0,2,null,Can reliably grab and place hatches and cargo
+Rithik Mohanty,708,,4,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,null,Cannot reliably grab and place hatches
+Rithik Mohanty,219,,5,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,null,has a ramp to get teammates on third level
+fayzaan,341,3,1,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,3,1,0,0,0,3,5s,Went straight for player  hatch thing
+fayzaan,341,2,2,0,1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,2,null,null
+fayzaan,2554,1,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,null,Did nothing but move around
+fayzaan,5624,1,4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,5 seconds,They got stuck. Only had one cargo in. We not really a big help to the team
+Shiv,87,1,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,20 seconds,They were helped by a teammate. The teammate made a ramp for 87 to climb to habitat level3 but they fell off at the end.
+Jake dela Cruz,224,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,2,0,0,0,0,0,2,3 seconds,Had a really hard time lining up hatch pickup
+Jake dela Cruz,2180,3,2,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,2,10 seconds,Looked like cargo only
+Jake dela Cruz,316,1,3,1,0,1,0,0,0,0,0,0,2,1,0,0,0,2,0,0,0,0,0,1,null,Literally put 2 cargo in one thing...
+Jake dela Cruz,5490,2,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Broke
+Jake dela Cruz,1391,1,5,1,1,0,0,0,0,0,0,0,0,0,1,1,0,2,0,0,0,0,0,1,null,Fast elevator
+Patrick,708,2,6,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,3,8s,null
+Patrick,555,3,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,1,null,null
+Patrick,1391,3,8,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,null,null
+Patrick,303,1,9,0,0,0,0,0,0,0,0,0,1,1,0,0,0,2,3,1,0,0,0,1,null,Tried to climb to the second habitat level.
+Patrick,204,2,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,1,null,Might have put the robot's appendages above the third level habitat
+Ali Ahmad.,272,2,2,0,1,0,0,0,0,0,0,0,0,1,2,2,0,0,0,1,0,0,0,2,Really quick,They are good at filling the rocket. Got all hatches on rocket. Really good hat h bot
+Ali Ahmad,5404,3,3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,7,0,0,0,0,3,That was a real slow time,They made a lot of buckets with the cargo. And they did a level 3 climb.
+Ali Ahmad,5401,1,4,1,0,1,0,0,0,0,0,0,0,2,2,2,0,0,0,2,2,0,0,2,Quick,Almost fully completed a rocket. Did all hatches. Did a tier two climb. Eric is my Dad.
+Ali Ahmad,6808,3,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,No,They were mainly defensive. Had cargo capabilities
+Brandon Donnelly,4637,3,6,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,1,1,null,Mainly just went for cargo and plays defense
+Brandon,1640,1,7,1,0,1,0,0,0,0,0,0,0,1,0,2,0,0,0,2,0,2,0,1,null,Very speedy and accurate
+Brandon,224,1,8,1,0,0,1,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,2,4,Sloppy
+Brandon,7877,2,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,null,Didn't really do much. Just played defense
+Brandon,2554,2,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,2,10,Kinda a one trick pony
+Smeed I.,204,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,1,Didn't attempt to go higher.,Struggles to get cargo on ship. Didn't attempt to get cargo on rocket. Had someone play defense on it
+Smeed I.,7599,1,2,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,Didn't attempt to go higher.,At first it tried to get hatches but after around 50 seconds
+Smeed I.,2590,3,3,1,0,1,0,0,0,0,0,0,1,0,0,0,0,1,2,1,0,0,0,1,Didn't attempt to go higher.,They were doing cargo and hatches but they were playing really safe and slow.
+Smeed I.,2607,3,4,1,0,0,0,0,0,0,0,0,0,2,2,0,0,2,1,2,1,0,0,3,It could climb to level three in ten seconds.,It was really good and fast. It could do both hatches and cargo quick. It can do both ships.
+Smeed I.,1807,2,5,0,1,0,0,0,0,0,0,0,0,3,0,0,0,3,4,0,0,0,0,3,Can go to level within 15sec.,Literally carried the entire team. Can do both First and second level. Didn't attempt third level rocket. Can fill up cargo ship quick.
+Taharis,316,3,6,1,0,1,0,0,0,0,0,0,0,1,1,1,0,0,3,0,0,0,0,1,null,Very fluid hatch pick-up and placement
+Taharis,1218,3,7,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,3,4 Seconds,null
+Taharis,2590,3,8,1,0,0,0,0,1,0,0,0,0,1,2,0,0,0,1,0,0,0,0,3,null,null
+Taharis,4573,3,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,null
+Taharis,87,3,10,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,2,0,0,0,0,1,null,null
+jalen,7877,3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Failed getting hatches and cargo deployed. Gave up and just did defence
+jalen,5490,1,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,null,Got a cargo in and went defensive
+jalen,5401,1,8,1,0,1,0,0,0,0,0,0,0,1,1,2,0,0,0,0,0,1,0,1,Fast,Had some trouble holding cargo but all in all  was reliable with hatches
+jalen,1089,3,9,1,0,0,0,0,0,0,0,0,0,0,2,0,0,3,0,0,0,0,0,0,null,Broke down after getting two hatches on
+jalen,6808,2,10,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,0,0,0,0,1,null,Broke down for a bit but got back online and got back
+rithik Mohanty,316,,11,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,null,Can only do hatches
+rithik Mohanty,5404,,12,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Got off of habitat but couldn't move afterwards
+rithik Mohanty,1391,2,13,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,3,1-2 sec,Was amazing with reliable cargo
+jalen,2554,3,14,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Slow but sure cargo delivery
+jalen,2180,3,15,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,3,0,0,0,0,1,null,Amazing cargo not but a bit limited with hatches
+cindy,5404,1,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Had issues with comp so they left the field. Did not compete
+cindy,272,3,7,0,0,0,0,0,0,0,0,0,0,2,0,0,0,3,2,2,0,0,0,2,10,Struggled with hatches
+cindy,7599,3,8,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,null
+cindy,341,1,9,0,0,1,0,0,0,0,0,0,0,0,2,2,0,6,0,0,0,1,0,0,null,null
+cindy,2607,1,10,1,0,1,0,0,0,0,0,0,0,1,2,1,0,5,0,2,2,0,0,3,4,null
+shiv parekh,2016,1,11,1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,2,Ten seconds,They adversely good at handling the defence. Good at loading cargo
+shiv parekh,1218,2,12,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,They did not try to even climb,They were useless. They just stood there I think were.one of the slowest robots ever. Not a big competition at all.
+shiv parekb,204,1,13,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,They broke down at the end,They broke down. But they did help creatures tion for the defensive robot of the.other team
+shiv parekh,272,1,14,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,1,4seconds,They are a good to it but just not effeicnt. They were able to apply a lot of hatches at different heights but some of them fell off later.
+shiv parekh,2590,1,15,1,0,0,0,0,1,0,0,0,1,2,0,0,0,0,2,2,0,0,0,3,5 seconds,They are probably one of the best teams here. Really good.
+Smeed I.,5401,3,11,1,0,0,0,0,0,0,0,0,0,2,2,2,0,2,0,2,2,2,0,3,We climbed another robot to get to level 3,That was a really good run by our drive team. Eric is my dad owo.
+Smeed I.,341,3,12,0,0,1,0,0,0,0,0,0,2,2,0,0,0,2,3,2,0,0,0,1,Tried to climb up to the third level but the legs were too unstable and crashed into another robot.,It was a really good robot that was down to the ground. It didn't attempt to get 2nd or 3rd level rocket.
+Smeed I.,7599,3,13,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,1,Didn't attempt to go higher.,In the first 40 seconds
+Smeed I.,1089,3,14,1,0,0,0,0,0,0,0,0,0,2,2,0,0,3,0,2,0,0,0,2,It has legs that can let it go to the second level.,They are another low-down robot where they can get the cargo ship and the hatches on the 1st and 2nd level
+Smeed I.,4637,3,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,It was a ramp bot and helped 6808 to get on.,It was a defensive ramp bot. The ultimate helped bot. Also it tried and failed to get hatches on the ship or first level rocket. Didn't attempt to grab cargo.
+Jake dela Cruz,303,1,11,0,1,0,0,0,0,0,0,0,0,2,2,2,0,2,0,2,1,0,0,1,null,Really strong
+Jake dela Cruz,7877,2,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Did nearly nothing for the whole match
+Jake dela Cruz,224,2,13,0,0,1,0,0,0,0,0,0,1,1,1,1,0,4,0,0,0,0,0,2,null,Looks like it only did hatches
+Jake dela Cruz,555,1,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Had to get bump started during match because they stopped moving
+Jake dea Cruz,6808,2,15,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,3,null,Only got to level 3 becAuse of a ramp bot
+Ali Ahmad,219,2,11,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,They are a ramp not and they just flipped over,They defended and then ramped our team to level three. Then they flipped.
+John,5490,1,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,
+John,708,1,13,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Disabled after driving off platform
+John,4361,2,14,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,3,25,Started climbing with 50 seconds left
+John,5624,1,15,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Disabled for part of match
+brandon r,4361,2,6,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,2,6 sec,Was unable to put any of its hatches on the rocket and couldn't pick them back up. Inaccurate with cargo also
+brandon r=,321,2,7,0,0,0,0,0,0,0,0,0,1,2,0,0,0,3,4,0,0,0,0,1,10 sec,Tried getting on third level but fell back down. Couldn't get its hatch on during autonomous
+Brandon r,5624,2,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,1,null,Stopped moving during the last minute or so until end game
+brandon,1807,2,9,0,0,0,0,0,0,0,0,0,2,1,0,0,0,2,4,2,3,0,0,3,5 sec,Some cargo fell out because there weren't hatches but was still quick and accurate with cargo
+brandon r,2180,3,10,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,null,Fell over on its side about halfway through the match. Was ab!e to quickly and accurately score cargo
+Sami,4573,3,11,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,0,0,0,0,2,6 seconds,Slow robot.  Struggles to put hatches on cargo ships and rockets.
+sami,87,3,12,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,null,Didn't attempt to at least go to habitat level 1 and stopped for the last 10 seconds of the match.  During sandstorm
+sami,1640,3,13,1,0,1,0,0,0,0,0,0,0,1,1,2,0,5,0,1,0,2,0,1,null,Focused only on one rocket during the whole match.  Focused mainly on hatching and displayed Excellent ability to hatch rockets.  1640 starts the game in sandstorm hatching as well.
+sami,2016,1,14,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,2,0,2,5 s,Had trouble controlling the hatches and cargos.  In fact the arm of the bot wasn't long enough to reach the third level of the robot.  THus
+sam,219,2,15,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,didn't do anything but block other bots or bump into them.
+Patrick,316,3,17,1,0,0,0,0,0,0,0,0,0,0,2,0,0,2,0,0,0,2,0,1,null,null
+Patrick,1807,2,18,0,0,0,0,0,0,0,0,0,3,2,0,0,0,5,1,0,0,0,0,3,3s,null
+Patrick,2590,3,19,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0,0,3,4s,null
+Patrick,272,1,20,0,0,0,0,0,1,0,0,0,0,2,0,0,0,2,2,3,0,0,0,0,null,null
+Brandon,87,3,16,0,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,1,2,2,0,1,null,Really good with rockets
+Brandon,5490,2,17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,null,broke down
+Brandon,2016,3,18,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,2,null,Didn't move for half the match
+Brandon,321,3,19,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,3,0,0,0,0,2,5,Fast and good
+Brandon,1640,1,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Broke down
+Taharis,87,3,16,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,1,null,null
+Taharis,2180,2,17,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,null
+Taharis,555,3,18,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,null
+Taharis,341,3,19,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,0,null,null
+Taharis,4361,3,20,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,null
+Justin T,303,2,16,0,1,0,0,0,0,0,0,0,2,0,1,0,0,0,2,0,0,0,0,2,null,null
+brandon r,204,3,17,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,7 s,Stopped !moving immediately after it got out of its hab during sandstorm. Was pushed into level 1 at the end.
+brandon r,4573,3,18,1,1,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,0,2,5 sec,Inaccurate with cargo and hatches. Dropped its hatch a few times
+brandon r,224,3,19,0,0,0,1,0,0,0,0,0,0,1,1,2,0,1,0,0,0,0,0,1,null,Inaccurate with hatches
+brandon r,7877,3,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Got penalized twice
+sami,2607,3,21,1,0,1,0,0,0,0,0,0,1,3,1,0,0,3,0,2,0,0,0,0,4 s,Mainly focused on hatching rockets
+sam,1640,3,22,1,0,0,0,0,0,0,0,0,0,2,1,1,0,3,0,1,1,2,0,1,null,Big contribution to filling up rocket.
+sami,6808,3,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Played defense for most of the game and failed all of its attempts to store cargo in Cargo ship
+sami,2607,3,24,0,0,0,0,0,0,0,0,0,0,1,1,2,0,1,0,0,2,2,0,1,null,Good ability to hatch and cargo rocket.  I'm fact
+sami,224,2,25,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,5s,Played defense for a majority of the match and put one hatch on rocket lv 1 during sandstorm.  Also climbed to habitat of 2.
+joe,1807,2,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,0,3,4 seconds,null
+Smeed I.,708,1,17,1,0,0,0,0,0,0,0,0,1,2,0,0,0,2,0,1,0,0,0,3,Takes around 20 sec. to climb to level three.,null
+jalen,5624,1,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,null
+jalen,4637,2,19,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,null
+jalen,1218,3,20,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,4,0,0,0,0,2,1-2sec,Good cargo bot
+Rithik Mohanty,2554,,21,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Focused on cargo
+Rithik Mohanty,708,,22,1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,3,0,0,0,0,2,null,Better for cargo but can do hatches
+Rithik Mohanty,341,,23,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,null,null
+Rithik Mohanty,555,,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,1,null,Focused entirely on cargo
+Rithik Mohanty,87,,25,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,null,Can grab hatches but cargo is more reliable
+Cam,5404,2,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,null,null
+cindy,6808,2,17,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,null,null
+cindy,1089,1,18,1,0,0,0,0,0,0,0,0,1,1,0,0,0,3,1,0,0,0,0,2,5,Very slow at placing hatch and the hatch frequently falls off
+cindy,5401,1,19,1,0,0,0,0,0,0,0,0,0,2,1,1,0,4,1,3,2,0,0,0,null,null
+cindy,1391,1,20,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,4,0,0,0,0,3,15,null
+shiv parwlh,5624,2,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,Couple of seconds,They were not good at defense and took like three turns to load one cargo.
+shiv parekh,2590,1,22,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,3,4seconds,They were better the last game. Still on of the best
+shiv parekh,272,1,23,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,1,2,null,null
+shiv parekh,1391,1,24,1,1,0,1,0,0,0,0,0,0,2,0,0,0,0,1,2,0,0,0,3,3 secomds,Great team. Really good drivers. Gotta watch out for them
+shiv parekh,303,1,25,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,3 seconds,null
+jakub,219,2,21,0,1,0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0,0,20 sec,Ramp ally up to 3
+jakub,2180,1,22,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,null,null
+jakub,316,3,23,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,1,0,0,0,null,null
+jakub,5490,1,24,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,4,0,0,0,0,0,null,null
+jakub,7599,1,25,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Robot stopped functioning
+Brandon,219,2,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Mainly just played defense
+Brando,4573,1,27,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Mainly just went for cargo
+Brandon,2607,1,28,1,0,1,0,0,0,0,0,0,0,1,1,1,0,0,0,1,2,0,0,3,null,Very good with rockets
+Brandon,555,2,29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,0,null,null
+Brian,1218,3,30,1,1,0,0,0,0,0,0,0,1,1,1,0,0,3,1,0,0,0,0,3,~4 seconds,null
+Jake dela Cruz,7599,1,21,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,Na,Played kinda defense after 1 match
+Jake dela Cruz,4573,3,22,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Hatch got stuck in bumpers
+Jake delACruz,4361,2,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,A long time,5401 have them a little push
+Andrew,4637,2,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,null,didn't do much
+Jake dela Cruz,204,3,25,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Got stuck and didn't move for 90% of the match
+Patrick,2554,1,26,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,4,0,0,0,0,1,5s,null
+Patrick,341,2,27,0,1,0,0,0,0,0,0,0,1,2,0,0,0,2,2,0,0,0,0,1,null,Fell over in the endgame. F.
+Patrick,303,2,28,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,2,2,0,0,0,2,null,null
+Patrick,7599,1,29,1,0,0,0,0,0,0,0,0,1,0,0,0,0,2,0,0,0,0,0,1,null,Although the robot pushed 5401
+Patrick,2016,1,30,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,4,2,0,0,0,2,1s,null
+Smeed I.,5404,3,21,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,7,2,0,0,0,1,Didn't try to go further.,They didn't even try to get any hatches
+Smeed I.,1807,2,22,0,1,0,0,0,0,0,0,0,4,2,0,0,0,5,1,2,0,0,0,3,Climb to 3 within 15 sec.,It can literally do everything but go to the third or second level on rocket.
+Smeed I.,5401,3,23,1,1,0,0,0,0,0,0,0,1,1,2,2,0,2,0,0,2,2,0,2,It's our robot,owo
+Smeed I.,1089,3,24,1,0,0,0,0,0,0,0,0,0,2,2,0,0,3,0,2,1,0,0,1,Didn't attempt to go higher,It was good for a ground bot. Didn't attempt to get to rocket level three. Didn't attempt to put cargo or hatches in the cargo ship
+Smeed I.,1218,2,25,0,1,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,3,It was good,took at least 15 sec to get on.
+Taharis,1218,3,26,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,1,1,null,null
+Taharis,87,3,27,1,1,0,0,0,0,0,0,0,1,0,1,0,0,1,3,0,0,0,0,1,null,null
+Taharis,316,3,28,1,0,0,0,0,0,0,0,0,0,0,2,1,0,3,1,0,0,1,0,1,null,null
+Taharis,321,3,29,1,0,0,0,0,0,0,0,0,0,2,0,0,0,1,4,2,0,0,0,1,null,Attempted and almost got a tier three climb
+Taharis,6808,2,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Didn't do much at all
+jalen,2016,1,21,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Ok with cargo
+Ali ahmad,4361,2,27,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,0,0,1,Not a clim,A cargo bot. Got some cargo on the rocket
+jalen,2180,3,28,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,null,Went out twice but was able to stay alive enough to get some cargo and land on hab 1
+rithik mohanty,1640,,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,3,null,Can reliably grab and place cargo
+rithik mohanty,272,,31,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,3,4,0,0,0,0,null,Very reliable with cargo and can pick up hatches failed to make it to habitat
+rithik mohanty,4573,,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,0,0,2,null,null
+rithik mohanty,5404,,33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,null,null
+rithik mohanty,316,,34,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,1,null,null
+rithik mohanty,87,,35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Unreliable with hatches was only able to pick up one and was unable to place it
+Brandon r,321,3,26,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,10 s,Tried getting on level 3 but fell back down. Inaccurate with cargo
+Brandon ro,5624,3,27,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Stopped moving for a bit towards the end. Struggles to launch its cargo a few times
+Brandon r,7877,2,28,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Couldn't score any cargo because it would get stuck in its basket for a bit
+Brandon r,5401,3,29,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,2,0,0,0,0,2,null,Absolute beast. Favorite robot by far.  S\o my mama Danny P
+Brandon r,1089,3,30,1,0,1,0,0,0,0,0,0,0,1,2,2,0,4,0,0,1,0,0,1,5 s,Didn't have enough time to fully get on level 2. Quickly got all hatches on the rocket all on its own
+sami,219,2,31,0,1,0,0,0,0,0,0,0,1,2,1,0,0,4,0,0,0,0,0,1,null,Had a ramp for other robots to use.
+sami,204,2,32,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,0,0,0,0,1,null,Disregarding the sandstorm
+sami,272,2,33,0,0,0,0,0,0,0,0,0,0,1,0,0,0,2,2,0,0,0,0,2,null,null
+sami,2554,3,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,2,17 s,Very slow and careful.  Didn't hatch any cargos or rockets.
+sami,4361,3,35,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,3,20 s,Didn't really accomplish much.
+Jake dela Cruz,5490,2,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Didn't do much
+Jake dela Cruz,1640,3,32,1,0,1,0,0,0,0,0,0,0,2,2,1,0,4,0,0,0,0,0,3,10 sec,Goond
+Jake dela Cruz,321,2,33,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,3,0,0,0,0,1,null,Only did cargo
+Jake dela Cruz,219,2,34,0,1,0,0,0,0,0,0,0,2,2,0,0,0,2,0,0,0,0,0,3,Idk,Ramp bois didn't play defense this time
+Jake dela Cruz,2590,3,35,1,0,0,0,0,1,0,0,0,2,1,1,0,0,3,5,0,0,0,0,3,12 seconds,Good
+Patrick,1807,2,36,0,1,0,0,0,0,0,0,0,4,0,0,0,0,4,0,0,0,0,0,3,6s,Two hatch panels in sandstorm.
+Patrick,5624,1,37,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,3,0,0,0,0,1,null,null
+Patrick,219,2,38,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,null,Made 2607 drop a batch panel and had almost gone into the frame perimeter of 2607.
+Patrick,5404,2,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,3,3s,Dropped its hatch panel during the sandstorm.
+Patrick,7877,1,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,null
+jakub,708,1,31,1,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,null,null
+jakub,2607,1,32,1,0,0,0,0,0,0,0,0,0,2,2,1,0,0,0,1,2,0,0,0,null,null
+jakub,341,1,33,0,0,1,0,0,0,0,0,0,1,1,2,0,0,0,1,2,1,0,0,1,null,null
+brandon,224,1,34,0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,null,Kinda sloppy
+brandon,4637,1,35,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,null,Uses a basket type thing to get cargo at the portaks
+Brandon,5490,1,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,null,Just kinda played defense. Didn't mAke it back to base
+Brandon,87,2,37,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,null,Wasn't good with hatches
+Brandon,321,1,38,1,1,0,0,0,0,0,0,0,0,2,0,0,0,0,3,0,0,0,0,2,10,Great with cargo but not hatches
+Brandon,4637,1,39,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,10,Useful for defense only.
+Brandon,1807,2,40,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,3,2,2,0,0,3,9,Can reach all levels
+Smeed I.,5404,3,31,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,7,0,0,0,0,3,It easily got on with 15 sec remaining.,It's all low cargo and third level climb
+Smeed I.,2016,2,32,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,5,0,1,0,0,2,They went full speed into the second level and got it.,They're all low cargo
+Smeed I.,708,3,33,1,0,0,0,0,0,0,0,0,1,2,0,0,0,1,4,0,0,0,0,3,Took around 15 seconds to climb,They can do everything
+Smeed I.,5624,3,34,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,3,They got her from a ramp robot.,They can only do level one cargo
+Smeed I.,7877,2,35,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Didn't attempt to go higher.,It played defense the entire time
+Taharis,6808,3,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,Got a hatch stuck on their hatch mechanism for most of the match
+Taharis,272,3,37,0,0,0,0,0,1,0,0,0,0,2,0,0,0,2,1,0,0,0,1,1,null,null
+Taharis,1640,3,38,1,0,1,0,0,0,0,0,0,0,1,2,1,0,4,1,2,2,0,0,3,3 Seconds,null
+Taharis,5401,3,39,1,0,0,0,0,0,0,0,0,0,2,2,1,0,5,0,1,2,0,0,2,null,Sexy af
+Taharis,708,3,40,1,0,0,0,0,0,0,0,0,0,0,2,2,0,3,0,0,0,2,0,1,null,Very fluid hatch pick up and placement
+Jake dela Cruz,5490,3,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,null,Curtain bot
+Jake dela Cruz,1391,3,42,1,1,0,0,0,0,0,0,0,1,2,2,0,0,4,0,0,0,0,0,1,null,F
+Jake delq Cruz,4361,3,43,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,null,Tried to climb 219 but almost got an F
+Jake dela Cruz,272,3,44,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,null,yeet bot
+Jake dela Cruz,1218,3,45,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,3,0,0,0,0,3,6 seconds,Good at cargo and climb
+Smeed,1218,null,41,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,3,Like five seconds,
+Shawn p. Anderson,4637,3,42,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,null,null
+Justin,219,3,43,1,1,0,0,0,0,0,0,0,1,2,0,0,0,3,1,0,0,0,0,1,Big ramp good for level three setup takes a while
+justin,204,3,45,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,3,1,0,0,0,2,null,null
+Justin,272,3,45,1,1,0,0,0,0,0,0,0,3,0,0,0,0,2,0,0,0,0,0,3,Quick,null
