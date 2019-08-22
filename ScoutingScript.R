@@ -1,3 +1,4 @@
+require(ggplot2)
 "
 Build an R script that can do the following:
 
@@ -191,5 +192,31 @@ df2 <- data.frame(Teams = uniqueTeams, #Identifier
                   Hatch_GP_SD = c43, Hatch_SP_SD = c44,
                   #Boolean Means
                   Is_Defensive = c45)
+
+#Order by Defensiveness, descending.
 df2 <- df2[with(df2, order(-Is_Defensive)), ]
 print(df2)
+
+#Order by Hatch Panels, descending.
+df2 <- df2[with(df2, order(-Hatch_Total_Mean)), ]
+print(df2)
+
+#Order by Cargo, descending.
+df2 <- df2[with(df2, order(-Cargo_Total_Mean)), ]
+print(df2)
+
+#Order by Hab Level, descending
+df2 <- df2[with(df2, order(-Habitat_Level_Mean)), ]
+print(df2)
+
+#Order by Hab Points, descending
+df2 <- df2[with(df2, order(-Habitat_Points_Mean)), ]
+print(df2)
+
+df3 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean)
+
+#Yes, the plot can get pretty cramped especially at the bottom,
+#but this is probably the only plot I can do at present.
+
+plot(df3, main="FRC Teams")
+text(df3$Cargos, df3$Hatches + 0.25, labels = df2$Teams)
