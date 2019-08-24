@@ -256,6 +256,7 @@ plot1 <- plot_ly(data = df4, x = ~Offensive_Rating, y = ~Defensive_Rating,
 print(plot1)
 
 
+
 df5 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean,
                   Cargos.StdErr = df2$Cargo_Total_SD, Hatches.StdErr = df2$Hatch_Total_SD)
 
@@ -274,19 +275,18 @@ Alliance Selection
 4th - 303, 341, 6808 - 1 Def. Bot [6808]
 5th - 1218, 5404, 2554 - 0 Def. Bots
 6th - 224, 316, 204 - 0 Def. Bots
-7th - 2016, 1089, 4361 - 1 Def. Bot []
-8th - 708, 272, 321 - 1 Def. Bot []
+7th - 2016, 1089, 4361 - 1 Def. Bot [4361]
+8th - 708, 272, 321 - 1 Def. Bot [272]
 "
 
 "
-Quarterfinals Probabilities
+Playoffs Probabilities
 
 This model assumes that the best offensive robot in each alliance gets defended
 by the most defensive robot and that the number of points lost follows the
 mathematical equation below:
 
 Points Lost = (Offensive Rating of the Best Offensive Bot) * (Defensiveness of Enemy Bot)
-
 "
 
 #Has to be manually set.
@@ -360,92 +360,105 @@ probability_of_winning <- function(allianceA, allianceB) {
   three_match_prob
 }
 
+#All add up to 400%. Nice.
 first_semis <- probability_of_winning(first, eighth)
 second_semis <- probability_of_winning(second, seventh)
 third_semis <- probability_of_winning(third, sixth)
 fourth_semis <- probability_of_winning(fourth, fifth)
 
-first_finals_given_semis <- fourth_semis * probability_of_winning(first, fourth)
-+ (1 - fourth_semis) * probability_of_winning(first, fifth)
+first_finals_given_semis <- fourth_semis * probability_of_winning(first, fourth) + (1 - fourth_semis) * probability_of_winning(first, fifth)
 
-second_finals_given_semis <- third_semis * probability_of_winning(second, third)
-+ (1 - third_semis) * probability_of_winning(second, sixth)
+second_finals_given_semis <- third_semis * probability_of_winning(second, third) + (1 - third_semis) * probability_of_winning(second, sixth)
 
-third_finals_given_semis <- second_semis * probability_of_winning(third, second)
-+ (1 - second_semis) * probability_of_winning(third, seventh)
+third_finals_given_semis <- second_semis * probability_of_winning(third, second) + (1 - second_semis) * probability_of_winning(third, seventh)
 
-fourth_finals_given_semis <- first_semis * probability_of_winning(fourth, first)
-+ (1 - first_semis) * probability_of_winning(fourth, eighth)
+fourth_finals_given_semis <- first_semis * probability_of_winning(fourth, first) + (1 - first_semis) * probability_of_winning(fourth, eighth)
 
-fifth_finals_given_semis <- first_semis * probability_of_winning(fifth, first)
-+ (1 - first_semis) * probability_of_winning(fifth, eighth)
+fifth_finals_given_semis <- first_semis * probability_of_winning(fifth, first) + (1 - first_semis) * probability_of_winning(fifth, eighth)
 
-sixth_finals_given_semis <- second_semis * probability_of_winning(sixth, second)
-+ (1 - second_semis) * probability_of_winning(sixth, seventh)
+sixth_finals_given_semis <- second_semis * probability_of_winning(sixth, second) + (1 - second_semis) * probability_of_winning(sixth, seventh)
 
-seventh_finals_given_semis <- third_semis * probability_of_winning(seventh, third)
-+ (1 - third_semis) * probability_of_winning(seventh, sixth)
+seventh_finals_given_semis <- third_semis * probability_of_winning(seventh, third) + (1 - third_semis) * probability_of_winning(seventh, sixth)
 
-eighth_finals_given_semis <- fourth_semis * probability_of_winning(eighth, fourth)
-+ (1 - fourth_semis) * probability_of_winning(eighth, fifth)
+eighth_finals_given_semis <- fourth_semis * probability_of_winning(eighth, fourth) + (1 - fourth_semis) * probability_of_winning(eighth, fifth)
 
-#Now, for the finals
+#Now, for the finals variables
+first_finals <- first_semis * first_finals_given_semis
+second_finals <- second_semis * second_finals_given_semis
+third_finals <- third_semis * third_finals_given_semis
+fourth_finals <- fourth_semis * fourth_finals_given_semis
+fifth_finals <- (1 - fourth_semis) * fifth_finals_given_semis
+sixth_finals <- (1 - third_semis) * sixth_finals_given_semis
+seventh_finals <- (1 - second_semis) * seventh_finals_given_semis
+eighth_finals <- (1 - first_semis) * eighth_finals_given_semis
+
+#Again, they do not necessarily add up to 200%, so this should adjust for that.
+total_finals <- first_finals + second_finals + third_finals + fourth_finals + fifth_finals + sixth_finals + seventh_finals + eighth_finals
+
+first_finals <- first_finals * 2 / total_finals
+second_finals <- second_finals * 2 / total_finals
+third_finals <- third_finals * 2 / total_finals
+fourth_finals <- fourth_finals * 2 / total_finals
+fifth_finals <- fifth_finals * 2 / total_finals
+sixth_finals <- sixth_finals * 2 / total_finals
+seventh_finals <- seventh_finals * 2 / total_finals
+eighth_finals <- eighth_finals * 2 / total_finals
 
 #First - 2nd, 3rd, 6th, and 7th
 first_champions_given_finals <-
-  second_semis * second_finals_given_semis * probability_of_winning(first, second)
-+ third_semis * third_finals_given_semis * probability_of_winning(first, third)
-+ (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(first, sixth)
-+ (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(first, seventh)
+  second_semis * second_finals_given_semis * probability_of_winning(first, second) +
+  third_semis * third_finals_given_semis * probability_of_winning(first, third) +
+  (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(first, sixth) + 
+  (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(first, seventh)
 
 #Second - 1st, 4th, 5th, and 8th
 second_champions_given_finals <-
-  first_semis * first_finals_given_semis * probability_of_winning(second, first)
-+ fourth_semis * fourth_finals_given_semis * probability_of_winning(second, fourth)
-+ (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(second, fifth)
-+ (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(second, eighth)
+  first_semis * first_finals_given_semis * probability_of_winning(second, first) + 
+  fourth_semis * fourth_finals_given_semis * probability_of_winning(second, fourth) + 
+  (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(second, fifth) + 
+  (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(second, eighth)
 
 #Third - 1st, 4th, 5th, and 8th
 third_champions_given_finals <-
-  first_semis * first_finals_given_semis * probability_of_winning(third, first)
-+ fourth_semis * fourth_finals_given_semis * probability_of_winning(third, fourth)
-+ (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(third, fifth)
-+ (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(third, eighth)
+  first_semis * first_finals_given_semis * probability_of_winning(third, first) + 
+  fourth_semis * fourth_finals_given_semis * probability_of_winning(third, fourth) +
+  (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(third, fifth) + 
+  (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(third, eighth)
 
 #Fourth - 2nd, 3rd, 6th, and 7th
 fourth_champions_given_finals <-
-  second_semis * second_finals_given_semis * probability_of_winning(fourth, second)
-+ third_semis * third_finals_given_semis * probability_of_winning(fourth, third)
-+ (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(fourth, sixth)
-+ (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(fourth, seventh)
+  second_semis * second_finals_given_semis * probability_of_winning(fourth, second) +
+  third_semis * third_finals_given_semis * probability_of_winning(fourth, third) +
+  (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(fourth, sixth) +
+  (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(fourth, seventh)
 
 #Fifth - 2nd, 3rd, 6th, and 7th
 fifth_champions_given_finals <-
-  second_semis * second_finals_given_semis * probability_of_winning(fifth, second)
-+ third_semis * third_finals_given_semis * probability_of_winning(fifth, third)
-+ (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(fifth, sixth)
-+ (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(fifth, seventh)
+  second_semis * second_finals_given_semis * probability_of_winning(fifth, second) + 
+  third_semis * third_finals_given_semis * probability_of_winning(fifth, third) +
+  (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(fifth, sixth) + 
+  (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(fifth, seventh)
 
 #Sixth - 1st, 4th, 5th, and 8th
 sixth_champions_given_finals <-
-  first_semis * first_finals_given_semis * probability_of_winning(sixth, first)
-+ fourth_semis * fourth_finals_given_semis * probability_of_winning(sixth, fourth)
-+ (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(sixth, fifth)
-+ (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(sixth, eighth)
+  first_semis * first_finals_given_semis * probability_of_winning(sixth, first) + 
+  fourth_semis * fourth_finals_given_semis * probability_of_winning(sixth, fourth) + 
+  (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(sixth, fifth) + 
+  (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(sixth, eighth)
 
 #Seventh - 1st, 4th, 5th, and 8th
 seventh_champions_given_finals <-
-  first_semis * first_finals_given_semis * probability_of_winning(seventh, first)
-+ fourth_semis * fourth_finals_given_semis * probability_of_winning(seventh, fourth)
-+ (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(seventh, fifth)
-+ (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(seventh, eighth)
+  first_semis * first_finals_given_semis * probability_of_winning(seventh, first) + 
+  fourth_semis * fourth_finals_given_semis * probability_of_winning(seventh, fourth) + 
+  (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(seventh, fifth) +
+  (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(seventh, eighth)
 
 #Eighth - 2nd, 3rd, 6th, and 7th
 eighth_champions_given_finals <-
-  second_semis * second_finals_given_semis * probability_of_winning(eighth, second)
-+ third_semis * third_finals_given_semis * probability_of_winning(eighth, third)
-+ (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(eighth, sixth)
-+ (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(eighth, seventh)
+  second_semis * second_finals_given_semis * probability_of_winning(eighth, second) +
+  third_semis * third_finals_given_semis * probability_of_winning(eighth, third) + 
+  (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(eighth, sixth) + 
+  (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(eighth, seventh)
 
 #All conditional probabilities are formatted and rounded to the nearest 0.1%
 cat("\nQuarterfinal Probabilities:\n")
@@ -497,10 +510,60 @@ sixth_champions <- (1 - third_semis) * sixth_finals_given_semis * sixth_champion
 seventh_champions <- (1 - second_semis) * seventh_finals_given_semis * seventh_champions_given_finals
 eighth_champions <- (1 - first_semis) * eighth_finals_given_semis * eighth_champions_given_finals
 
+total <- first_champions + second_champions + third_champions + fourth_champions + fifth_champions + sixth_champions + seventh_champions + eighth_champions
 #The percentages calculated in the 8 variables above
-#may not add up to 100% due to the random distribution.
-total <- first_champions + second_champions + third_champions + fourth_champions
-+ fifth_champions + sixth_champions + seventh_champions + eighth_champions
+#may not add up to 100% due to the random distribution, so they will be adjusted.
+first_champions <- first_champions / total
+second_champions <- second_champions / total
+third_champions <- third_champions / total
+fourth_champions <- fourth_champions / total
+fifth_champions <- fifth_champions / total
+sixth_champions <- sixth_champions / total
+seventh_champions <- seventh_champions / total
+eighth_champions <- eighth_champions / total
+
+#Total - Mean Points
+first_points <- 10 * (first_semis + first_finals + first_champions)
+second_points <- 10 * (second_semis + second_finals + second_champions)
+third_points <- 10 * (third_semis + third_finals + third_champions)
+fourth_points <- 10 * (fourth_semis + fourth_finals + fourth_champions)
+fifth_points <- 10 * ((1 - fourth_semis) + fifth_finals + fifth_champions)
+sixth_points <- 10 * ((1 - third_semis) + sixth_finals + sixth_champions)
+seventh_points <- 10 * ((1 - second_semis) + seventh_finals + seventh_champions)
+eighth_points <- 10 * ((1 - first_semis) + eighth_finals + eighth_champions)
+
+#Total - Standard Deviations
+first_std_dev <- sqrt(sum(c(1 - first_semis, first_semis - first_finals,
+                            first_finals - first_champions, first_champions) *
+                            (c(0, 10, 20, 30) - first_points) ** 2))
+
+second_std_dev <- sqrt(sum(c(1 - second_semis, second_semis - second_finals,
+                             second_finals - second_champions, second_champions) *
+                            (c(0, 10, 20, 30) - second_points) ** 2))
+
+third_std_dev <- sqrt(sum(c(1 - third_semis, third_semis - third_finals,
+                            third_finals - third_champions, third_champions) *
+                            (c(0, 10, 20, 30) - third_points) ** 2))
+
+fourth_std_dev <- sqrt(sum(c(1 - fourth_semis, fourth_semis - fourth_finals,
+                             fourth_finals - fourth_champions, fourth_champions) *
+                            (c(0, 10, 20, 30) - fourth_points) ** 2))
+
+fifth_std_dev <- sqrt(sum(c(fourth_semis, 1 - fourth_semis - fifth_finals,
+                            fifth_finals - fifth_champions, fifth_champions) *
+                            (c(0, 10, 20, 30) - fifth_points) ** 2))
+
+sixth_std_dev <- sqrt(sum(c(third_semis, 1 - third_semis - sixth_finals,
+                            sixth_finals - sixth_champions, sixth_champions) *
+                            (c(0, 10, 20, 30) - sixth_points) ** 2))
+
+seventh_std_dev <- sqrt(sum(c(second_semis, 1 - second_semis - seventh_finals,
+                              seventh_finals - seventh_champions, seventh_champions) *
+                            (c(0, 10, 20, 30) - seventh_points) ** 2))
+
+eighth_std_dev <- sqrt(sum(c(first_semis, 1 - first_semis - eighth_finals,
+                             eighth_finals - eighth_champions, eighth_champions) *
+                            (c(0, 10, 20, 30) - eighth_points) ** 2))
 
 #Probability, rounded to the nearest 0.01% (varies because of rnorm()'s RNG):
 cat("\nOverall Champion Probabilities\n")
@@ -520,3 +583,40 @@ print(paste("7th Alliance will win ", floor(seventh_champions * 10000 / total) /
             "% of the time", sep = ""))
 print(paste("8th Alliance will win ", floor(eighth_champions * 10000 / total) / 100,
             "% of the time", sep = ""))
+
+
+total_points <- first_points + second_points + third_points + fourth_points +
+  fifth_points + sixth_points + seventh_points + eighth_points
+
+first_points <- first_points * 70 / total_points
+second_points <- second_points * 70 / total_points
+third_points <- third_points * 70 / total_points
+fourth_points <- fourth_points * 70 / total_points
+fifth_points <- fifth_points * 70 / total_points
+sixth_points <- sixth_points * 70 / total_points
+seventh_points <- seventh_points * 70 / total_points
+eighth_points <- eighth_points * 70 / total_points
+
+print(paste("1st Alliance is expected to get", floor(first_points * 100) / 100,
+            "points with a standard deviation of", floor(first_std_dev * 100) / 100))
+
+print(paste("2nd Alliance is expected to get", floor(second_points * 100) / 100,
+            "points with a standard deviation of", floor(second_std_dev * 100) / 100))
+
+print(paste("3rd Alliance is expected to get", floor(third_points * 100) / 100,
+            "points with a standard deviation of", floor(third_std_dev * 100) / 100))
+
+print(paste("4th Alliance is expected to get", floor(fourth_points * 100) / 100,
+            "points with a standard deviation of", floor(fourth_std_dev * 100) / 100))
+
+print(paste("5th Alliance is expected to get", floor(fifth_points * 100) / 100,
+            "points with a standard deviation of", floor(fifth_std_dev * 100) / 100))
+
+print(paste("6th Alliance is expected to get", floor(sixth_points * 100) / 100,
+            "points with a standard deviation of", floor(sixth_std_dev * 100) / 100))
+
+print(paste("7th Alliance is expected to get", floor(seventh_points * 100) / 100,
+            "points with a standard deviation of", floor(seventh_std_dev * 100) / 100))
+
+print(paste("8th Alliance is expected to get", floor(eighth_points * 100) / 100,
+            "points with a standard deviation of", floor(eighth_std_dev * 100) / 100))
