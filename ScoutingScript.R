@@ -371,6 +371,37 @@ first_finals_given_semis <- fourth_semis * probability_of_winning(first, fourth)
 second_finals_given_semis <- third_semis * probability_of_winning(second, third) + (1 - third_semis) * probability_of_winning(second, sixth)
 
 third_finals_given_semis <- second_semis * probability_of_winning(third, second) + (1 - second_semis) * probability_of_winning(third, seventh)
+fourth_finals_given_semis <- first_semis * probability_of_winning(fourth, first) + (1 - first_semis) * probability_of_winning(fourth, eighth)
+
+fifth_finals_given_semis <- first_semis * probability_of_winning(fifth, first) + (1 - first_semis) * probability_of_winning(fifth, eighth)
+
+sixth_finals_given_semis <- second_semis * probability_of_winning(sixth, second) + (1 - second_semis) * probability_of_winning(sixth, seventh)
+
+seventh_finals_given_semis <- third_semis * probability_of_winning(seventh, third) + (1 - third_semis) * probability_of_winning(seventh, sixth)
+
+eighth_finals_given_semis <- fourth_semis * probability_of_winning(eighth, fourth) + (1 - fourth_semis) * probability_of_winning(eighth, fifth)
+
+#Now, for the finals variables
+first_finals <- first_semis * first_finals_given_semis
+second_finals <- second_semis * second_finals_given_semis
+third_finals <- third_semis * third_finals_given_semis
+fourth_finals <- fourth_semis * fourth_finals_given_semis
+fifth_finals <- (1 - fourth_semis) * fifth_finals_given_semis
+sixth_finals <- (1 - third_semis) * sixth_finals_given_semis
+seventh_finals <- (1 - second_semis) * seventh_finals_given_semis
+eighth_finals <- (1 - first_semis) * eighth_finals_given_semis
+
+#Again, they do not necessarily add up to 200%, so this should adjust for that.
+total_finals <- first_finals + second_finals + third_finals + fourth_finals + fifth_finals + sixth_finals + seventh_finals + eighth_finals
+
+first_finals <- first_finals * 2 / total_finals
+second_finals <- second_finals * 2 / total_finals
+third_finals <- third_finals * 2 / total_finals
+fourth_finals <- fourth_finals * 2 / total_finals
+fifth_finals <- fifth_finals * 2 / total_finals
+sixth_finals <- sixth_finals * 2 / total_finals
+seventh_finals <- seventh_finals * 2 / total_finals
+eighth_finals <- eighth_finals * 2 / total_finals
 
 fourth_finals_given_semis <- first_semis * probability_of_winning(fourth, first) + (1 - first_semis) * probability_of_winning(fourth, eighth)
 
@@ -403,6 +434,10 @@ fifth_finals <- fifth_finals * 2 / total_finals
 sixth_finals <- sixth_finals * 2 / total_finals
 seventh_finals <- seventh_finals * 2 / total_finals
 eighth_finals <- eighth_finals * 2 / total_finals
+
+print(first_finals + second_finals + third_finals + fourth_finals
+      + fifth_finals + sixth_finals + seventh_finals + eighth_finals)
+>>>>>>> 162e73284cb5ac70bcd0981b9986e3ea1d2714f0
 
 #First - 2nd, 3rd, 6th, and 7th
 first_champions_given_finals <-
