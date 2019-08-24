@@ -1,21 +1,23 @@
+library(dplyr)
+library(plotly)
+
 "
 Build an R script that can do the following:
 
-1) Read values from an Excel file every 30 seconds (i.e. Conversion from .txt to Data Frame).
+1) Read values from a .txt file every 30 seconds (i.e. Conversion from .txt to Data Frame).
 
 2) Separate into Teams for Mean and Standard Deviation.
 
-3) Interpret these values as Graphs for each team.
+3) Interpret these values as Graphs for each team (with Excel?).
 
 4) If possible, integrate the script with Tableau (Not possible due to the illegality
 of connections in the FRC events).
+
 
 Note: R1, R2, R3 mean the respective levels of the rocket ship, and CS means cargo ship.
 S means Sandstorm and T means Teleop.
 
 SP means Station Pickup and GP means Ground Pickup
-
-
 "
 
 
@@ -31,10 +33,8 @@ colnames(df) <- c("Name", "Team", "Position", "Match", "Is_Start_Level_2",
                   "T_Cargo_CS", "T_Cargo_R1", "T_Cargo_R2", "T_Cargo_R3",
                   "Is_Defensive", "Habitat_Level", "Time_For_Climb", "Notes")
 
-print(typeof(df))
-#Get unique team
+#Get unique teams
 uniqueTeams <- unique(df$Team)
-print(uniqueTeams)
 
 c1 <- c()
 c2 <- c()
@@ -83,6 +83,13 @@ c44 <- c()
 c45 <- c()
 
 pointfunction <- function (v) {
+  
+  #Points Scale - Hab Level:
+  # HL 0 - 0 points
+  # HL 1 - 3 points
+  # HL 2 - 6 points
+  # HL 3 - 12 points
+  
   c <- ifelse(v < 3, 3 * v, 12)
 }
 for (team in uniqueTeams) {
@@ -198,31 +205,318 @@ df2 <- data.frame(Teams = uniqueTeams, #Identifier
                   #Boolean Means
                   Is_Defensive = c45)
 
+df2 <- df2[with(df2, order(-Teams)), ]
+
 #Order by Defensiveness, descending.
-df2 <- df2[with(df2, order(-Is_Defensive)), ]
-print(df2)
+# df2 <- df2[with(df2, order(-Is_Defensive)), ]
+# print(df2)
 
 #Order by Hatch Panels, descending.
-df2 <- df2[with(df2, order(-Hatch_Total_Mean)), ]
-print(df2)
+# df2 <- df2[with(df2, order(-Hatch_Total_Mean)), ]
+# print(df2)
 
 #Order by Cargo, descending.
-df2 <- df2[with(df2, order(-Cargo_Total_Mean)), ]
-print(df2)
+# df2 <- df2[with(df2, order(-Cargo_Total_Mean)), ]
+# print(df2)
 
 #Order by Hab Level, descending.
-df2 <- df2[with(df2, order(-Habitat_Level_Mean)), ]
-print(df2)
+# df2 <- df2[with(df2, order(-Habitat_Level_Mean)), ]
+# print(df2)
 
 #Order by Hab Points, descending.
-df2 <- df2[with(df2, order(-Habitat_Points_Mean)), ]
-print(df2)
-
-df3 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean)
-boxplot(3 * df2$Cargo_Total_Mean + 2 * df2$Hatch_Total_Mean, main = "FRC Team Offensive Points", xlab = "Points", ylab = "FRC Teams", col = "red", horizontal = TRUE, notch = TRUE)
+# df2 <- df2[with(df2, order(-Habitat_Points_Mean)), ]
+# print(df2)
 
 #Yes, this plot can get pretty cramped especially at the bottom,
 #but this is one of the only plots I can do at present.
 
-plot(df3, main="FRC Teams")
-text(df3$Cargos, df3$Hatches + 0.25, labels = df2$Teams)
+df3 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean)
+
+png("frc_teams.png", width = 1500, height = 900)
+plot(df3, main="FRC Teams", col = df2$Teams %>% length() %>% rainbow() %>% palette())
+text(df3$Cargos, df3$Hatches + 0.1, labels = df2$Teams, col = df2$Teams %>% length() %>% rainbow() %>% palette())
+dev.off()
+
+df4 <- data.frame(Offensive_Rating = (2 * df2$Hatch_Total_Mean + 3 * df2$Cargo_Total_Mean
+                                      + df2$Habitat_Points_Mean),
+                  Defensive_Rating = df2$Is_Defensive)
+
+colors <- df2$Teams %>% length() %>% rainbow() %>% palette()
+total_rating <- df4$Defensive_Rating + df4$Offensive_Rating * max(df4$Defensive_Rating) / max(df4$Offensive_Rating)
+
+plot1 <- plot_ly(data = df4, x = ~Offensive_Rating, y = ~Defensive_Rating, 
+             colors = ~colors, text = ~paste("Team: ", df2$Teams),
+             marker = list(size = 15 + 15 * df2$Teams / max(df2$Teams), line = list(color = 'black', width = 2), color =
+                             hsv(v = 1, s = 1, h = (rank(total_rating, ties.method = "random") - 1) / 30))) %>% layout(title = "Robot Offensive-Defensive Scale",
+                                                                             xaxis = list(title = "Offensive Rating (Total Points without Autonomous)"),
+                                                                             yaxis = list(title = "Defensiveness", tickformat = "%")) %>% hide_colorbar()
+
+#If you see any warnings, ignore them--the program should display a plot by default.
+#Do not save this plot as an image because that will make it not interactive.
+print(plot1)
+
+
+df5 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean,
+                  Cargos.StdErr = df2$Cargo_Total_SD, Hatches.StdErr = df2$Hatch_Total_SD)
+
+#However, you can save this plot as an image.
+plot(df5$Hatches, df5$Cargos, xlab = "Mean Hatches +/- 0.1 SD", ylab = "Mean Cargos +/- 0.1 SD")
+text(df5$Hatches, df5$Cargos - 0.05, labels = df2$Teams, col = df2$Teams %>% length() %>% rainbow() %>% palette())
+arrows(df5$Hatches, df5$Cargos + df5$Cargos.StdErr * .1, df5$Hatches, df5$Cargos - df5$Cargos.StdErr * .1, length = 0.05, angle = 90, code = 3, col = "red")
+arrows(df5$Hatches + df5$Hatches.StdErr * .1, df5$Cargos, df5$Hatches - df5$Hatches.StdErr * .1, df5$Cargos, length = 0.05, angle = 90, code = 3, col = "blue")
+
+"
+Alliance Selection
+
+1st - 2607, 1640, 219 - 1 Def. Bot [219]
+2nd - 2590, 1807, 7599, 555 - 1 Def. Bot (later 0) [7599]
+3rd - 1391, 5401, 4573 - 0 Def. Bots
+4th - 303, 341, 6808 - 1 Def. Bot [6808]
+5th - 1218, 5404, 2554 - 0 Def. Bots
+6th - 224, 316, 204 - 0 Def. Bots
+7th - 2016, 1089, 4361 - 1 Def. Bot []
+8th - 708, 272, 321 - 1 Def. Bot []
+"
+
+"
+Quarterfinals Probabilities
+
+This model assumes that the best offensive robot in each alliance gets defended
+by the most defensive robot and that the number of points lost follows the
+mathematical equation below:
+
+Points Lost = (Offensive Rating of the Best Offensive Bot) * (Defensiveness of Enemy Bot)
+
+"
+
+#Has to be manually set.
+
+first <- c(2607, 1640, 219)
+second <- c(2590, 1807, 555)
+third <- c(1391, 5401, 4573)
+fourth <- c(303, 341, 6808)
+fifth <- c(1218, 5404, 2554)
+sixth <- c(224, 316, 204)
+seventh <- c(2016, 1089, 4361)
+eighth <- c(708, 272, 321)
+
+#Then, here comes the ratings:
+
+defensiveRating <- function(alliance) {
+  max(df2$Is_Defensive[df2$Teams %in% alliance])
+}
+
+mvpIndex <- function(alliance) {
+  max(df2$Cargo_Total_Mean[df2$Teams %in% alliance] * 3
+            + df2$Hatch_Total_Mean[df2$Teams %in% alliance] * 2
+            + df2$Habitat_Points_Mean[df2$Teams %in% alliance])
+}
+
+probability_of_winning <- function(allianceA, allianceB) {
+  
+  df6 <- data.frame(Teams = df2$Teams,
+                    Offensive_Rating = df2$Cargo_Total_Mean * 3
+                    + df2$Hatch_Total_Mean * 2
+                    + df2$Habitat_Points_Mean,
+                    Offensive_Rating_SD =
+                      sqrt(9 * (df2$Cargo_Total_SD ** 2)
+                           + 4 * (df2$Hatch_Total_SD ** 2)
+                           + (df2$Habitat_Points_SD ** 2)))
+  
+  #In other words, this algorithm will try to find the most offensive robot's point total
+  allianceAMaxOffensiveRating <- mvpIndex(allianceA)
+  allianceBMaxOffensiveRating <- mvpIndex(allianceB)
+  
+  "
+  There can only be one defensive bot; otherwise, the alliance breaks the rules.
+  Each team does a HAB Climb 10 seconds before the end of the game. Since there are
+  135 seconds in teleop, an ideal defensive bot should spend around 120 seconds
+  defending the other team (15 seconds for a round trip of the field at around 5 ft/s),
+  which is equal to 8/9 of the total.
+  "
+  
+  allianceADefensiveRating <- defensiveRating(allianceA) * 8/9
+  
+  allianceBDefensiveRating <- defensiveRating(allianceB) * 8/9
+  
+  #Assuming the population variances are not equal:
+  
+  allianceAPointLoss <- allianceAMaxOffensiveRating * allianceBDefensiveRating
+  allianceBPointLoss <- allianceBMaxOffensiveRating * allianceADefensiveRating
+  
+  predictedAllianceANetGain <- sum(df6$Offensive_Rating[df6$Teams %in% allianceA]) - allianceAPointLoss
+  predictedAllianceBNetGain <- sum(df6$Offensive_Rating[df6$Teams %in% allianceB]) - allianceBPointLoss
+  
+  predictedAllianceAStdErr <- sqrt(sum(df6$Offensive_Rating_SD[df6$Teams %in% allianceA] ** 2))
+  predictedAllianceBStdErr <- sqrt(sum(df6$Offensive_Rating_SD[df6$Teams %in% allianceB] ** 2))
+  
+  #The core of all the probabilities - Meet the Ultimate Trial and Error
+  normDistA <- rnorm(50000, mean = predictedAllianceANetGain, sd = predictedAllianceAStdErr)
+  normDistB <- rnorm(50000, mean = predictedAllianceBNetGain, sd = predictedAllianceBStdErr)
+  probability <- sum(normDistA - normDistB > 0) / 50000
+  
+  #P(2 or 3 out of 3) = 3 * (x ** 2) * (1 - x) + x ** 3
+  three_match_prob <- (probability ** 2) * (3 - 2 * probability)
+  three_match_prob
+}
+
+first_semis <- probability_of_winning(first, eighth)
+second_semis <- probability_of_winning(second, seventh)
+third_semis <- probability_of_winning(third, sixth)
+fourth_semis <- probability_of_winning(fourth, fifth)
+
+first_finals_given_semis <- fourth_semis * probability_of_winning(first, fourth)
++ (1 - fourth_semis) * probability_of_winning(first, fifth)
+
+second_finals_given_semis <- third_semis * probability_of_winning(second, third)
++ (1 - third_semis) * probability_of_winning(second, sixth)
+
+third_finals_given_semis <- second_semis * probability_of_winning(third, second)
++ (1 - second_semis) * probability_of_winning(third, seventh)
+
+fourth_finals_given_semis <- first_semis * probability_of_winning(fourth, first)
++ (1 - first_semis) * probability_of_winning(fourth, eighth)
+
+fifth_finals_given_semis <- first_semis * probability_of_winning(fifth, first)
++ (1 - first_semis) * probability_of_winning(fifth, eighth)
+
+sixth_finals_given_semis <- second_semis * probability_of_winning(sixth, second)
++ (1 - second_semis) * probability_of_winning(sixth, seventh)
+
+seventh_finals_given_semis <- third_semis * probability_of_winning(seventh, third)
++ (1 - third_semis) * probability_of_winning(seventh, sixth)
+
+eighth_finals_given_semis <- fourth_semis * probability_of_winning(eighth, fourth)
++ (1 - fourth_semis) * probability_of_winning(eighth, fifth)
+
+#Now, for the finals
+
+#First - 2nd, 3rd, 6th, and 7th
+first_champions_given_finals <-
+  second_semis * second_finals_given_semis * probability_of_winning(first, second)
++ third_semis * third_finals_given_semis * probability_of_winning(first, third)
++ (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(first, sixth)
++ (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(first, seventh)
+
+#Second - 1st, 4th, 5th, and 8th
+second_champions_given_finals <-
+  first_semis * first_finals_given_semis * probability_of_winning(second, first)
++ fourth_semis * fourth_finals_given_semis * probability_of_winning(second, fourth)
++ (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(second, fifth)
++ (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(second, eighth)
+
+#Third - 1st, 4th, 5th, and 8th
+third_champions_given_finals <-
+  first_semis * first_finals_given_semis * probability_of_winning(third, first)
++ fourth_semis * fourth_finals_given_semis * probability_of_winning(third, fourth)
++ (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(third, fifth)
++ (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(third, eighth)
+
+#Fourth - 2nd, 3rd, 6th, and 7th
+fourth_champions_given_finals <-
+  second_semis * second_finals_given_semis * probability_of_winning(fourth, second)
++ third_semis * third_finals_given_semis * probability_of_winning(fourth, third)
++ (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(fourth, sixth)
++ (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(fourth, seventh)
+
+#Fifth - 2nd, 3rd, 6th, and 7th
+fifth_champions_given_finals <-
+  second_semis * second_finals_given_semis * probability_of_winning(fifth, second)
++ third_semis * third_finals_given_semis * probability_of_winning(fifth, third)
++ (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(fifth, sixth)
++ (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(fifth, seventh)
+
+#Sixth - 1st, 4th, 5th, and 8th
+sixth_champions_given_finals <-
+  first_semis * first_finals_given_semis * probability_of_winning(sixth, first)
++ fourth_semis * fourth_finals_given_semis * probability_of_winning(sixth, fourth)
++ (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(sixth, fifth)
++ (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(sixth, eighth)
+
+#Seventh - 1st, 4th, 5th, and 8th
+seventh_champions_given_finals <-
+  first_semis * first_finals_given_semis * probability_of_winning(seventh, first)
++ fourth_semis * fourth_finals_given_semis * probability_of_winning(seventh, fourth)
++ (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(seventh, fifth)
++ (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(seventh, eighth)
+
+#Eighth - 2nd, 3rd, 6th, and 7th
+eighth_champions_given_finals <-
+  second_semis * second_finals_given_semis * probability_of_winning(eighth, second)
++ third_semis * third_finals_given_semis * probability_of_winning(eighth, third)
++ (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(eighth, sixth)
++ (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(eighth, seventh)
+
+#All conditional probabilities are formatted and rounded to the nearest 0.1%
+cat("\nQuarterfinal Probabilities:\n")
+print(paste("1st vs 8th:", floor(first_semis * 1000) / 10, "%"))
+print(paste("4th vs 5th:", floor(fourth_semis * 1000) / 10, "%"))
+print(paste("2nd vs 7th:", floor(second_semis * 1000) / 10, "%"))
+print(paste("3rd vs 6th:", floor(third_semis * 1000) / 10, "%"))
+cat("\nSemifinal Probabilities:\n")
+
+#Semifinal Probabilities
+print(paste("1st vs 4th:", floor(probability_of_winning(first, fourth) * 1000) / 10, "%"))
+print(paste("1st vs 5th:", floor(probability_of_winning(first, fifth) * 1000) / 10, "%"))
+print(paste("8th vs 4th:", floor(probability_of_winning(eighth, fourth) * 1000) / 10, "%"))
+print(paste("8th vs 5th:", floor(probability_of_winning(eighth, fifth) * 1000) / 10, "%"))
+
+print(paste("2nd vs 3rd:", floor(probability_of_winning(second, third) * 1000) / 10, "%"))
+print(paste("2nd vs 6th:", floor(probability_of_winning(second, sixth) * 1000) / 10, "%"))
+print(paste("7th vs 3rd:", floor(probability_of_winning(seventh, third) * 1000) / 10, "%"))
+print(paste("7th vs 6th:", floor(probability_of_winning(seventh, sixth) * 1000) / 10, "%"))
+
+cat("\nFinals Probabilities:\n")
+print(paste("1st vs 2nd:", floor(probability_of_winning(first, second) * 1000) / 10, "%"))
+print(paste("1st vs 3rd:", floor(probability_of_winning(first, third) * 1000) / 10, "%"))
+print(paste("1st vs 6th:", floor(probability_of_winning(first, sixth) * 1000) / 10, "%"))
+print(paste("1st vs 7th:", floor(probability_of_winning(first, seventh) * 1000) / 10, "%"))
+
+print(paste("4th vs 2nd:", floor(probability_of_winning(fourth, second) * 1000) / 10, "%"))
+print(paste("4th vs 3rd:", floor(probability_of_winning(fourth, third) * 1000) / 10, "%"))
+print(paste("4th vs 6th:", floor(probability_of_winning(fourth, sixth) * 1000) / 10, "%"))
+print(paste("4th vs 7th:", floor(probability_of_winning(fourth, seventh) * 1000) / 10, "%"))
+
+print(paste("5th vs 2nd:", floor(probability_of_winning(fifth, second) * 1000) / 10, "%"))
+print(paste("5th vs 3rd:", floor(probability_of_winning(fifth, third) * 1000) / 10, "%"))
+print(paste("5th vs 6th:", floor(probability_of_winning(fifth, sixth) * 1000) / 10, "%"))
+print(paste("5th vs 7th:", floor(probability_of_winning(fifth, seventh) * 1000) / 10, "%"))
+
+print(paste("8th vs 2nd:", floor(probability_of_winning(eighth, second) * 1000) / 10, "%"))
+print(paste("8th vs 3rd:", floor(probability_of_winning(eighth, third) * 1000) / 10, "%"))
+print(paste("8th vs 6th:", floor(probability_of_winning(eighth, sixth) * 1000) / 10, "%"))
+print(paste("8th vs 7th:", floor(probability_of_winning(eighth, seventh) * 1000) / 10, "%"))
+
+#Probability that each alliance will make it to become the champions:
+first_champions <- first_semis * first_finals_given_semis * first_champions_given_finals
+second_champions <- second_semis * second_finals_given_semis * second_champions_given_finals
+third_champions <- third_semis * third_finals_given_semis * third_champions_given_finals
+fourth_champions <- fourth_semis * fourth_finals_given_semis * fourth_champions_given_finals
+fifth_champions <- (1 - fourth_semis) * fifth_finals_given_semis * fifth_champions_given_finals
+sixth_champions <- (1 - third_semis) * sixth_finals_given_semis * sixth_champions_given_finals
+seventh_champions <- (1 - second_semis) * seventh_finals_given_semis * seventh_champions_given_finals
+eighth_champions <- (1 - first_semis) * eighth_finals_given_semis * eighth_champions_given_finals
+
+#The percentages calculated in the 8 variables above
+#may not add up to 100% due to the random distribution.
+total <- first_champions + second_champions + third_champions + fourth_champions
++ fifth_champions + sixth_champions + seventh_champions + eighth_champions
+
+#Probability, rounded to the nearest 0.01% (varies because of rnorm()'s RNG):
+cat("\nOverall Champion Probabilities\n")
+print(paste("1st Alliance will win ", floor(first_champions * 10000 / total) / 100,
+            "% of the time", sep = ""))
+print(paste("2nd Alliance will win ", floor(second_champions * 10000 / total) / 100,
+            "% of the time", sep = ""))
+print(paste("3rd Alliance will win ", floor(third_champions * 10000 / total) / 100,
+            "% of the time", sep = ""))
+print(paste("4th Alliance will win ", floor(fourth_champions * 10000 / total) / 100,
+            "% of the time", sep = ""))
+print(paste("5th Alliance will win ", floor(fifth_champions * 10000 / total) / 100,
+            "% of the time", sep = ""))
+print(paste("6th Alliance will win ", floor(sixth_champions * 10000 / total) / 100,
+            "% of the time", sep = ""))
+print(paste("7th Alliance will win ", floor(seventh_champions * 10000 / total) / 100,
+            "% of the time", sep = ""))
+print(paste("8th Alliance will win ", floor(eighth_champions * 10000 / total) / 100,
+            "% of the time", sep = ""))
