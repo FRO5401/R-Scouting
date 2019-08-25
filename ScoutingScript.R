@@ -307,21 +307,21 @@ defensiveRating <- function(alliance) {
 }
 
 mvpIndex <- function(alliance) {
-  max(df2$Cargo_Total_Mean[df2$Teams %in% alliance] * 3
-            + df2$Hatch_Total_Mean[df2$Teams %in% alliance] * 2
-            + df2$Habitat_Points_Mean[df2$Teams %in% alliance])
+  max(df2$Cargo_Total_Mean[df2$Teams %in% alliance] * 3 +
+            df2$Hatch_Total_Mean[df2$Teams %in% alliance] * 2 +
+            df2$Habitat_Points_Mean[df2$Teams %in% alliance])
 }
 
 probability_of_winning <- function(allianceA, allianceB) {
   
   df6 <- data.frame(Teams = df2$Teams,
-                    Offensive_Rating = df2$Cargo_Total_Mean * 3
-                    + df2$Hatch_Total_Mean * 2
-                    + df2$Habitat_Points_Mean,
+                    Offensive_Rating = df2$Cargo_Total_Mean * 3 +
+                    df2$Hatch_Total_Mean * 2 +
+                    df2$Habitat_Points_Mean,
                     Offensive_Rating_SD =
-                      sqrt(9 * (df2$Cargo_Total_SD ** 2)
-                           + 4 * (df2$Hatch_Total_SD ** 2)
-                           + (df2$Habitat_Points_SD ** 2)))
+                      sqrt(9 * (df2$Cargo_Total_SD ** 2) +
+                            4 * (df2$Hatch_Total_SD ** 2) +
+                           (df2$Habitat_Points_SD ** 2)))
   
   #In other words, this algorithm will try to find the most offensive robot's point total
   allianceAMaxOffensiveRating <- mvpIndex(allianceA)
@@ -358,6 +358,40 @@ probability_of_winning <- function(allianceA, allianceB) {
   #P(2 or 3 out of 3) = 3 * (x ** 2) * (1 - x) + x ** 3
   three_match_prob <- (probability ** 2) * (3 - 2 * probability)
   three_match_prob
+}
+
+#Common Fractions Less than 1
+dec_to_frac <- function (dec) {
+  if (dec < 0.001) {
+    return("< 1 in 1000")
+  } else if (dec > 0.999) {
+    return("> 999 in 1000")
+  } else if (dec < 0.1) {
+    return(paste("1 in", round(1/dec)))
+  } else if (dec > 0.9) {
+    r <- round(1/(1 - dec))
+    return(paste(r - 1, "in", r))
+  } else {
+    a <- c()
+    for(i in 1:20) {
+      a <- c(a, abs(i * dec - round(i * dec)))
+    }
+    #Determine which is the minimum (works because R is 1-based.)
+    b <- which.min(a)
+    
+    #Then, determine which fraction to use:
+    #Find the GCD of each and divide each
+    c <- round(dec * b)
+    d <- b
+    e <- round(dec * b)
+    f <- b
+    while(f) {
+      t = f
+      f = e %% f
+      e = t
+    }
+    return(paste(c/e, "in", d/e))
+  }
 }
 
 #All add up to 400%. Nice.
@@ -435,9 +469,6 @@ sixth_finals <- sixth_finals * 2 / total_finals
 seventh_finals <- seventh_finals * 2 / total_finals
 eighth_finals <- eighth_finals * 2 / total_finals
 
-print(first_finals + second_finals + third_finals + fourth_finals
-      + fifth_finals + sixth_finals + seventh_finals + eighth_finals)
-
 #First - 2nd, 3rd, 6th, and 7th
 first_champions_given_finals <-
   second_semis * second_finals_given_semis * probability_of_winning(first, second) +
@@ -496,43 +527,69 @@ eighth_champions_given_finals <-
 
 #All conditional probabilities are formatted and rounded to the nearest 0.1%
 cat("\nQuarterfinal Probabilities:\n")
-print(paste("1st vs 8th:", floor(first_semis * 1000) / 10, "%"))
-print(paste("4th vs 5th:", floor(fourth_semis * 1000) / 10, "%"))
-print(paste("2nd vs 7th:", floor(second_semis * 1000) / 10, "%"))
-print(paste("3rd vs 6th:", floor(third_semis * 1000) / 10, "%"))
+
+pw14 <- probability_of_winning(first, fourth)
+pw15 <- probability_of_winning(first, fifth)
+pw84 <- probability_of_winning(eighth, fourth)
+pw85 <- probability_of_winning(eighth, fifth)
+pw23 <- probability_of_winning(second, third)
+pw26 <- probability_of_winning(second, sixth)
+pw73 <- probability_of_winning(seventh, third)
+pw76 <- probability_of_winning(seventh, sixth)
+print(paste("1st vs 8th:", floor(first_semis * 1000) / 10, "% or", dec_to_frac(first_semis)))
+print(paste("4th vs 5th:", floor(fourth_semis * 1000) / 10, "% or", dec_to_frac(fourth_semis)))
+print(paste("2nd vs 7th:", floor(second_semis * 1000) / 10, "% or", dec_to_frac(second_semis)))
+print(paste("3rd vs 6th:", floor(third_semis * 1000) / 10, "% or", dec_to_frac(third_semis)))
 cat("\nSemifinal Probabilities:\n")
 
 #Semifinal Probabilities
-print(paste("1st vs 4th:", floor(probability_of_winning(first, fourth) * 1000) / 10, "%"))
-print(paste("1st vs 5th:", floor(probability_of_winning(first, fifth) * 1000) / 10, "%"))
-print(paste("8th vs 4th:", floor(probability_of_winning(eighth, fourth) * 1000) / 10, "%"))
-print(paste("8th vs 5th:", floor(probability_of_winning(eighth, fifth) * 1000) / 10, "%"))
+print(paste("1st vs 4th:", floor(pw14 * 1000) / 10, "% or", dec_to_frac(pw14)))
+print(paste("1st vs 5th:", floor(pw15 * 1000) / 10, "% or", dec_to_frac(pw15)))
+print(paste("8th vs 4th:", floor(pw84 * 1000) / 10, "% or", dec_to_frac(pw84)))
+print(paste("8th vs 5th:", floor(pw85 * 1000) / 10, "% or", dec_to_frac(pw85)))
 
-print(paste("2nd vs 3rd:", floor(probability_of_winning(second, third) * 1000) / 10, "%"))
-print(paste("2nd vs 6th:", floor(probability_of_winning(second, sixth) * 1000) / 10, "%"))
-print(paste("7th vs 3rd:", floor(probability_of_winning(seventh, third) * 1000) / 10, "%"))
-print(paste("7th vs 6th:", floor(probability_of_winning(seventh, sixth) * 1000) / 10, "%"))
+print(paste("2nd vs 3rd:", floor(pw23 * 1000) / 10, "% or", dec_to_frac(pw23)))
+print(paste("2nd vs 6th:", floor(pw26 * 1000) / 10, "% or", dec_to_frac(pw26)))
+print(paste("7th vs 3rd:", floor(pw73 * 1000) / 10, "% or", dec_to_frac(pw73)))
+print(paste("7th vs 6th:", floor(pw76 * 1000) / 10, "% or", dec_to_frac(pw76)))
+
+pw12 <- probability_of_winning(first, second)
+pw13 <- probability_of_winning(first, third)
+pw16 <- probability_of_winning(first, sixth)
+pw17 <- probability_of_winning(first, seventh)
+pw42 <- probability_of_winning(fourth, second)
+pw43 <- probability_of_winning(fourth, third)
+pw46 <- probability_of_winning(fourth, sixth)
+pw47 <- probability_of_winning(fourth, seventh)
+pw52 <- probability_of_winning(fifth, second)
+pw53 <- probability_of_winning(fifth, third)
+pw56 <- probability_of_winning(fifth, sixth)
+pw57 <- probability_of_winning(fifth, seventh)
+pw82 <- probability_of_winning(eighth, second)
+pw83 <- probability_of_winning(eighth, third)
+pw86 <- probability_of_winning(eighth, sixth)
+pw87 <- probability_of_winning(eighth, seventh)
 
 cat("\nFinals Probabilities:\n")
-print(paste("1st vs 2nd:", floor(probability_of_winning(first, second) * 1000) / 10, "%"))
-print(paste("1st vs 3rd:", floor(probability_of_winning(first, third) * 1000) / 10, "%"))
-print(paste("1st vs 6th:", floor(probability_of_winning(first, sixth) * 1000) / 10, "%"))
-print(paste("1st vs 7th:", floor(probability_of_winning(first, seventh) * 1000) / 10, "%"))
+print(paste("1st vs 2nd:", floor(pw12 * 1000) / 10, "%", "or", dec_to_frac(pw12)))
+print(paste("1st vs 3rd:", floor(pw13 * 1000) / 10, "%", "or", dec_to_frac(pw13)))
+print(paste("1st vs 6th:", floor(pw16 * 1000) / 10, "%", "or", dec_to_frac(pw16)))
+print(paste("1st vs 7th:", floor(pw17 * 1000) / 10, "%", "or", dec_to_frac(pw17)))
 
-print(paste("4th vs 2nd:", floor(probability_of_winning(fourth, second) * 1000) / 10, "%"))
-print(paste("4th vs 3rd:", floor(probability_of_winning(fourth, third) * 1000) / 10, "%"))
-print(paste("4th vs 6th:", floor(probability_of_winning(fourth, sixth) * 1000) / 10, "%"))
-print(paste("4th vs 7th:", floor(probability_of_winning(fourth, seventh) * 1000) / 10, "%"))
+print(paste("4th vs 2nd:", floor(pw42 * 1000) / 10, "%", "or", dec_to_frac(pw42)))
+print(paste("4th vs 3rd:", floor(pw43 * 1000) / 10, "%", "or", dec_to_frac(pw43)))
+print(paste("4th vs 6th:", floor(pw46 * 1000) / 10, "%", "or", dec_to_frac(pw46)))
+print(paste("4th vs 7th:", floor(pw47 * 1000) / 10, "%", "or", dec_to_frac(pw47)))
 
-print(paste("5th vs 2nd:", floor(probability_of_winning(fifth, second) * 1000) / 10, "%"))
-print(paste("5th vs 3rd:", floor(probability_of_winning(fifth, third) * 1000) / 10, "%"))
-print(paste("5th vs 6th:", floor(probability_of_winning(fifth, sixth) * 1000) / 10, "%"))
-print(paste("5th vs 7th:", floor(probability_of_winning(fifth, seventh) * 1000) / 10, "%"))
+print(paste("5th vs 2nd:", floor(pw52 * 1000) / 10, "%", "or", dec_to_frac(pw52)))
+print(paste("5th vs 3rd:", floor(pw53 * 1000) / 10, "%", "or", dec_to_frac(pw53)))
+print(paste("5th vs 6th:", floor(pw56 * 1000) / 10, "%", "or", dec_to_frac(pw56)))
+print(paste("5th vs 7th:", floor(pw57 * 1000) / 10, "%", "or", dec_to_frac(pw57)))
 
-print(paste("8th vs 2nd:", floor(probability_of_winning(eighth, second) * 1000) / 10, "%"))
-print(paste("8th vs 3rd:", floor(probability_of_winning(eighth, third) * 1000) / 10, "%"))
-print(paste("8th vs 6th:", floor(probability_of_winning(eighth, sixth) * 1000) / 10, "%"))
-print(paste("8th vs 7th:", floor(probability_of_winning(eighth, seventh) * 1000) / 10, "%"))
+print(paste("8th vs 2nd:", floor(pw82 * 1000) / 10, "%", "or", dec_to_frac(pw82)))
+print(paste("8th vs 3rd:", floor(pw83 * 1000) / 10, "%", "or", dec_to_frac(pw83)))
+print(paste("8th vs 6th:", floor(pw86 * 1000) / 10, "%", "or", dec_to_frac(pw86)))
+print(paste("8th vs 7th:", floor(pw87 * 1000) / 10, "%", "or", dec_to_frac(pw87)))
 
 #Probability that each alliance will make it to become the champions:
 first_champions <- first_semis * first_finals_given_semis * first_champions_given_finals
@@ -602,21 +659,21 @@ eighth_std_dev <- sqrt(sum(c(first_semis, 1 - first_semis - eighth_finals,
 #Probability, rounded to the nearest 0.01% (varies because of rnorm()'s RNG):
 cat("\nOverall Champion Probabilities\n")
 print(paste("1st Alliance will win ", floor(first_champions * 10000 / total) / 100,
-            "% of the time", sep = ""))
+            "% of the time or ", dec_to_frac(first_champions)," times.", sep = ""))
 print(paste("2nd Alliance will win ", floor(second_champions * 10000 / total) / 100,
-            "% of the time", sep = ""))
+            "% of the time or ", dec_to_frac(second_champions)," times.", sep = ""))
 print(paste("3rd Alliance will win ", floor(third_champions * 10000 / total) / 100,
-            "% of the time", sep = ""))
+            "% of the time or ", dec_to_frac(third_champions)," times.", sep = ""))
 print(paste("4th Alliance will win ", floor(fourth_champions * 10000 / total) / 100,
-            "% of the time", sep = ""))
+            "% of the time or ", dec_to_frac(fourth_champions)," times.", sep = ""))
 print(paste("5th Alliance will win ", floor(fifth_champions * 10000 / total) / 100,
-            "% of the time", sep = ""))
+            "% of the time or ", dec_to_frac(fifth_champions)," times.", sep = ""))
 print(paste("6th Alliance will win ", floor(sixth_champions * 10000 / total) / 100,
-            "% of the time", sep = ""))
+            "% of the time or ", dec_to_frac(sixth_champions)," times.", sep = ""))
 print(paste("7th Alliance will win ", floor(seventh_champions * 10000 / total) / 100,
-            "% of the time", sep = ""))
+            "% of the time or ", dec_to_frac(seventh_champions)," times.", sep = ""))
 print(paste("8th Alliance will win ", floor(eighth_champions * 10000 / total) / 100,
-            "% of the time", sep = ""))
+            "% of the time or ", dec_to_frac(eighth_champions)," times.", sep = ""))
 
 
 total_points <- first_points + second_points + third_points + fourth_points +
@@ -631,26 +688,27 @@ sixth_points <- sixth_points * 70 / total_points
 seventh_points <- seventh_points * 70 / total_points
 eighth_points <- eighth_points * 70 / total_points
 
+
 print(paste("1st Alliance is expected to get", floor(first_points * 100) / 100,
-            "points with a standard deviation of", floor(first_std_dev * 100) / 100))
+            "points with a standard deviation of", floor(first_std_dev * 100) / 100, "points."))
 
 print(paste("2nd Alliance is expected to get", floor(second_points * 100) / 100,
-            "points with a standard deviation of", floor(second_std_dev * 100) / 100))
+            "points with a standard deviation of", floor(second_std_dev * 100) / 100, "points."))
 
 print(paste("3rd Alliance is expected to get", floor(third_points * 100) / 100,
-            "points with a standard deviation of", floor(third_std_dev * 100) / 100))
+            "points with a standard deviation of", floor(third_std_dev * 100) / 100, "points."))
 
 print(paste("4th Alliance is expected to get", floor(fourth_points * 100) / 100,
-            "points with a standard deviation of", floor(fourth_std_dev * 100) / 100))
+            "points with a standard deviation of", floor(fourth_std_dev * 100) / 100, "points."))
 
 print(paste("5th Alliance is expected to get", floor(fifth_points * 100) / 100,
-            "points with a standard deviation of", floor(fifth_std_dev * 100) / 100))
+            "points with a standard deviation of", floor(fifth_std_dev * 100) / 100, "points."))
 
 print(paste("6th Alliance is expected to get", floor(sixth_points * 100) / 100,
-            "points with a standard deviation of", floor(sixth_std_dev * 100) / 100))
+            "points with a standard deviation of", floor(sixth_std_dev * 100) / 100, "points."))
 
 print(paste("7th Alliance is expected to get", floor(seventh_points * 100) / 100,
-            "points with a standard deviation of", floor(seventh_std_dev * 100) / 100))
+            "points with a standard deviation of", floor(seventh_std_dev * 100) / 100, "points."))
 
 print(paste("8th Alliance is expected to get", floor(eighth_points * 100) / 100,
-            "points with a standard deviation of", floor(eighth_std_dev * 100) / 100))
+            "points with a standard deviation of", floor(eighth_std_dev * 100) / 100, "points."))
