@@ -237,8 +237,7 @@ plot(df3, main="FRC Teams", col = df2$Teams %>% length() %>% rainbow() %>% palet
 text(df3$Cargos, df3$Hatches + 0.1, labels = df2$Teams, col = df2$Teams %>% length() %>% rainbow() %>% palette())
 dev.off()
 
-df4 <- data.frame(Offensive_Rating = (2 * df2$Hatch_Total_Mean + 3 * df2$Cargo_Total_Mean
-                                      + df2$Habitat_Points_Mean),
+df4 <- data.frame(Offensive_Rating = (2 * df2$Hatch_Total_Mean + 3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean),
                   Defensive_Rating = df2$Is_Defensive)
 
 colors <- df2$Teams %>% length() %>% rainbow() %>% palette()
