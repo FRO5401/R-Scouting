@@ -437,7 +437,6 @@ eighth_finals <- eighth_finals * 2 / total_finals
 
 print(first_finals + second_finals + third_finals + fourth_finals
       + fifth_finals + sixth_finals + seventh_finals + eighth_finals)
->>>>>>> 162e73284cb5ac70bcd0981b9986e3ea1d2714f0
 
 #First - 2nd, 3rd, 6th, and 7th
 first_champions_given_finals <-
