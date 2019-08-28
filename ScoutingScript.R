@@ -7,7 +7,7 @@ library(plotly)
 # 
 # 2) Separate into Teams for Mean and Standard Deviation.
 # 
-# 3) Interpret these values as Graphs for each team (with Excel?).
+# 3) Interpret these values as Graphs for each team.
 # 
 # 4) If possible, integrate the script with Tableau (Not possible due to the illegality
 # of connections in the FRC events).
@@ -267,49 +267,52 @@ htmlwidgets::saveWidget(as_widget(plot1), "frc_ratings.html")
 # arrows(df5$Hatches, df5$Cargos + df5$Cargos.StdErr * .1, df5$Hatches, df5$Cargos - df5$Cargos.StdErr * .1, length = 0.05, angle = 90, code = 3, col = "red")
 # arrows(df5$Hatches + df5$Hatches.StdErr * .1, df5$Cargos, df5$Hatches - df5$Hatches.StdErr * .1, df5$Cargos, length = 0.05, angle = 90, code = 3, col = "blue")
 
-for (index in 1:nrow(df2)) {
-  # Pie charts for distribution of cargo/hatch panels are available as .html files and they do not need access
-  # to the internet to be displayed.
-  df6 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
-                      3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
-                    S_Cargo_CS_Mean = c5, S_Cargo_R1_Mean = c6, S_Cargo_R2_Mean = c7, S_Cargo_R3_Mean = c8,
-                    T_Cargo_CS_Mean = c13, T_Cargo_R1_Mean = c14, T_Cargo_R2_Mean = c15, T_Cargo_R3_Mean = c16)
-  df6 <- df6[index, ]
-  df6 <- as.data.frame(t(df6))
-  colnames(df6) <- c("Values")
-
-  df6$Categories <- c("Team", "Offensive Rating", "Sandstorm Hatches in Cargo Ship",
-                      "Sandstorm Hatches in Rocket L1", "Sandstorm Hatches in Rocket L2",
-                      "Sandstorm Hatches in Rocket L3", "Teleop Hatches in Cargo Ship",
-                      "Teleop Hatches in Rocket L1", "Teleop Hatches in Rocket L2",
-                      "Teleop Hatches in Rocket L3")
-
-  team <- df6[1, 1]
-  df6 <- df6[-c(1, 2), ]
-
-  #Hatches
-  df7 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
-                      3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
-                    S_Hatch_CS_Mean = c1, S_Hatch_R1_Mean = c2, S_Hatch_R2_Mean = c3, S_Hatch_R3_Mean = c4,
-                    T_Hatch_CS_Mean = c9, T_Hatch_R1_Mean = c10, T_Hatch_R2_Mean = c11, T_Hatch_R3_Mean = c12)
-  df7 <- as.data.frame(t(df7[index, ]))
-  colnames(df7) <- c("Values")
-  df7$Categories <- c("Team", "Offensive Rating", "Sandstorm Cargo in Cargo Ship",
-                      "Sandstorm Cargo in Rocket L1", "Sandstorm Cargo in Rocket L2",
-                      "Sandstorm Cargo in Rocket L3", "Teleop Cargo in Cargo Ship",
-                      "Teleop Cargo in Rocket L1", "Teleop Cargo in Rocket L2",
-                      "Teleop Cargo in Rocket L3")
-  df7 <- df7[-c(1, 2), ]
-
-  plot2 <- plot_ly() %>%
-    add_pie(data = df6, labels = ~Categories, values = ~Values,
-            name = "", domain = list(x = c(0, 0.5), y = c(0, 0.5))) %>%
-    add_pie(data = df7, labels = ~Categories, values = ~Values,
-            name = "", domain = list(x = c(0.5, 1), y = c(0, 0.5))) %>%
-    layout(title = paste("Distribution of Hatches and Cargoes of", team), showlegend = F,
-           xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-  htmlwidgets::saveWidget(as_widget(plot2), paste("distribution", team, ".html", sep = ""))
+# Checks # of distribution files.
+if (!(sum(file.exists(paste("distribution", df2$Teams,".html", sep = ""))) == length(df2$Teams))) {
+  for (index in 1:nrow(df2)) {
+    # Pie charts for distribution of cargo/hatch panels are available as .html files and they do not need access
+    # to the internet to be displayed.
+    df6 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
+                        3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+                      S_Cargo_CS_Mean = c5, S_Cargo_R1_Mean = c6, S_Cargo_R2_Mean = c7, S_Cargo_R3_Mean = c8,
+                      T_Cargo_CS_Mean = c13, T_Cargo_R1_Mean = c14, T_Cargo_R2_Mean = c15, T_Cargo_R3_Mean = c16)
+    df6 <- df6[index, ]
+    df6 <- as.data.frame(t(df6))
+    colnames(df6) <- c("Values")
+  
+    df6$Categories <- c("Team", "Offensive Rating", "Sandstorm Hatches in Cargo Ship",
+                        "Sandstorm Hatches in Rocket L1", "Sandstorm Hatches in Rocket L2",
+                        "Sandstorm Hatches in Rocket L3", "Teleop Hatches in Cargo Ship",
+                        "Teleop Hatches in Rocket L1", "Teleop Hatches in Rocket L2",
+                        "Teleop Hatches in Rocket L3")
+  
+    team <- df6[1, 1]
+    df6 <- df6[-c(1, 2), ]
+  
+    #Hatches
+    df7 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
+                        3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+                      S_Hatch_CS_Mean = c1, S_Hatch_R1_Mean = c2, S_Hatch_R2_Mean = c3, S_Hatch_R3_Mean = c4,
+                      T_Hatch_CS_Mean = c9, T_Hatch_R1_Mean = c10, T_Hatch_R2_Mean = c11, T_Hatch_R3_Mean = c12)
+    df7 <- as.data.frame(t(df7[index, ]))
+    colnames(df7) <- c("Values")
+    df7$Categories <- c("Team", "Offensive Rating", "Sandstorm Cargo in Cargo Ship",
+                        "Sandstorm Cargo in Rocket L1", "Sandstorm Cargo in Rocket L2",
+                        "Sandstorm Cargo in Rocket L3", "Teleop Cargo in Cargo Ship",
+                        "Teleop Cargo in Rocket L1", "Teleop Cargo in Rocket L2",
+                        "Teleop Cargo in Rocket L3")
+    df7 <- df7[-c(1, 2), ]
+  
+    plot2 <- plot_ly() %>%
+      add_pie(data = df6, labels = ~Categories, values = ~Values,
+              name = "", domain = list(x = c(0, 0.5), y = c(0, 0.5))) %>%
+      add_pie(data = df7, labels = ~Categories, values = ~Values,
+              name = "", domain = list(x = c(0.5, 1), y = c(0, 0.5))) %>%
+      layout(title = paste("Distribution of Hatches and Cargoes of", team), showlegend = F,
+             xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+             yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+    htmlwidgets::saveWidget(as_widget(plot2), paste("distribution", team, ".html", sep = ""))
+  }
 }
 
 # Next: Error Bars in Plotly Bar Charts
@@ -327,7 +330,7 @@ plot3 <- plot_ly(df8, x = ~paste(Teams), y = ~Hatches, type = 'bar', name = "Hat
             error_y = ~list(array = Habitat_Points.SD, color = 'black')) %>%
   layout(title = "Offensive Stats of Teams",
          xaxis = list(title = "Team"), yaxis = list(title = "Number +/- SD"),
-         barmode = 'group', bargap = 0.15, bargroupgap = 0.1)
+         barmode = 'group', bargap = 0.15)
 
 htmlwidgets::saveWidget(as_widget(plot3), "frc_offensive_ratings.html")
 
@@ -430,10 +433,10 @@ probability_of_winning <- function(allianceA, allianceB) {
   predictedAllianceAStdErr <- sqrt(sum(df10$Offensive_Rating_SD[df10$Teams %in% allianceA] ** 2))
   predictedAllianceBStdErr <- sqrt(sum(df10$Offensive_Rating_SD[df10$Teams %in% allianceB] ** 2))
 
-  #The core of all the probabilities - Meet the Ultimate Trial and Error
-  normDistA <- rnorm(50000, mean = predictedAllianceANetGain, sd = predictedAllianceAStdErr)
-  normDistB <- rnorm(50000, mean = predictedAllianceBNetGain, sd = predictedAllianceBStdErr)
-  probability <- sum(normDistA - normDistB > 0) / 50000
+  #The core of all the probabilities - Meet the Ultimate Trial and Error (Standard Deviation +/- 0.05%)
+  normDistA <- rnorm(1000000, mean = predictedAllianceANetGain, sd = predictedAllianceAStdErr)
+  normDistB <- rnorm(1000000, mean = predictedAllianceBNetGain, sd = predictedAllianceBStdErr)
+  probability <- sum(normDistA - normDistB > 0) / 1000000
 
   #P(2 or 3 out of 3) = 3 * (x ** 2) * (1 - x) + x ** 3
   three_match_prob <- (probability ** 2) * (3 - 2 * probability)
@@ -467,6 +470,14 @@ dec_to_frac <- function (dec) {
     d <- b
     return(paste(c, "in", d))
   }
+}
+
+dec_to_frac_of_vector <- function (v1) {
+  v2 = c()
+  for (dec in v1) {
+    v2 = c(v2, dec_to_frac(dec))
+  }
+  v2
 }
 
 #All add up to 400%. Nice.
@@ -592,7 +603,6 @@ eighth_champions_given_finals <-
   (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(eighth, seventh)
 
 #All conditional probabilities are formatted and rounded to the nearest 0.1%
-cat("\nQuarterfinal Probabilities:\n")
 
 pw14 <- probability_of_winning(first, fourth)
 pw15 <- probability_of_winning(first, fifth)
@@ -602,22 +612,107 @@ pw23 <- probability_of_winning(second, third)
 pw26 <- probability_of_winning(second, sixth)
 pw73 <- probability_of_winning(seventh, third)
 pw76 <- probability_of_winning(seventh, sixth)
-print(paste("1st vs 8th:", floor(first_semis * 1000) / 10, "% or", dec_to_frac(first_semis)))
-print(paste("4th vs 5th:", floor(fourth_semis * 1000) / 10, "% or", dec_to_frac(fourth_semis)))
-print(paste("2nd vs 7th:", floor(second_semis * 1000) / 10, "% or", dec_to_frac(second_semis)))
-print(paste("3rd vs 6th:", floor(third_semis * 1000) / 10, "% or", dec_to_frac(third_semis)))
-cat("\nSemifinal Probabilities:\n")
 
-#Semifinal Probabilities
-print(paste("1st vs 4th:", floor(pw14 * 1000) / 10, "% or", dec_to_frac(pw14)))
-print(paste("1st vs 5th:", floor(pw15 * 1000) / 10, "% or", dec_to_frac(pw15)))
-print(paste("8th vs 4th:", floor(pw84 * 1000) / 10, "% or", dec_to_frac(pw84)))
-print(paste("8th vs 5th:", floor(pw85 * 1000) / 10, "% or", dec_to_frac(pw85)))
+df11 <- data.frame(Alliance_Numbers = 1:8,
+                   Semifinals_Probabilities = c(first_semis, second_semis, third_semis,
+                                                fourth_semis, 1 - fourth_semis,
+                                                1 - third_semis, 1 - second_semis,
+                                                1 - first_semis),
+                   Finals_Probabilities = c(first_finals, second_finals, third_finals,
+                                            fourth_finals, fifth_finals, sixth_finals,
+                                            seventh_finals, eighth_finals),
+                   Champion_Probabilities = c(first_champions, second_champions, third_champions,
+                                            fourth_champions, fifth_champions, sixth_champions,
+                                            seventh_champions, eighth_champions))
 
-print(paste("2nd vs 3rd:", floor(pw23 * 1000) / 10, "% or", dec_to_frac(pw23)))
-print(paste("2nd vs 6th:", floor(pw26 * 1000) / 10, "% or", dec_to_frac(pw26)))
-print(paste("7th vs 3rd:", floor(pw73 * 1000) / 10, "% or", dec_to_frac(pw73)))
-print(paste("7th vs 6th:", floor(pw76 * 1000) / 10, "% or", dec_to_frac(pw76)))
+plot5 <- plot_ly(data = df11, x = ~Alliance_Numbers, y = ~Semifinals_Probabilities, type = 'bar',
+                 hoverinfo = 'text', text = ~paste("Alliance ", Alliance_Numbers, ": ",
+                                                   dec_to_frac_of_vector(Semifinals_Probabilities),
+                                                   " (", floor(10000 * Semifinals_Probabilities) / 100, "%)",
+                                                   sep = "")) %>%
+  layout(title = "Quarterfinal Probabilities", xaxis = list(title = "Alliance #"),
+         yaxis = list(title = "Probability", tickformat = ".2%"))
+htmlwidgets::saveWidget(as_widget(plot5), "Quarterfinals.html")
+
+plot6 <- plot_ly(data = df11, x = ~Alliance_Numbers, y = ~Finals_Probabilities, type = 'bar',
+                 hoverinfo = 'text', text = ~paste("Alliance ", Alliance_Numbers, ": ",
+                                                   dec_to_frac_of_vector(Finals_Probabilities),
+                                                   " (", floor(10000 * Finals_Probabilities) / 100, "%)",
+                                                   sep = "")) %>%
+  layout(title = "Probability of Alliance going to Finals", xaxis = list(title = "Alliance #"),
+         yaxis = list(title = "Probability", tickformat = ".2%"))
+htmlwidgets::saveWidget(as_widget(plot6), "AllianceProbabilityFinals.html")
+
+plot7 <- plot_ly(data = df11, x = ~Alliance_Numbers, y = ~Champion_Probabilities, type = 'bar',
+                 hoverinfo = 'text', text = ~paste("Alliance ", Alliance_Numbers, ": ",
+                                                   dec_to_frac_of_vector(Champion_Probabilities),
+                                                   " (", floor(10000 * Champion_Probabilities) / 100, "%)",
+                                                   sep = "")) %>%
+  layout(title = "Championship Probabilities", xaxis = list(title = "Alliance #"),
+         yaxis = list(title = "Probability", tickformat = ".2%"))
+htmlwidgets::saveWidget(as_widget(plot7), "AllianceProbabilityChamps.html")
+
+df12 <- data.frame(Red = c(1, 8),
+                   Blue = c(4, 5),
+                   Primary_Matches = c(pw14, pw84),
+                   Secondary_Matches = c(pw15, pw85))
+plot8 <- plot_ly(data = df12, x = ~paste("Alliance", Red), y = ~Primary_Matches, type = 'bar',
+                 hoverinfo = 'text', name = "vs. Alliance 4", text = ~paste("Alliance ", Red, ": ",
+                                                   dec_to_frac_of_vector(Primary_Matches),
+                                                   " (", floor(10000 * Primary_Matches) / 100,
+                                                   "%) vs. Alliance 4", sep = "")) %>%
+  add_trace(y = ~Secondary_Matches, name = "vs. Alliance 5", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+                                                     dec_to_frac_of_vector(Secondary_Matches),
+                                                     " (", floor(10000 * Secondary_Matches) / 100,
+                                                     "%) vs. Alliance 5", sep = "")) %>%
+  layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+         yaxis = list(title = "Probability", tickformat = ".2%"))
+print(plot8)
+htmlwidgets::saveWidget(as_widget(plot8), "Semis1.html")
+
+df13 <- data.frame(Red = c(2, 7),
+                   Primary_Matches = c(pw23, pw73),
+                   Secondary_Matches = c(pw26, pw76))
+
+plot9 <- plot_ly(data = df13, x = ~paste("Alliance", Red), y = ~Primary_Matches, type = 'bar',
+                 hoverinfo = 'text', name = "vs. Alliance 3", text = ~paste("Alliance ", Red, ": ",
+                                                                            dec_to_frac_of_vector(Primary_Matches),
+                                                                            " (", floor(10000 * Primary_Matches) / 100,
+                                                                            "%) vs. Alliance 3", sep = "")) %>%
+  add_trace(y = ~Secondary_Matches, name = "vs. Alliance 6", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+                                                                                               dec_to_frac_of_vector(Secondary_Matches),
+                                                                                               " (", floor(10000 * Secondary_Matches) / 100,
+                                                                                               "%) vs. Alliance 6", sep = "")) %>%
+  layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+         yaxis = list(title = "Probability", tickformat = ".2%"))
+htmlwidgets::saveWidget(as_widget(plot9), "Semis2.html")
+
+df14 <- data.frame(Red = c(1, 4, 5, 8),
+                   Matches_Second = c(pw12, pw42, pw52, pw82),
+                   Matches_Third = c(pw13, pw43, pw53, pw83),
+                   Matches_Sixth = c(pw16, pw46, pw56, pw86),
+                   Matches_Seventh = c(pw17, pw47, pw57, pw87))
+
+plot10 <- plot_ly(data = df14, x = ~paste("Alliance", Red), y = ~Matches_Second, type = 'bar',
+                 hoverinfo = 'text', name = "vs. Alliance 2", text = ~paste("Alliance ", Red, ": ",
+                                                                            dec_to_frac_of_vector(Matches_Second),
+                                                                            " (", floor(10000 * Matches_Second) / 100,
+                                                                            "%) vs. Alliance 2", sep = "")) %>%
+  add_trace(y = ~Matches_Third, name = "vs. Alliance 3", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+                                                                                               dec_to_frac_of_vector(Matches_Third),
+                                                                                               " (", floor(10000 * Matches_Third) / 100,
+                                                                                               "%) vs. Alliance 3", sep = "")) %>%
+  add_trace(y = ~Matches_Sixth, name = "vs. Alliance 6", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+                                                                                               dec_to_frac_of_vector(Matches_Sixth),
+                                                                                               " (", floor(10000 * Matches_Sixth) / 100,
+                                                                                               "%) vs. Alliance 6", sep = "")) %>%
+  add_trace(y = ~Matches_Seventh, name = "vs. Alliance 7", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+                                                                                               dec_to_frac_of_vector(Matches_Seventh),
+                                                                                               " (", floor(10000 * Matches_Seventh) / 100,
+                                                                                               "%) vs. Alliance 7", sep = "")) %>%
+  layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+         yaxis = list(title = "Probability", tickformat = ".2%"))
+htmlwidgets::saveWidget(as_widget(plot10), "Finals.html")
 
 pw12 <- probability_of_winning(first, second)
 pw13 <- probability_of_winning(first, third)
@@ -635,27 +730,6 @@ pw82 <- probability_of_winning(eighth, second)
 pw83 <- probability_of_winning(eighth, third)
 pw86 <- probability_of_winning(eighth, sixth)
 pw87 <- probability_of_winning(eighth, seventh)
-
-cat("\nFinals Probabilities:\n")
-print(paste("1st vs 2nd:", floor(pw12 * 1000) / 10, "%", "or", dec_to_frac(pw12)))
-print(paste("1st vs 3rd:", floor(pw13 * 1000) / 10, "%", "or", dec_to_frac(pw13)))
-print(paste("1st vs 6th:", floor(pw16 * 1000) / 10, "%", "or", dec_to_frac(pw16)))
-print(paste("1st vs 7th:", floor(pw17 * 1000) / 10, "%", "or", dec_to_frac(pw17)))
-
-print(paste("4th vs 2nd:", floor(pw42 * 1000) / 10, "%", "or", dec_to_frac(pw42)))
-print(paste("4th vs 3rd:", floor(pw43 * 1000) / 10, "%", "or", dec_to_frac(pw43)))
-print(paste("4th vs 6th:", floor(pw46 * 1000) / 10, "%", "or", dec_to_frac(pw46)))
-print(paste("4th vs 7th:", floor(pw47 * 1000) / 10, "%", "or", dec_to_frac(pw47)))
-
-print(paste("5th vs 2nd:", floor(pw52 * 1000) / 10, "%", "or", dec_to_frac(pw52)))
-print(paste("5th vs 3rd:", floor(pw53 * 1000) / 10, "%", "or", dec_to_frac(pw53)))
-print(paste("5th vs 6th:", floor(pw56 * 1000) / 10, "%", "or", dec_to_frac(pw56)))
-print(paste("5th vs 7th:", floor(pw57 * 1000) / 10, "%", "or", dec_to_frac(pw57)))
-
-print(paste("8th vs 2nd:", floor(pw82 * 1000) / 10, "%", "or", dec_to_frac(pw82)))
-print(paste("8th vs 3rd:", floor(pw83 * 1000) / 10, "%", "or", dec_to_frac(pw83)))
-print(paste("8th vs 6th:", floor(pw86 * 1000) / 10, "%", "or", dec_to_frac(pw86)))
-print(paste("8th vs 7th:", floor(pw87 * 1000) / 10, "%", "or", dec_to_frac(pw87)))
 
 #Probability that each alliance will make it to become the champions:
 first_champions <- first_semis * first_finals_given_semis * first_champions_given_finals
@@ -723,23 +797,6 @@ eighth_std_dev <- sqrt(sum(c(first_semis, 1 - first_semis - eighth_finals,
                             (c(0, 10, 20, 30) - eighth_points) ** 2))
 
 #Probability, rounded to the nearest 0.01% (varies because of rnorm()'s RNG):
-cat("\nOverall Champion Probabilities\n")
-print(paste("1st Alliance will win ", floor(first_champions * 10000 / total) / 100,
-            "% of the time or ", dec_to_frac(first_champions)," times.", sep = ""))
-print(paste("2nd Alliance will win ", floor(second_champions * 10000 / total) / 100,
-            "% of the time or ", dec_to_frac(second_champions)," times.", sep = ""))
-print(paste("3rd Alliance will win ", floor(third_champions * 10000 / total) / 100,
-            "% of the time or ", dec_to_frac(third_champions)," times.", sep = ""))
-print(paste("4th Alliance will win ", floor(fourth_champions * 10000 / total) / 100,
-            "% of the time or ", dec_to_frac(fourth_champions)," times.", sep = ""))
-print(paste("5th Alliance will win ", floor(fifth_champions * 10000 / total) / 100,
-            "% of the time or ", dec_to_frac(fifth_champions)," times.", sep = ""))
-print(paste("6th Alliance will win ", floor(sixth_champions * 10000 / total) / 100,
-            "% of the time or ", dec_to_frac(sixth_champions)," times.", sep = ""))
-print(paste("7th Alliance will win ", floor(seventh_champions * 10000 / total) / 100,
-            "% of the time or ", dec_to_frac(seventh_champions)," times.", sep = ""))
-print(paste("8th Alliance will win ", floor(eighth_champions * 10000 / total) / 100,
-            "% of the time or ", dec_to_frac(eighth_champions)," times.", sep = ""))
 
 total_points <- first_points + second_points + third_points + fourth_points +
   fifth_points + sixth_points + seventh_points + eighth_points
@@ -753,26 +810,14 @@ sixth_points <- sixth_points * 70 / total_points
 seventh_points <- seventh_points * 70 / total_points
 eighth_points <- eighth_points * 70 / total_points
 
-print(paste("1st Alliance is expected to get", floor(first_points * 100) / 100,
-            "points with a standard deviation of", floor(first_std_dev * 100) / 100, "points."))
+df15 <- data.frame(Alliances = 1:8, Points = c(first_points, second_points, third_points, fourth_points,
+                                               fifth_points, sixth_points, seventh_points, eighth_points),
+                   Points.SD = c(first_std_dev, second_std_dev, third_std_dev, fourth_std_dev,
+                                 fifth_std_dev, sixth_std_dev, seventh_std_dev, eighth_std_dev))
 
-print(paste("2nd Alliance is expected to get", floor(second_points * 100) / 100,
-            "points with a standard deviation of", floor(second_std_dev * 100) / 100, "points."))
-
-print(paste("3rd Alliance is expected to get", floor(third_points * 100) / 100,
-            "points with a standard deviation of", floor(third_std_dev * 100) / 100, "points."))
-
-print(paste("4th Alliance is expected to get", floor(fourth_points * 100) / 100,
-            "points with a standard deviation of", floor(fourth_std_dev * 100) / 100, "points."))
-
-print(paste("5th Alliance is expected to get", floor(fifth_points * 100) / 100,
-            "points with a standard deviation of", floor(fifth_std_dev * 100) / 100, "points."))
-
-print(paste("6th Alliance is expected to get", floor(sixth_points * 100) / 100,
-            "points with a standard deviation of", floor(sixth_std_dev * 100) / 100, "points."))
-
-print(paste("7th Alliance is expected to get", floor(seventh_points * 100) / 100,
-            "points with a standard deviation of", floor(seventh_std_dev * 100) / 100, "points."))
-
-print(paste("8th Alliance is expected to get", floor(eighth_points * 100) / 100,
-            "points with a standard deviation of", floor(eighth_std_dev * 100) / 100, "points."))
+plot11 <- plot_ly(data = df15, x = ~Alliances, y = ~Points, type = 'bar', name = 'Total Expected Championship Points',
+                 marker = list(color = 'orange'),
+                 error_y = ~list(array = Points.SD, color = 'black')) %>%
+  layout(title = "Expected Alliance Points",
+         xaxis = list(title = "Alliance"), yaxis = list(title = "Points +/- SD"))
+htmlwidgets::saveWidget(as_widget(plot11), "ExpectedAlliancePoints.html")
