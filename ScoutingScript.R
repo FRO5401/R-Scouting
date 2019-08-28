@@ -1,27 +1,27 @@
 library(dplyr)
 library(plotly)
 
-"
-Build an R script that can do the following:
+# Build an R script that can do the following:
+# 
+# 1) Read values from a .txt file every 30 seconds (i.e. Conversion from .txt to Data Frame).
+# 
+# 2) Separate into Teams for Mean and Standard Deviation.
+# 
+# 3) Interpret these values as Graphs for each team (with Excel?).
+# 
+# 4) If possible, integrate the script with Tableau (Not possible due to the illegality
+# of connections in the FRC events).
+# 
+# 
+# Note: R1, R2, R3 mean the respective levels of the rocket ship, and CS means cargo ship.
+# S means Sandstorm and T means Teleop.
+# 
+# SP means Station Pickup and GP means Ground Pickup
 
-1) Read values from a .txt file every 30 seconds (i.e. Conversion from .txt to Data Frame).
+#The path is necessary for the R script to read the file. To access the file, use that command:
+# setwd("Your file here")
 
-2) Separate into Teams for Mean and Standard Deviation.
-
-3) Interpret these values as Graphs for each team (with Excel?).
-
-4) If possible, integrate the script with Tableau (Not possible due to the illegality
-of connections in the FRC events).
-
-
-Note: R1, R2, R3 mean the respective levels of the rocket ship, and CS means cargo ship.
-S means Sandstorm and T means Teleop.
-
-SP means Station Pickup and GP means Ground Pickup
-"
-
-
-df <- read.csv("Bensalem Event 2019 Scouting.txt", header = FALSE) #The path is necessary for the R script to read the file.
+df <- read.csv("Bensalem Event 2019 Scouting.txt", header = FALSE)
 
 df[df == "null"] = NA
 
@@ -205,30 +205,26 @@ df2 <- data.frame(Teams = uniqueTeams, #Identifier
                   #Boolean Means
                   Is_Defensive = c45)
 
-df2 <- df2[with(df2, order(-Teams)), ]
+df2 <- df2[with(df2, order(Teams)), ]
 
-#Order by Defensiveness, descending.
+# All of the sorting operations commented below are descending.
+# To order by Cargo ascending, for instance, use the following code:
+# df2 <- df2[with(df2, order(Cargo)), ]
+
+# To order by Defensiveness, use the following code:
 # df2 <- df2[with(df2, order(-Is_Defensive)), ]
-# print(df2)
 
-#Order by Hatch Panels, descending.
+# To order by Hatch Panels, use the following code:
 # df2 <- df2[with(df2, order(-Hatch_Total_Mean)), ]
-# print(df2)
 
-#Order by Cargo, descending.
+# To order by Cargo, descending, use the following code:
 # df2 <- df2[with(df2, order(-Cargo_Total_Mean)), ]
-# print(df2)
 
-#Order by Hab Level, descending.
+# To order by Hab Level, descending, use the following code:
 # df2 <- df2[with(df2, order(-Habitat_Level_Mean)), ]
-# print(df2)
 
-#Order by Hab Points, descending.
+# To order by Hab Points, descending, use the following code:
 # df2 <- df2[with(df2, order(-Habitat_Points_Mean)), ]
-# print(df2)
-
-#Yes, this plot can get pretty cramped especially at the bottom,
-#but this is one of the only plots I can do at present.
 
 df3 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean)
 
@@ -249,46 +245,134 @@ plot1 <- plot_ly(data = df4, x = ~Offensive_Rating, y = ~Defensive_Rating,
                              hsv(v = 1, s = 1, h = (rank(total_rating, ties.method = "random") - 1) / 30))) %>% layout(title = "Robot Offensive-Defensive Scale",
                                                                              xaxis = list(title = "Offensive Rating (Total Points without Autonomous)"),
                                                                              yaxis = list(title = "Defensiveness", tickformat = "%")) %>% hide_colorbar()
+# If you see any warnings, ignore them--the program should display a plot by default.
+# Do not save this plot as an image because that will make it not interactive.
 
-#If you see any warnings, ignore them--the program should display a plot by default.
-#Do not save this plot as an image because that will make it not interactive.
-print(plot1)
+# For some reason, this script below when executed via Java does not do anything,
+# so it has to be saved via htmlwidgets (which does not require internet to access).
+
+# print(plot1)
+
+# You might need the latest version of pandoc for this command to work.
+# Here is the link to the website to download pandoc: https://pandoc.org/installing.html
+htmlwidgets::saveWidget(as_widget(plot1), "frc_ratings.html")
+
+# # Errorbars without Plotly
+# df5 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean,
+#                   Cargos.StdErr = df2$Cargo_Total_SD, Hatches.StdErr = df2$Hatch_Total_SD)
+#
+# #However, you can save this plot as an image.
+# plot(df5$Hatches, df5$Cargos, xlab = "Mean Hatches +/- 0.1 SD", ylab = "Mean Cargos +/- 0.1 SD")
+# text(df5$Hatches, df5$Cargos - 0.05, labels = df2$Teams, col = df2$Teams %>% length() %>% rainbow() %>% palette())
+# arrows(df5$Hatches, df5$Cargos + df5$Cargos.StdErr * .1, df5$Hatches, df5$Cargos - df5$Cargos.StdErr * .1, length = 0.05, angle = 90, code = 3, col = "red")
+# arrows(df5$Hatches + df5$Hatches.StdErr * .1, df5$Cargos, df5$Hatches - df5$Hatches.StdErr * .1, df5$Cargos, length = 0.05, angle = 90, code = 3, col = "blue")
+
+for (index in 1:nrow(df2)) {
+  # Pie charts for distribution of cargo/hatch panels are available as .html files and they do not need access
+  # to the internet to be displayed.
+  df6 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
+                      3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+                    S_Cargo_CS_Mean = c5, S_Cargo_R1_Mean = c6, S_Cargo_R2_Mean = c7, S_Cargo_R3_Mean = c8,
+                    T_Cargo_CS_Mean = c13, T_Cargo_R1_Mean = c14, T_Cargo_R2_Mean = c15, T_Cargo_R3_Mean = c16)
+  df6 <- df6[index, ]
+  df6 <- as.data.frame(t(df6))
+  colnames(df6) <- c("Values")
+
+  df6$Categories <- c("Team", "Offensive Rating", "Sandstorm Hatches in Cargo Ship",
+                      "Sandstorm Hatches in Rocket L1", "Sandstorm Hatches in Rocket L2",
+                      "Sandstorm Hatches in Rocket L3", "Teleop Hatches in Cargo Ship",
+                      "Teleop Hatches in Rocket L1", "Teleop Hatches in Rocket L2",
+                      "Teleop Hatches in Rocket L3")
+
+  team <- df6[1, 1]
+  df6 <- df6[-c(1, 2), ]
+
+  #Hatches
+  df7 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
+                      3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+                    S_Hatch_CS_Mean = c1, S_Hatch_R1_Mean = c2, S_Hatch_R2_Mean = c3, S_Hatch_R3_Mean = c4,
+                    T_Hatch_CS_Mean = c9, T_Hatch_R1_Mean = c10, T_Hatch_R2_Mean = c11, T_Hatch_R3_Mean = c12)
+  df7 <- as.data.frame(t(df7[index, ]))
+  colnames(df7) <- c("Values")
+  df7$Categories <- c("Team", "Offensive Rating", "Sandstorm Cargo in Cargo Ship",
+                      "Sandstorm Cargo in Rocket L1", "Sandstorm Cargo in Rocket L2",
+                      "Sandstorm Cargo in Rocket L3", "Teleop Cargo in Cargo Ship",
+                      "Teleop Cargo in Rocket L1", "Teleop Cargo in Rocket L2",
+                      "Teleop Cargo in Rocket L3")
+  df7 <- df7[-c(1, 2), ]
+
+  plot2 <- plot_ly() %>%
+    add_pie(data = df6, labels = ~Categories, values = ~Values,
+            name = "", domain = list(x = c(0, 0.5), y = c(0, 0.5))) %>%
+    add_pie(data = df7, labels = ~Categories, values = ~Values,
+            name = "", domain = list(x = c(0.5, 1), y = c(0, 0.5))) %>%
+    layout(title = paste("Distribution of Hatches and Cargoes of", team), showlegend = F,
+           xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+  htmlwidgets::saveWidget(as_widget(plot2), paste("distribution", team, ".html", sep = ""))
+}
+
+# Next: Error Bars in Plotly Bar Charts
+df8 <- data.frame(Teams = df2$Teams, Cargos = df2$Cargo_Total_Mean,
+                    Hatches = df2$Hatch_Total_Mean, Cargos.SD = df2$Cargo_Total_SD,
+                    Hatches.SD = df2$Hatch_Total_SD, Habitat_Points = df2$Habitat_Points_Mean,
+                    Habitat_Points.SD = df2$Habitat_Points_SD)
+
+plot3 <- plot_ly(df8, x = ~paste(Teams), y = ~Hatches, type = 'bar', name = "Hatches",
+                 marker = list(color = 'red'),
+                 error_y = ~list(array = Hatches.SD, color = 'black')) %>%
+  add_trace(y = ~Cargos, name = 'Cargos', marker = list(color = 'blue'),
+            error_y = ~list(array = Cargos.SD, color = 'black')) %>%
+  add_trace(y = ~Habitat_Points, name = 'Habitat Points', marker = list(color = 'lime'),
+            error_y = ~list(array = Habitat_Points.SD, color = 'black')) %>%
+  layout(title = "Offensive Stats of Teams",
+         xaxis = list(title = "Team"), yaxis = list(title = "Number +/- SD"),
+         barmode = 'group', bargap = 0.15, bargroupgap = 0.1)
+
+htmlwidgets::saveWidget(as_widget(plot3), "frc_offensive_ratings.html")
 
 
+df9 <- data.frame(Teams = df2$Teams, Offensive_Rating = df2$Cargo_Total_Mean * 3 +
+                    df2$Hatch_Total_Mean * 2 + df2$Habitat_Points_Mean,
+                    Offensive_Rating_SD =
+                      sqrt(9 * (df2$Cargo_Total_SD ** 2) +
+                            4 * (df2$Hatch_Total_SD ** 2) +
+                           (df2$Habitat_Points_SD ** 2)))
 
-df5 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean,
-                  Cargos.StdErr = df2$Cargo_Total_SD, Hatches.StdErr = df2$Hatch_Total_SD)
+plot4 <- plot_ly(data = df9, x = ~paste(Teams), y = ~Offensive_Rating, type = 'bar', name = 'Total Offensive Points',
+                 marker = list(color = 'blue'),
+                 error_y = ~list(array = Offensive_Rating_SD, color = 'black')) %>%
+  layout(title = "Offensive Ratings of Teams",
+         xaxis = list(title = "Team"), yaxis = list(title = "Points +/- SD"))
 
-#However, you can save this plot as an image.
-plot(df5$Hatches, df5$Cargos, xlab = "Mean Hatches +/- 0.1 SD", ylab = "Mean Cargos +/- 0.1 SD")
-text(df5$Hatches, df5$Cargos - 0.05, labels = df2$Teams, col = df2$Teams %>% length() %>% rainbow() %>% palette())
-arrows(df5$Hatches, df5$Cargos + df5$Cargos.StdErr * .1, df5$Hatches, df5$Cargos - df5$Cargos.StdErr * .1, length = 0.05, angle = 90, code = 3, col = "red")
-arrows(df5$Hatches + df5$Hatches.StdErr * .1, df5$Cargos, df5$Hatches - df5$Hatches.StdErr * .1, df5$Cargos, length = 0.05, angle = 90, code = 3, col = "blue")
+htmlwidgets::saveWidget(as_widget(plot4), "frc_total_offensive_points.html")
 
-"
-Alliance Selection
+# Alliance Selection
+#
+# 1st - 2607, 1640, 219 - 1 Def. Bot [219]
+# 2nd - 2590, 1807, 7599, 555 - 1 Def. Bot (later 0) [7599]
+# 3rd - 1391, 5401, 4573 - 0 Def. Bots
+# 4th - 303, 341, 6808 - 1 Def. Bot [6808]
+# 5th - 1218, 5404, 2554 - 0 Def. Bots
+# 6th - 224, 316, 204 - 0 Def. Bots
+# 7th - 2016, 1089, 4361 - 1 Def. Bot [4361]
+# 8th - 708, 272, 321 - 1 Def. Bot [272]
 
-1st - 2607, 1640, 219 - 1 Def. Bot [219]
-2nd - 2590, 1807, 7599, 555 - 1 Def. Bot (later 0) [7599]
-3rd - 1391, 5401, 4573 - 0 Def. Bots
-4th - 303, 341, 6808 - 1 Def. Bot [6808]
-5th - 1218, 5404, 2554 - 0 Def. Bots
-6th - 224, 316, 204 - 0 Def. Bots
-7th - 2016, 1089, 4361 - 1 Def. Bot [4361]
-8th - 708, 272, 321 - 1 Def. Bot [272]
-"
-
-"
-Playoffs Probabilities
-
-This model assumes that the best offensive robot in each alliance gets defended
-by the most defensive robot and that the number of points lost follows the
-mathematical equation below:
-
-Points Lost = (Offensive Rating of the Best Offensive Bot) * (Defensiveness of Enemy Bot)
-"
-
-#Has to be manually set.
+# Playoffs Probabilities
+#
+# This model assumes that the best offensive robot in each alliance gets defended
+# by the most defensive robot and that the number of points lost follows the
+# mathematical equation below:
+#
+# Points Lost = (Offensive Rating of the Best Offensive Bot) * (Defensiveness of Enemy Bot)
+#
+# Has to be manually set to the alliance captain, first pick, and second pick
+# (or backup robot if necessary).
+#
+# If there is no alliance selection yet, just comment out the rest of the code
+# (using Ctrl-Shift-C in RStudio, which is available for download in
+# https://www.rstudio.com/products/rstudio/download/), but remember to
+# uncomment using the same shortcut once there is alliance selection.
 
 first <- c(2607, 1640, 219)
 second <- c(2590, 1807, 555)
@@ -312,48 +396,45 @@ mvpIndex <- function(alliance) {
 }
 
 probability_of_winning <- function(allianceA, allianceB) {
-  
-  df6 <- data.frame(Teams = df2$Teams,
+
+  df10 <- data.frame(Teams = df2$Teams,
                     Offensive_Rating = df2$Cargo_Total_Mean * 3 +
-                    df2$Hatch_Total_Mean * 2 +
-                    df2$Habitat_Points_Mean,
+                    df2$Hatch_Total_Mean * 2 + df2$Habitat_Points_Mean,
                     Offensive_Rating_SD =
                       sqrt(9 * (df2$Cargo_Total_SD ** 2) +
                             4 * (df2$Hatch_Total_SD ** 2) +
                            (df2$Habitat_Points_SD ** 2)))
-  
+
   #In other words, this algorithm will try to find the most offensive robot's point total
   allianceAMaxOffensiveRating <- mvpIndex(allianceA)
   allianceBMaxOffensiveRating <- mvpIndex(allianceB)
-  
-  "
-  There can only be one defensive bot; otherwise, the alliance breaks the rules.
-  Each team does a HAB Climb 10 seconds before the end of the game. Since there are
-  135 seconds in teleop, an ideal defensive bot should spend around 120 seconds
-  defending the other team (15 seconds for a round trip of the field at around 5 ft/s),
-  which is equal to 8/9 of the total.
-  "
-  
-  allianceADefensiveRating <- defensiveRating(allianceA) * 8/9
-  
-  allianceBDefensiveRating <- defensiveRating(allianceB) * 8/9
-  
+
+  # There can only be one defensive bot; otherwise, the alliance breaks the rules.
+  # Each team does a HAB Climb 10 seconds before the end of the game. Since there are
+  # 135 seconds in teleop, an ideal defensive bot should spend around 105-120 seconds
+  # defending the other team (15-30 seconds, averaged to 22.5 seconds, for a round trip
+  # of the field at around 5 ft/s), which is equal to 5/6 of the total.
+
+  allianceADefensiveRating <- defensiveRating(allianceA) * 5/6
+
+  allianceBDefensiveRating <- defensiveRating(allianceB) * 5/6
+
   #Assuming the population variances are not equal:
-  
+
   allianceAPointLoss <- allianceAMaxOffensiveRating * allianceBDefensiveRating
   allianceBPointLoss <- allianceBMaxOffensiveRating * allianceADefensiveRating
-  
-  predictedAllianceANetGain <- sum(df6$Offensive_Rating[df6$Teams %in% allianceA]) - allianceAPointLoss
-  predictedAllianceBNetGain <- sum(df6$Offensive_Rating[df6$Teams %in% allianceB]) - allianceBPointLoss
-  
-  predictedAllianceAStdErr <- sqrt(sum(df6$Offensive_Rating_SD[df6$Teams %in% allianceA] ** 2))
-  predictedAllianceBStdErr <- sqrt(sum(df6$Offensive_Rating_SD[df6$Teams %in% allianceB] ** 2))
-  
+
+  predictedAllianceANetGain <- sum(df10$Offensive_Rating[df10$Teams %in% allianceA]) - allianceAPointLoss
+  predictedAllianceBNetGain <- sum(df10$Offensive_Rating[df10$Teams %in% allianceB]) - allianceBPointLoss
+
+  predictedAllianceAStdErr <- sqrt(sum(df10$Offensive_Rating_SD[df10$Teams %in% allianceA] ** 2))
+  predictedAllianceBStdErr <- sqrt(sum(df10$Offensive_Rating_SD[df10$Teams %in% allianceB] ** 2))
+
   #The core of all the probabilities - Meet the Ultimate Trial and Error
   normDistA <- rnorm(50000, mean = predictedAllianceANetGain, sd = predictedAllianceAStdErr)
   normDistB <- rnorm(50000, mean = predictedAllianceBNetGain, sd = predictedAllianceBStdErr)
   probability <- sum(normDistA - normDistB > 0) / 50000
-  
+
   #P(2 or 3 out of 3) = 3 * (x ** 2) * (1 - x) + x ** 3
   three_match_prob <- (probability ** 2) * (3 - 2 * probability)
   three_match_prob
@@ -373,23 +454,18 @@ dec_to_frac <- function (dec) {
   } else {
     a <- c()
     for(i in 1:20) {
+
+      #Calculates the errors in the fractions with denominators from 1 to 20.
       a <- c(a, abs(i * dec - round(i * dec)))
     }
+
     #Determine which is the minimum (works because R is 1-based.)
     b <- which.min(a)
-    
-    #Then, determine which fraction to use:
-    #Find the GCD of each and divide each
+
+    #Then, determine which fraction to use
     c <- round(dec * b)
     d <- b
-    e <- round(dec * b)
-    f <- b
-    while(f) {
-      t = f
-      f = e %% f
-      e = t
-    }
-    return(paste(c/e, "in", d/e))
+    return(paste(c, "in", d))
   }
 }
 
@@ -463,21 +539,21 @@ eighth_finals <- eighth_finals * 2 / total_finals
 first_champions_given_finals <-
   second_semis * second_finals_given_semis * probability_of_winning(first, second) +
   third_semis * third_finals_given_semis * probability_of_winning(first, third) +
-  (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(first, sixth) + 
+  (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(first, sixth) +
   (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(first, seventh)
 
 #Second - 1st, 4th, 5th, and 8th
 second_champions_given_finals <-
-  first_semis * first_finals_given_semis * probability_of_winning(second, first) + 
-  fourth_semis * fourth_finals_given_semis * probability_of_winning(second, fourth) + 
-  (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(second, fifth) + 
+  first_semis * first_finals_given_semis * probability_of_winning(second, first) +
+  fourth_semis * fourth_finals_given_semis * probability_of_winning(second, fourth) +
+  (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(second, fifth) +
   (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(second, eighth)
 
 #Third - 1st, 4th, 5th, and 8th
 third_champions_given_finals <-
-  first_semis * first_finals_given_semis * probability_of_winning(third, first) + 
+  first_semis * first_finals_given_semis * probability_of_winning(third, first) +
   fourth_semis * fourth_finals_given_semis * probability_of_winning(third, fourth) +
-  (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(third, fifth) + 
+  (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(third, fifth) +
   (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(third, eighth)
 
 #Fourth - 2nd, 3rd, 6th, and 7th
@@ -489,30 +565,30 @@ fourth_champions_given_finals <-
 
 #Fifth - 2nd, 3rd, 6th, and 7th
 fifth_champions_given_finals <-
-  second_semis * second_finals_given_semis * probability_of_winning(fifth, second) + 
+  second_semis * second_finals_given_semis * probability_of_winning(fifth, second) +
   third_semis * third_finals_given_semis * probability_of_winning(fifth, third) +
-  (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(fifth, sixth) + 
+  (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(fifth, sixth) +
   (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(fifth, seventh)
 
 #Sixth - 1st, 4th, 5th, and 8th
 sixth_champions_given_finals <-
-  first_semis * first_finals_given_semis * probability_of_winning(sixth, first) + 
-  fourth_semis * fourth_finals_given_semis * probability_of_winning(sixth, fourth) + 
-  (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(sixth, fifth) + 
+  first_semis * first_finals_given_semis * probability_of_winning(sixth, first) +
+  fourth_semis * fourth_finals_given_semis * probability_of_winning(sixth, fourth) +
+  (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(sixth, fifth) +
   (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(sixth, eighth)
 
 #Seventh - 1st, 4th, 5th, and 8th
 seventh_champions_given_finals <-
-  first_semis * first_finals_given_semis * probability_of_winning(seventh, first) + 
-  fourth_semis * fourth_finals_given_semis * probability_of_winning(seventh, fourth) + 
+  first_semis * first_finals_given_semis * probability_of_winning(seventh, first) +
+  fourth_semis * fourth_finals_given_semis * probability_of_winning(seventh, fourth) +
   (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(seventh, fifth) +
   (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(seventh, eighth)
 
 #Eighth - 2nd, 3rd, 6th, and 7th
 eighth_champions_given_finals <-
   second_semis * second_finals_given_semis * probability_of_winning(eighth, second) +
-  third_semis * third_finals_given_semis * probability_of_winning(eighth, third) + 
-  (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(eighth, sixth) + 
+  third_semis * third_finals_given_semis * probability_of_winning(eighth, third) +
+  (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(eighth, sixth) +
   (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(eighth, seventh)
 
 #All conditional probabilities are formatted and rounded to the nearest 0.1%
@@ -665,7 +741,6 @@ print(paste("7th Alliance will win ", floor(seventh_champions * 10000 / total) /
 print(paste("8th Alliance will win ", floor(eighth_champions * 10000 / total) / 100,
             "% of the time or ", dec_to_frac(eighth_champions)," times.", sep = ""))
 
-
 total_points <- first_points + second_points + third_points + fourth_points +
   fifth_points + sixth_points + seventh_points + eighth_points
 
@@ -677,7 +752,6 @@ fifth_points <- fifth_points * 70 / total_points
 sixth_points <- sixth_points * 70 / total_points
 seventh_points <- seventh_points * 70 / total_points
 eighth_points <- eighth_points * 70 / total_points
-
 
 print(paste("1st Alliance is expected to get", floor(first_points * 100) / 100,
             "points with a standard deviation of", floor(first_std_dev * 100) / 100, "points."))
