@@ -21,6 +21,9 @@ library(plotly)
 #The path is necessary for the R script to read the file. To access the file, use that command:
 # setwd("Your file here")
 
+# For now, I want the files to be all in html_files.
+setwd("html_files")
+
 df <- read.csv("Bensalem Event 2019 Scouting.txt", header = FALSE)
 
 df[df == "null"] = NA
