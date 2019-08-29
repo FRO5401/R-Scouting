@@ -268,51 +268,49 @@ htmlwidgets::saveWidget(as_widget(plot1), "frc_ratings.html")
 # arrows(df5$Hatches + df5$Hatches.StdErr * .1, df5$Cargos, df5$Hatches - df5$Hatches.StdErr * .1, df5$Cargos, length = 0.05, angle = 90, code = 3, col = "blue")
 
 # Checks # of distribution files.
-if (!(sum(file.exists(paste("distribution", df2$Teams,".html", sep = ""))) == length(df2$Teams))) {
-  for (index in 1:nrow(df2)) {
-    # Pie charts for distribution of cargo/hatch panels are available as .html files and they do not need access
-    # to the internet to be displayed.
-    df6 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
-                        3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
-                      S_Cargo_CS_Mean = c5, S_Cargo_R1_Mean = c6, S_Cargo_R2_Mean = c7, S_Cargo_R3_Mean = c8,
-                      T_Cargo_CS_Mean = c13, T_Cargo_R1_Mean = c14, T_Cargo_R2_Mean = c15, T_Cargo_R3_Mean = c16)
-    df6 <- df6[index, ]
-    df6 <- as.data.frame(t(df6))
-    colnames(df6) <- c("Values")
+for (index in 1:nrow(df2)) {
+  # Pie charts for distribution of cargo/hatch panels are available as .html files and they do not need access
+  # to the internet to be displayed.
+  df6 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
+                      3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+                    S_Cargo_CS_Mean = c5, S_Cargo_R1_Mean = c6, S_Cargo_R2_Mean = c7, S_Cargo_R3_Mean = c8,
+                    T_Cargo_CS_Mean = c13, T_Cargo_R1_Mean = c14, T_Cargo_R2_Mean = c15, T_Cargo_R3_Mean = c16)
+  df6 <- df6[index, ]
+  df6 <- as.data.frame(t(df6))
+  colnames(df6) <- c("Values")
   
-    df6$Categories <- c("Team", "Offensive Rating", "Sandstorm Hatches in Cargo Ship",
-                        "Sandstorm Hatches in Rocket L1", "Sandstorm Hatches in Rocket L2",
-                        "Sandstorm Hatches in Rocket L3", "Teleop Hatches in Cargo Ship",
-                        "Teleop Hatches in Rocket L1", "Teleop Hatches in Rocket L2",
-                        "Teleop Hatches in Rocket L3")
+  df6$Categories <- c("Team", "Offensive Rating", "Sandstorm Hatches in Cargo Ship",
+                      "Sandstorm Hatches in Rocket L1", "Sandstorm Hatches in Rocket L2",
+                      "Sandstorm Hatches in Rocket L3", "Teleop Hatches in Cargo Ship",
+                      "Teleop Hatches in Rocket L1", "Teleop Hatches in Rocket L2",
+                      "Teleop Hatches in Rocket L3")
   
-    team <- df6[1, 1]
-    df6 <- df6[-c(1, 2), ]
+  team <- df6[1, 1]
+  df6 <- df6[-c(1, 2), ]
   
-    #Hatches
-    df7 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
-                        3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
-                      S_Hatch_CS_Mean = c1, S_Hatch_R1_Mean = c2, S_Hatch_R2_Mean = c3, S_Hatch_R3_Mean = c4,
-                      T_Hatch_CS_Mean = c9, T_Hatch_R1_Mean = c10, T_Hatch_R2_Mean = c11, T_Hatch_R3_Mean = c12)
-    df7 <- as.data.frame(t(df7[index, ]))
-    colnames(df7) <- c("Values")
-    df7$Categories <- c("Team", "Offensive Rating", "Sandstorm Cargo in Cargo Ship",
-                        "Sandstorm Cargo in Rocket L1", "Sandstorm Cargo in Rocket L2",
-                        "Sandstorm Cargo in Rocket L3", "Teleop Cargo in Cargo Ship",
-                        "Teleop Cargo in Rocket L1", "Teleop Cargo in Rocket L2",
-                        "Teleop Cargo in Rocket L3")
-    df7 <- df7[-c(1, 2), ]
+  #Hatches
+  df7 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
+                      3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+                    S_Hatch_CS_Mean = c1, S_Hatch_R1_Mean = c2, S_Hatch_R2_Mean = c3, S_Hatch_R3_Mean = c4,
+                    T_Hatch_CS_Mean = c9, T_Hatch_R1_Mean = c10, T_Hatch_R2_Mean = c11, T_Hatch_R3_Mean = c12)
+  df7 <- as.data.frame(t(df7[index, ]))
+  colnames(df7) <- c("Values")
+  df7$Categories <- c("Team", "Offensive Rating", "Sandstorm Cargo in Cargo Ship",
+                      "Sandstorm Cargo in Rocket L1", "Sandstorm Cargo in Rocket L2",
+                      "Sandstorm Cargo in Rocket L3", "Teleop Cargo in Cargo Ship",
+                      "Teleop Cargo in Rocket L1", "Teleop Cargo in Rocket L2",
+                      "Teleop Cargo in Rocket L3")
+  df7 <- df7[-c(1, 2), ]
   
-    plot2 <- plot_ly() %>%
-      add_pie(data = df6, labels = ~Categories, values = ~Values,
-              name = "", domain = list(x = c(0, 0.5), y = c(0, 0.5))) %>%
-      add_pie(data = df7, labels = ~Categories, values = ~Values,
-              name = "", domain = list(x = c(0.5, 1), y = c(0, 0.5))) %>%
-      layout(title = paste("Distribution of Hatches and Cargoes of", team), showlegend = F,
-             xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
-             yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-    htmlwidgets::saveWidget(as_widget(plot2), paste("distribution", team, ".html", sep = ""))
-  }
+  plot2 <- plot_ly() %>%
+    add_pie(data = df6, labels = ~Categories, values = ~Values,
+            name = "", domain = list(x = c(0, 0.5), y = c(0, 0.5))) %>%
+    add_pie(data = df7, labels = ~Categories, values = ~Values,
+            name = "", domain = list(x = c(0.5, 1), y = c(0, 0.5))) %>%
+    layout(title = paste("Distribution of Hatches and Cargoes of", team), showlegend = F,
+           xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+           yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+  htmlwidgets::saveWidget(as_widget(plot2), paste("distribution", team, ".html", sep = ""))
 }
 
 # Next: Error Bars in Plotly Bar Charts
@@ -652,67 +650,73 @@ plot7 <- plot_ly(data = df11, x = ~Alliance_Numbers, y = ~Champion_Probabilities
          yaxis = list(title = "Probability", tickformat = ".2%"))
 htmlwidgets::saveWidget(as_widget(plot7), "AllianceProbabilityChamps.html")
 
-df12 <- data.frame(Red = c(1, 8),
+#Semifinals 1
+semis1 <- data.frame(Red = c(1, 8),
                    Blue = c(4, 5),
-                   Primary_Matches = c(pw14, pw84),
-                   Secondary_Matches = c(pw15, pw85))
-plot8 <- plot_ly(data = df12, x = ~paste("Alliance", Red), y = ~Primary_Matches, type = 'bar',
+                   First_Matches = c(1 - pw14, 1 - pw15),
+                   Fourth_Matches = c(pw14, pw84),
+                   Fifth_Matches = c(pw15, pw85),
+                   Eighth_Matches = c(1 - pw84, 1 - pw85))
+plot8 <- plot_ly(data = semis1, x = ~paste("Alliance", Red), y = ~Fourth_Matches, type = 'bar',
                  hoverinfo = 'text', name = "vs. Alliance 4", text = ~paste("Alliance ", Red, ": ",
-                                                   dec_to_frac_of_vector(Primary_Matches),
-                                                   " (", floor(10000 * Primary_Matches) / 100,
+                                                   dec_to_frac_of_vector(Fourth_Matches),
+                                                   " (", floor(10000 * Fourth_Matches) / 100,
                                                    "%) vs. Alliance 4", sep = "")) %>%
-  add_trace(y = ~Secondary_Matches, name = "vs. Alliance 5", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
-                                                     dec_to_frac_of_vector(Secondary_Matches),
-                                                     " (", floor(10000 * Secondary_Matches) / 100,
+  add_trace(y = ~Fifth_Matches, name = "vs. Alliance 5", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+                                                     dec_to_frac_of_vector(Fifth_Matches),
+                                                     " (", floor(10000 * Fifth_Matches) / 100,
                                                      "%) vs. Alliance 5", sep = "")) %>%
   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
          yaxis = list(title = "Probability", tickformat = ".2%"))
 print(plot8)
-htmlwidgets::saveWidget(as_widget(plot8), "Semis1.html")
+htmlwidgets::saveWidget(as_widget(plot8), "Semis1-red.html")
+plot9 <- plot_ly(data = semis1, x = ~paste("Alliance", Blue), y = ~First_Matches, type = 'bar',
+                 hoverinfo = 'text', name = "vs. Alliance 1", text = ~paste("Alliance ", Blue, ": ",
+                                                                            dec_to_frac_of_vector(First_Matches),
+                                                                            " (", floor(10000 * First_Matches) / 100,
+                                                                            "%) vs. Alliance 1", sep = "")) %>%
+  add_trace(y = ~Eighth_Matches, name = "vs. Alliance 8", hoverinfo = 'text', text = ~paste("Alliance ", Blue, ": ",
+                                                                                               dec_to_frac_of_vector(Eighth_Matches),
+                                                                                               " (", floor(10000 * Eighth_Matches) / 100,
+                                                                                               "%) vs. Alliance 8", sep = "")) %>%
+  layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+         yaxis = list(title = "Probability", tickformat = ".2%"))
+print(plot9)
+htmlwidgets::saveWidget(as_widget(plot9), "Semis1-blue.html")
 
-df13 <- data.frame(Red = c(2, 7),
-                   Primary_Matches = c(pw23, pw73),
-                   Secondary_Matches = c(pw26, pw76))
+semis2 <- data.frame(Red = c(2, 7),
+                   Blue = c(3, 6),
+                   Second_Matches = c(1 - pw23, 1 - pw26),
+                   Third_Matches = c(pw23, pw73),
+                   Sixth_Matches = c(pw26, pw76),
+                   Seventh_Matches = c(1 - pw73, 1 - pw76))
 
-plot9 <- plot_ly(data = df13, x = ~paste("Alliance", Red), y = ~Primary_Matches, type = 'bar',
+plot10 <- plot_ly(data = semis2, x = ~paste("Alliance", Red), y = ~Third_Matches, type = 'bar',
                  hoverinfo = 'text', name = "vs. Alliance 3", text = ~paste("Alliance ", Red, ": ",
-                                                                            dec_to_frac_of_vector(Primary_Matches),
-                                                                            " (", floor(10000 * Primary_Matches) / 100,
+                                                                            dec_to_frac_of_vector(Third_Matches),
+                                                                            " (", floor(10000 * Third_Matches) / 100,
                                                                             "%) vs. Alliance 3", sep = "")) %>%
-  add_trace(y = ~Secondary_Matches, name = "vs. Alliance 6", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
-                                                                                               dec_to_frac_of_vector(Secondary_Matches),
-                                                                                               " (", floor(10000 * Secondary_Matches) / 100,
+  add_trace(y = ~Sixth_Matches, name = "vs. Alliance 6", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+                                                                                               dec_to_frac_of_vector(Sixth_Matches),
+                                                                                               " (", floor(10000 * Sixth_Matches) / 100,
                                                                                                "%) vs. Alliance 6", sep = "")) %>%
   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
          yaxis = list(title = "Probability", tickformat = ".2%"))
-htmlwidgets::saveWidget(as_widget(plot9), "Semis2.html")
+htmlwidgets::saveWidget(as_widget(plot10), "Semis2-red.html")
 
-df14 <- data.frame(Red = c(1, 4, 5, 8),
-                   Matches_Second = c(pw12, pw42, pw52, pw82),
-                   Matches_Third = c(pw13, pw43, pw53, pw83),
-                   Matches_Sixth = c(pw16, pw46, pw56, pw86),
-                   Matches_Seventh = c(pw17, pw47, pw57, pw87))
-
-plot10 <- plot_ly(data = df14, x = ~paste("Alliance", Red), y = ~Matches_Second, type = 'bar',
-                 hoverinfo = 'text', name = "vs. Alliance 2", text = ~paste("Alliance ", Red, ": ",
-                                                                            dec_to_frac_of_vector(Matches_Second),
-                                                                            " (", floor(10000 * Matches_Second) / 100,
-                                                                            "%) vs. Alliance 2", sep = "")) %>%
-  add_trace(y = ~Matches_Third, name = "vs. Alliance 3", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
-                                                                                               dec_to_frac_of_vector(Matches_Third),
-                                                                                               " (", floor(10000 * Matches_Third) / 100,
-                                                                                               "%) vs. Alliance 3", sep = "")) %>%
-  add_trace(y = ~Matches_Sixth, name = "vs. Alliance 6", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
-                                                                                               dec_to_frac_of_vector(Matches_Sixth),
-                                                                                               " (", floor(10000 * Matches_Sixth) / 100,
-                                                                                               "%) vs. Alliance 6", sep = "")) %>%
-  add_trace(y = ~Matches_Seventh, name = "vs. Alliance 7", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
-                                                                                               dec_to_frac_of_vector(Matches_Seventh),
-                                                                                               " (", floor(10000 * Matches_Seventh) / 100,
+plot11 <- plot_ly(data = semis2, x = ~paste("Alliance", Blue), y = ~Second_Matches, type = 'bar',
+                  hoverinfo = 'text', name = "vs. Alliance 2", text = ~paste("Alliance ", Blue, ": ",
+                                                                             dec_to_frac_of_vector(Second_Matches),
+                                                                             " (", floor(10000 * Second_Matches) / 100,
+                                                                             "%) vs. Alliance 2", sep = "")) %>%
+  add_trace(y = ~Seventh_Matches, name = "vs. Alliance 7", hoverinfo = 'text', text = ~paste("Alliance ", Blue, ": ",
+                                                                                               dec_to_frac_of_vector(Seventh_Matches),
+                                                                                               " (", floor(10000 * Seventh_Matches) / 100,
                                                                                                "%) vs. Alliance 7", sep = "")) %>%
   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
          yaxis = list(title = "Probability", tickformat = ".2%"))
-htmlwidgets::saveWidget(as_widget(plot10), "Finals.html")
+print(plot11)
+htmlwidgets::saveWidget(as_widget(plot11), "Semis2-blue.html")
 
 pw12 <- probability_of_winning(first, second)
 pw13 <- probability_of_winning(first, third)
@@ -752,6 +756,60 @@ fifth_champions <- fifth_champions / total
 sixth_champions <- sixth_champions / total
 seventh_champions <- seventh_champions / total
 eighth_champions <- eighth_champions / total
+
+finals <- data.frame(Red = c(1, 4, 5, 8),
+                   Blue = c(2, 3, 6, 7),
+                   Matches_First = c(1 - pw12, 1 - pw13, 1 - pw16, 1 - pw17),
+                   Matches_Second = c(pw12, pw42, pw52, pw82),
+                   Matches_Third = c(pw13, pw43, pw53, pw83),
+                   Matches_Fourth = c(1 - pw42, 1 - pw43, 1 - pw46, 1 - pw47),
+                   Matches_Fifth = c(1 - pw52, 1 - pw53, 1 - pw56, 1 - pw57),
+                   Matches_Sixth = c(pw16, pw46, pw56, pw86),
+                   Matches_Seventh = c(pw17, pw47, pw57, pw87),
+                   Matches_Eighth = c(1 - pw82, 1 - pw83, 1 - pw86, 1 - pw87))
+
+plot12 <- plot_ly(data = finals, x = ~paste("Alliance", Red), y = ~Matches_Second, type = 'bar',
+                  hoverinfo = 'text', name = "vs. Alliance 2", text = ~paste("Alliance ", Red, ": ",
+                                                                             dec_to_frac_of_vector(Matches_Second),
+                                                                             " (", floor(10000 * Matches_Second) / 100,
+                                                                             "%) vs. Alliance 2", sep = "")) %>%
+  add_trace(y = ~Matches_Third, name = "vs. Alliance 3", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+                                                                                           dec_to_frac_of_vector(Matches_Third),
+                                                                                           " (", floor(10000 * Matches_Third) / 100,
+                                                                                           "%) vs. Alliance 3", sep = "")) %>%
+  add_trace(y = ~Matches_Sixth, name = "vs. Alliance 6", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+                                                                                           dec_to_frac_of_vector(Matches_Sixth),
+                                                                                           " (", floor(10000 * Matches_Sixth) / 100,
+                                                                                           "%) vs. Alliance 6", sep = "")) %>%
+  add_trace(y = ~Matches_Seventh, name = "vs. Alliance 7", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+                                                                                             dec_to_frac_of_vector(Matches_Seventh),
+                                                                                             " (", floor(10000 * Matches_Seventh) / 100,
+                                                                                             "%) vs. Alliance 7", sep = "")) %>%
+  layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+         yaxis = list(title = "Probability", tickformat = ".2%"))
+htmlwidgets::saveWidget(as_widget(plot12), "Finals-red.html")
+
+plot13 <- plot_ly(data = finals, x = ~paste("Alliance", Blue), y = ~Matches_First, type = 'bar',
+                  hoverinfo = 'text', name = "vs. Alliance 1", text = ~paste("Alliance ", Blue, ": ",
+                                                                             dec_to_frac_of_vector(Matches_First),
+                                                                             " (", floor(10000 * Matches_First) / 100,
+                                                                             "%) vs. Alliance 1", sep = "")) %>%
+  add_trace(y = ~Matches_Fourth, name = "vs. Alliance 4", hoverinfo = 'text', text = ~paste("Alliance ", Blue, ": ",
+                                                                                           dec_to_frac_of_vector(Matches_Fourth),
+                                                                                           " (", floor(10000 * Matches_Fourth) / 100,
+                                                                                           "%) vs. Alliance 4", sep = "")) %>%
+  add_trace(y = ~Matches_Fifth, name = "vs. Alliance 5", hoverinfo = 'text', text = ~paste("Alliance ", Blue, ": ",
+                                                                                           dec_to_frac_of_vector(Matches_Fifth),
+                                                                                           " (", floor(10000 * Matches_Fifth) / 100,
+                                                                                           "%) vs. Alliance 5", sep = "")) %>%
+  add_trace(y = ~Matches_Eighth, name = "vs. Alliance 8", hoverinfo = 'text', text = ~paste("Alliance ", Blue, ": ",
+                                                                                             dec_to_frac_of_vector(Matches_Eighth),
+                                                                                             " (", floor(10000 * Matches_Eighth) / 100,
+                                                                                             "%) vs. Alliance 8", sep = "")) %>%
+  layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+         yaxis = list(title = "Probability", tickformat = ".2%"))
+print(plot13)
+htmlwidgets::saveWidget(as_widget(plot13), "Finals-blue.html")
 
 #Total - Mean Points
 first_points <- 10 * (first_semis + first_finals + first_champions)
@@ -815,9 +873,11 @@ df15 <- data.frame(Alliances = 1:8, Points = c(first_points, second_points, thir
                    Points.SD = c(first_std_dev, second_std_dev, third_std_dev, fourth_std_dev,
                                  fifth_std_dev, sixth_std_dev, seventh_std_dev, eighth_std_dev))
 
-plot11 <- plot_ly(data = df15, x = ~Alliances, y = ~Points, type = 'bar', name = 'Total Expected Championship Points',
+plot12 <- plot_ly(data = df15, x = ~Alliances, y = ~Points, type = 'bar', name = 'Total Expected Championship Points',
                  marker = list(color = 'orange'),
                  error_y = ~list(array = Points.SD, color = 'black')) %>%
   layout(title = "Expected Alliance Points",
          xaxis = list(title = "Alliance"), yaxis = list(title = "Points +/- SD"))
-htmlwidgets::saveWidget(as_widget(plot11), "ExpectedAlliancePoints.html")
+htmlwidgets::saveWidget(as_widget(plot12), "ExpectedAlliancePoints.html")
+
+#Semifinals and Finals Probabilities if we are somehow in the Blue Alliance:
