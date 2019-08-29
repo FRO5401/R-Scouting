@@ -22,7 +22,7 @@ library(plotly)
 # setwd("Your file here")
 
 # For now, I want the files to be all in html_files.
-setwd("html_files")
+setwd("C:/Users/Patrick/Documents/R-Scouting/")
 
 df <- read.csv("Bensalem Event 2019 Scouting.txt", header = FALSE)
 
@@ -242,6 +242,8 @@ df4 <- data.frame(Offensive_Rating = (2 * df2$Hatch_Total_Mean + 3 * df2$Cargo_T
 colors <- df2$Teams %>% length() %>% rainbow() %>% palette()
 total_rating <- df4$Defensive_Rating + df4$Offensive_Rating * max(df4$Defensive_Rating) / max(df4$Offensive_Rating)
 
+setwd("html_files/offensive_defensive_ratings")
+
 plot1 <- plot_ly(data = df4, x = ~Offensive_Rating, y = ~Defensive_Rating, 
              colors = ~colors, text = ~paste("Team: ", df2$Teams),
              marker = list(size = 15 + 15 * df2$Teams / max(df2$Teams), line = list(color = 'black', width = 2), color =
@@ -271,6 +273,7 @@ htmlwidgets::saveWidget(as_widget(plot1), "frc_ratings.html")
 # arrows(df5$Hatches + df5$Hatches.StdErr * .1, df5$Cargos, df5$Hatches - df5$Hatches.StdErr * .1, df5$Cargos, length = 0.05, angle = 90, code = 3, col = "blue")
 
 # Checks # of distribution files.
+setwd("../distributions")
 for (index in 1:nrow(df2)) {
   # Pie charts for distribution of cargo/hatch panels are available as .html files and they do not need access
   # to the internet to be displayed.
@@ -315,6 +318,8 @@ for (index in 1:nrow(df2)) {
            yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
   htmlwidgets::saveWidget(as_widget(plot2), paste("distribution", team, ".html", sep = ""))
 }
+
+setwd("../offensive_defensive_ratings")
 
 # Next: Error Bars in Plotly Bar Charts
 df8 <- data.frame(Teams = df2$Teams, Cargos = df2$Cargo_Total_Mean,
@@ -377,6 +382,8 @@ htmlwidgets::saveWidget(as_widget(plot4), "frc_total_offensive_points.html")
 # (using Ctrl-Shift-C in RStudio, which is available for download in
 # https://www.rstudio.com/products/rstudio/download/), but remember to
 # uncomment using the same shortcut once there is alliance selection.
+
+setwd("../alliances")
 
 first <- c(2607, 1640, 219)
 second <- c(2590, 1807, 555)
