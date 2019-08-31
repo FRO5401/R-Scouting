@@ -272,15 +272,16 @@ htmlwidgets::saveWidget(as_widget(plot1), "frc_ratings.html")
 # arrows(df5$Hatches, df5$Cargos + df5$Cargos.StdErr * .1, df5$Hatches, df5$Cargos - df5$Cargos.StdErr * .1, length = 0.05, angle = 90, code = 3, col = "red")
 # arrows(df5$Hatches + df5$Hatches.StdErr * .1, df5$Cargos, df5$Hatches - df5$Hatches.StdErr * .1, df5$Cargos, length = 0.05, angle = 90, code = 3, col = "blue")
 
-# Checks # of distribution files.
 setwd("../distributions")
 for (index in 1:nrow(df2)) {
   # Pie charts for distribution of cargo/hatch panels are available as .html files and they do not need access
   # to the internet to be displayed.
   df6 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
                       3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
-                    S_Cargo_CS_Mean = c5, S_Cargo_R1_Mean = c6, S_Cargo_R2_Mean = c7, S_Cargo_R3_Mean = c8,
-                    T_Cargo_CS_Mean = c13, T_Cargo_R1_Mean = c14, T_Cargo_R2_Mean = c15, T_Cargo_R3_Mean = c16)
+                    S_Hatch_CS_Mean = df2$S_Hatch_CS_Mean, S_Hatch_R1_Mean = df2$S_Hatch_R1_Mean,
+                    S_Hatch_R2_Mean = df2$S_Hatch_R2_Mean, S_Hatch_R3_Mean = df2$S_Hatch_R3_Mean,
+                    T_Hatch_CS_Mean = df2$T_Hatch_CS_Mean, T_Hatch_R1_Mean = df2$T_Hatch_R1_Mean,
+                    T_Hatch_R2_Mean = df2$T_Hatch_R2_Mean, T_Hatch_R3_Mean = df2$T_Hatch_R3_Mean)
   df6 <- df6[index, ]
   df6 <- as.data.frame(t(df6))
   colnames(df6) <- c("Values")
@@ -294,11 +295,19 @@ for (index in 1:nrow(df2)) {
   team <- df6[1, 1]
   df6 <- df6[-c(1, 2), ]
   
+  #S for sandstorm
+  df6s <- df6[-c(5:8), ]
+  
+  #T for teleop
+  df6t <- df6[-c(1:4), ]
+  
   #Hatches
   df7 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
                       3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
-                    S_Hatch_CS_Mean = c1, S_Hatch_R1_Mean = c2, S_Hatch_R2_Mean = c3, S_Hatch_R3_Mean = c4,
-                    T_Hatch_CS_Mean = c9, T_Hatch_R1_Mean = c10, T_Hatch_R2_Mean = c11, T_Hatch_R3_Mean = c12)
+                    S_Cargo_CS_Mean = df2$S_Cargo_CS_Mean, S_Cargo_R1_Mean = df2$S_Cargo_R1_Mean,
+                    S_Cargo_R2_Mean = df2$S_Cargo_R2_Mean, S_Cargo_R3_Mean = df2$S_Cargo_R3_Mean,
+                    T_Cargo_CS_Mean = df2$T_Cargo_CS_Mean, T_Cargo_R1_Mean = df2$T_Cargo_R1_Mean,
+                    T_Cargo_R2_Mean = df2$T_Cargo_R2_Mean, T_Cargo_R3_Mean = df2$T_Cargo_R3_Mean)
   df7 <- as.data.frame(t(df7[index, ]))
   colnames(df7) <- c("Values")
   df7$Categories <- c("Team", "Offensive Rating", "Sandstorm Cargo in Cargo Ship",
@@ -308,10 +317,19 @@ for (index in 1:nrow(df2)) {
                       "Teleop Cargo in Rocket L3")
   df7 <- df7[-c(1, 2), ]
   
+  #S for sandstorm
+  df7s <- df7[-c(5:8), ]
+  
+  #T for teleop
+  df7t <- df7[-c(1:4), ]
   plot2 <- plot_ly() %>%
-    add_pie(data = df6, labels = ~Categories, values = ~Values,
+    add_pie(data = df6s, labels = ~Categories, values = ~Values,
+            name = "", domain = list(x = c(0, 0.5), y = c(0.5, 1))) %>%
+    add_pie(data = df6t, labels = ~Categories, values = ~Values,
             name = "", domain = list(x = c(0, 0.5), y = c(0, 0.5))) %>%
-    add_pie(data = df7, labels = ~Categories, values = ~Values,
+    add_pie(data = df7s, labels = ~Categories, values = ~Values,
+            name = "", domain = list(x = c(0.5, 1), y = c(0.5, 1))) %>%
+    add_pie(data = df7t, labels = ~Categories, values = ~Values,
             name = "", domain = list(x = c(0.5, 1), y = c(0, 0.5))) %>%
     layout(title = paste("Distribution of Hatches and Cargoes of", team), showlegend = F,
            xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
@@ -346,7 +364,8 @@ df9 <- data.frame(Teams = df2$Teams, Offensive_Rating = df2$Cargo_Total_Mean * 3
                     Offensive_Rating_SD =
                       sqrt(9 * (df2$Cargo_Total_SD ** 2) +
                             4 * (df2$Hatch_Total_SD ** 2) +
-                           (df2$Habitat_Points_SD ** 2)))
+                           (df2$Habitat_Points_SD ** 2)),
+                  Defensive_Rating = df2$Is_Defensive)
 
 plot4 <- plot_ly(data = df9, x = ~paste(Teams), y = ~Offensive_Rating, type = 'bar', name = 'Total Offensive Points',
                  marker = list(color = 'blue'),
@@ -678,7 +697,6 @@ plot8 <- plot_ly(data = semis1, x = ~paste("Alliance", Red), y = ~Fourth_Matches
                                                      "%) vs. Alliance 5", sep = "")) %>%
   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
          yaxis = list(title = "Probability", tickformat = ".2%"))
-print(plot8)
 htmlwidgets::saveWidget(as_widget(plot8), "Semis1-red.html")
 plot9 <- plot_ly(data = semis1, x = ~paste("Alliance", Blue), y = ~First_Matches, type = 'bar',
                  hoverinfo = 'text', name = "vs. Alliance 1", text = ~paste("Alliance ", Blue, ": ",
@@ -691,7 +709,6 @@ plot9 <- plot_ly(data = semis1, x = ~paste("Alliance", Blue), y = ~First_Matches
                                                                                                "%) vs. Alliance 8", sep = "")) %>%
   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
          yaxis = list(title = "Probability", tickformat = ".2%"))
-print(plot9)
 htmlwidgets::saveWidget(as_widget(plot9), "Semis1-blue.html")
 
 semis2 <- data.frame(Red = c(2, 7),
@@ -725,7 +742,6 @@ plot11 <- plot_ly(data = semis2, x = ~paste("Alliance", Blue), y = ~Second_Match
                                                                                                "%) vs. Alliance 7", sep = "")) %>%
   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
          yaxis = list(title = "Probability", tickformat = ".2%"))
-print(plot11)
 htmlwidgets::saveWidget(as_widget(plot11), "Semis2-blue.html")
 
 pw12 <- probability_of_winning(first, second)
@@ -799,6 +815,7 @@ plot12 <- plot_ly(data = finals, x = ~paste("Alliance", Red), y = ~Matches_Secon
          yaxis = list(title = "Probability", tickformat = ".2%"))
 htmlwidgets::saveWidget(as_widget(plot12), "Finals-red.html")
 
+#Finals Probabilities if we are somehow in the Blue Alliance:
 plot13 <- plot_ly(data = finals, x = ~paste("Alliance", Blue), y = ~Matches_First, type = 'bar',
                   hoverinfo = 'text', name = "vs. Alliance 1", text = ~paste("Alliance ", Blue, ": ",
                                                                              dec_to_frac_of_vector(Matches_First),
@@ -818,7 +835,6 @@ plot13 <- plot_ly(data = finals, x = ~paste("Alliance", Blue), y = ~Matches_Firs
                                                                                              "%) vs. Alliance 8", sep = "")) %>%
   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
          yaxis = list(title = "Probability", tickformat = ".2%"))
-print(plot13)
 htmlwidgets::saveWidget(as_widget(plot13), "Finals-blue.html")
 
 #Total - Mean Points
@@ -890,4 +906,150 @@ plot12 <- plot_ly(data = df15, x = ~Alliances, y = ~Points, type = 'bar', name =
          xaxis = list(title = "Alliance"), yaxis = list(title = "Points +/- SD"))
 htmlwidgets::saveWidget(as_widget(plot12), "ExpectedAlliancePoints.html")
 
-#Semifinals and Finals Probabilities if we are somehow in the Blue Alliance:
+setwd("../alliance-selection")
+
+
+#To maximize # of points and probability of winning champions:
+
+#Let's say that we want to maximize the probability of our team winning.
+
+TEAM <- 5401
+
+#Best Offensive Team vs. Best Defensive Team - which is a better addition? We will have to find out.
+
+df16 <- df9[with(df9, order(-Offensive_Rating)), ]
+
+df17 <- df9[with(df9, order(-Defensive_Rating)), ]
+
+#Alliance Captains - Play around... (Unfinished alliances should have up to 3 teams each.)
+
+setwd("..")
+setwd("..")
+
+df18 <- read.csv("Alliance_Selection.txt", header = T)
+
+
+#Let's say we are an alliance captain... what shall we pick? Let's find out...
+
+#Add "defensive potential" of the best offensive rating - assume the worst:
+df19 <- df16[!df16$Teams %in% unique(unlist(df18)), ]
+df20 <- df17[!df17$Teams %in% unique(unlist(df18)), ]
+
+# Create another script that will: 
+# Score all robots out of 100 using this test***:
+#
+# 30 points - Compatibility
+# 50 points - Consistency (average) - for Alliances 1-4 only
+# 50 points - Competitiveness (maximum) - for Alliances 5-8 only
+# 20 points - Conservation (minimizing breakage)
+#
+# Offensive Bots will be scored for compatibility - that means that the bots will have to
+# complement each other. Defensive bots, on the other hand, get a free 50 points.
+#
+# 25 points will be earned for autonomous and another 25 for the location for teleop.
+#
+#
+# Consistency: The mean potential defensive points will be graded for defense bots,
+# while the mean potential offensive points will be graded for offensive bots. Less
+# standard deviation is better.
+#
+# Score = 50 * (Mean Defensive Potential + Mean Offensive Potential) / Maximum
+#
+# Competitiveness: The maximum potential of defensive/offensive points will be graded.
+# Score = 50 * (Mean Defensive Potential + Max Offensive Potential) / Maximum
+#
+# Conservation: Recent matches will be weighted more than early matches by a factor of 1.2 per QM.
+# Disabled - 1 point lost
+# 
+# Total points: 20 * (1 - (Disabled Points) / (Maximum Disabled Points))
+#
+# *** Disclaimer: This test is not 100% accurate, but helps to see which teams to select. ***
+#
+
+# Rocket Cargo/HP Distribution
+df21 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
+                    3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+                  S_Hatch_CS_Mean = df2$S_Hatch_CS_Mean, S_Hatch_R_Mean =
+                    df2$S_Hatch_R1_Mean + df2$S_Hatch_R2_Mean + df2$S_Hatch_R3_Mean,
+                  T_Hatch_CS_Mean = df2$T_Hatch_CS_Mean,
+                  T_Hatch_R_Mean = df2$T_Hatch_R1_Mean + df2$T_Hatch_R2_Mean + df2$T_Hatch_R3_Mean)
+#Hatches
+
+# Weight is as follows: Rockets can be full with 4 spots and cargo ships full with 8 spots.
+# Points Lost = 15 * (Rocket Fraction + 1) / Maximum
+
+
+#Compatiblity - 50 points
+
+df22 <- data.frame(Teams = df2$Teams,
+                   Offensive_Rating = 2 * df2$Hatch_Total_Mean +
+                     3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+                   Defensive_Potential = 5/6 * df2$Is_Defensive * max(2 * df2$Hatch_Total_Mean + 3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean),
+                   S_CS_Mean = df2$S_Hatch_CS_Mean + df2$S_Cargo_CS_Mean,
+                   S_R_Mean =
+                     df2$S_Hatch_R1_Mean + df2$S_Hatch_R2_Mean + df2$S_Hatch_R3_Mean +
+                     df2$S_Cargo_R1_Mean + df2$S_Cargo_R2_Mean + df2$S_Cargo_R3_Mean,
+                   T_CS_Mean = df2$T_Hatch_CS_Mean,
+                   T_R_Mean = df2$T_Hatch_R1_Mean + df2$T_Hatch_R2_Mean + df2$T_Hatch_R3_Mean +
+                     df2$T_Cargo_R1_Mean + df2$T_Cargo_R2_Mean + df2$T_Cargo_R3_Mean)
+
+df22$S_Rocket_Frac <- df22$S_R_Mean / (df22$S_R_Mean + df22$S_CS_Mean)
+df22$T_Rocket_Frac <- df22$T_R_Mean / (df22$T_R_Mean + df22$T_CS_Mean)
+
+team_rocket_frac_s <- df22[df22$Teams == TEAM, 8]
+team_rocket_frac_t <- df22[df22$Teams == TEAM, 9]
+#NA - any compatibility will be given 15 points.
+df22 <- df22[df22$Teams != TEAM, ]
+df23 <- data.frame(Teams = df22$Teams, Score = 0)
+
+
+
+if (is.nan(team_rocket_frac_s) || team_rocket_frac_s == 0.5) {
+  df23$Score = df23$Score + 25
+} else if (team_rocket_frac_s < 0.5) {
+  #Close to 1 as possible for the rocket fractions.
+  # Points Earned = 15 * ((1 + 2 * Rocket Fraction) / Maximum) - NA means that the player can go anywhere.
+  df23$Score = df23$Score + 25 * ifelse(is.nan(df22$S_Rocket_Frac),
+                                        max(1 + 2 * df22$S_Rocket_Frac, na.rm = T),
+                                        1 + 2 * df22$S_Rocket_Frac) / max(1 + 2 * df22$S_Rocket_Frac, na.rm = T)
+} else if (team_rocket_frac_s > 0.5) {
+  # Points Lost = 15 * ((1 + Rocket Fraction) / Maximum)
+  df23$Score = df23$Score + 25 - 25 * ifelse(is.nan(df22$S_Rocket_Frac), 0,
+                                        1 + 2 * df22$S_Rocket_Frac) / max(1 + 2 * df22$S_Rocket_Frac, na.rm = T)
+}
+
+if (is.nan(team_rocket_frac_t) || team_rocket_frac_t == 0.5) {
+  df23$Score = df23$Score + 25
+} else if (team_rocket_frac_t < 0.5) {
+  # Close to 1 as possible for the rocket fractions.
+  # Points Earned = 15 * (1 + 2 * Rocket Fraction) / Maximum
+  df23$Score = df23$Score + 25 * ifelse(is.nan(df22$T_Rocket_Frac), max(1 + 2 * df22$T_Rocket_Frac, na.rm = T), 1 + 2 * df22$T_Rocket_Frac) /
+    max(1 + 2 * df22$T_Rocket_Frac, na.rm = T)
+} else if (team_rocket_frac_t > 0.5) {
+  # Points Lost = 15 * (1 + 2 * Rocket Fraction) / Maximum
+  df23$Score = df23$Score + 25 - 25 * ifelse(is.nan(df22$T_Rocket_Frac), 0, 1 + 2 * df22$T_Rocket_Frac) /
+    max(1 + 2 * df22$T_Rocket_Frac, na.rm = T)
+}
+
+# Defensive Potential and Offensive Potential - 30 points
+df23$Score = df23$Score + 30 * (df22$Defensive_Potential + df22$Offensive_Rating) /
+  max(df22$Defensive_Potential + df22$Offensive_Rating, na.rm = T)
+
+# Trends and what not account for 20 points - Soon to be implemented.
+df23$Score = df23$Score + 20
+
+
+#Finalize the score totals
+df23[with(df23, order(-Score)), ]
+# Top-ranked robot cannot be picked, second pick will have to be chosen.
+plot14 <- plot_ly(data = df23, x = ~paste(Teams), y = ~Score, type = 'bar', hoverinfo = 'text',
+                  text = ~paste("Team ", Teams, "<br>Rank: ", rank(-Score, ties.method = "random"),
+                                "<br>Score: ", floor(Score * 100) / 100, "<br>",
+                                ifelse(rank(-df22$Defensive_Potential, ties.method = "random") < 10,
+                                       "Defensive", "Offensive"), sep = ""),
+                  marker = list(color = c('red', 'blue')[1 + (rank(-df22$Defensive_Potential,
+                                                                   ties.method = "random") < 10)])
+                  ) %>%
+  layout(title = "Scores", xaxis = list(title = "Team"))
+setwd("html_files/alliance-selection")
+htmlwidgets::saveWidget(as_widget(plot14), "selection_scores.html")
