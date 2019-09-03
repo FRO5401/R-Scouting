@@ -997,38 +997,30 @@ df22$S_Rocket_Frac <- df22$S_R_Mean / (df22$S_R_Mean + df22$S_CS_Mean)
 df22$T_Rocket_Frac <- df22$T_R_Mean / (df22$T_R_Mean + df22$T_CS_Mean)
 
 team_rocket_frac_s <- df22[df22$Teams == TEAM, 8]
+
 team_rocket_frac_t <- df22[df22$Teams == TEAM, 9]
 #NA - any compatibility will be given 15 points.
 df22 <- df22[df22$Teams != TEAM, ]
-df23 <- data.frame(Teams = df22$Teams, Score = 0)
+df23 <- data.frame(Teams = df22$Teams, Score = 0, stringsAsFactors = F)
 
 
 
-if (is.nan(team_rocket_frac_s) || team_rocket_frac_s == 0.5) {
+if (is.nan(team_rocket_frac_s)) {
   df23$Score = df23$Score + 25
-} else if (team_rocket_frac_s < 0.5) {
+} else {
   #Close to 1 as possible for the rocket fractions.
   # Points Earned = 15 * ((1 + 2 * Rocket Fraction) / Maximum) - NA means that the player can go anywhere.
   df23$Score = df23$Score + 25 * ifelse(is.nan(df22$S_Rocket_Frac),
-                                        max(1 + 2 * df22$S_Rocket_Frac, na.rm = T),
-                                        1 + 2 * df22$S_Rocket_Frac) / max(1 + 2 * df22$S_Rocket_Frac, na.rm = T)
-} else if (team_rocket_frac_s > 0.5) {
-  # Points Lost = 15 * ((1 + Rocket Fraction) / Maximum)
-  df23$Score = df23$Score + 25 - 25 * ifelse(is.nan(df22$S_Rocket_Frac), 0,
-                                        1 + 2 * df22$S_Rocket_Frac) / max(1 + 2 * df22$S_Rocket_Frac, na.rm = T)
+                                        1, (1 + 2 * abs(df22$S_Rocket_Frac - team_rocket_frac_s)) /
+                                          max(1 + 2 * abs(df22$S_Rocket_Frac - team_rocket_frac_s), na.rm = T))
 }
 
-if (is.nan(team_rocket_frac_t) || team_rocket_frac_t == 0.5) {
+if (is.nan(team_rocket_frac_t)) {
   df23$Score = df23$Score + 25
-} else if (team_rocket_frac_t < 0.5) {
-  # Close to 1 as possible for the rocket fractions.
-  # Points Earned = 15 * (1 + 2 * Rocket Fraction) / Maximum
-  df23$Score = df23$Score + 25 * ifelse(is.nan(df22$T_Rocket_Frac), max(1 + 2 * df22$T_Rocket_Frac, na.rm = T), 1 + 2 * df22$T_Rocket_Frac) /
-    max(1 + 2 * df22$T_Rocket_Frac, na.rm = T)
-} else if (team_rocket_frac_t > 0.5) {
-  # Points Lost = 15 * (1 + 2 * Rocket Fraction) / Maximum
-  df23$Score = df23$Score + 25 - 25 * ifelse(is.nan(df22$T_Rocket_Frac), 0, 1 + 2 * df22$T_Rocket_Frac) /
-    max(1 + 2 * df22$T_Rocket_Frac, na.rm = T)
+} else {
+  df23$Score = df23$Score + 25 * ifelse(is.nan(df22$T_Rocket_Frac),
+                                        1, abs(1 + 2 * (df22$T_Rocket_Frac - team_rocket_frac_t)) /
+                                          max(abs(1 + 2 * (df22$T_Rocket_Frac - team_rocket_frac_t)), na.rm = T))
 }
 
 # Defensive Potential and Offensive Potential - 30 points
@@ -1038,9 +1030,6 @@ df23$Score = df23$Score + 30 * (df22$Defensive_Potential + df22$Offensive_Rating
 # Trends and what not account for 20 points - Soon to be implemented.
 df23$Score = df23$Score + 20
 
-
-#Finalize the score totals
-df23[with(df23, order(-Score)), ]
 # Top-ranked robot cannot be picked, second pick will have to be chosen.
 plot14 <- plot_ly(data = df23, x = ~paste(Teams), y = ~Score, type = 'bar', hoverinfo = 'text',
                   text = ~paste("Team ", Teams, "<br>Rank: ", rank(-Score, ties.method = "random"),
@@ -1050,6 +1039,6 @@ plot14 <- plot_ly(data = df23, x = ~paste(Teams), y = ~Score, type = 'bar', hove
                   marker = list(color = c('red', 'blue')[1 + (rank(-df22$Defensive_Potential,
                                                                    ties.method = "random") < 10)])
                   ) %>%
-  layout(title = "Scores", xaxis = list(title = "Team"))
+  layout(title = "Scores", xaxis = list(title = "Team", categoryorder = "array", categoryarray = ~Score))
 setwd("html_files/alliance-selection")
 htmlwidgets::saveWidget(as_widget(plot14), "selection_scores.html")
