@@ -84,6 +84,9 @@ c42 <- c()
 c43 <- c()
 c44 <- c()
 c45 <- c()
+c46 <- c()
+c47 <- c()
+c48 <- c()
 
 pointfunction <- function (v) {
   
@@ -183,8 +186,13 @@ for (team in uniqueTeams) {
   c42 <- c(c42, sd(g[a] + h[a] + i[a] + j[a] + o[a] + p[a] + q[a] + r[a], na.rm = TRUE))
   c43 <- c(c43, sd(t[a], na.rm = TRUE))
   c44 <- c(c44, sd(u[a], na.rm = TRUE))
+  
+  #Maxima
+  c45 <- c(c45, max(c[a] + d[a] + e[a] + f[a] + k[a] + l[a] + m[a] + n[a], na.rm = T))
+  c46 <- c(c46, max(g[a] + h[a] + i[a] + j[a] + o[a] + p[a] + q[a] + r[a], na.rm = T))
+  c47 <- c(c47, max(pointfunction(s[a])))
   #Booleans
-  c45 <- c(c45, mean(v[a], na.rm = TRUE)) #Is Defensive (Aka "Defensive Rating")
+  c48 <- c(c48, mean(v[a], na.rm = TRUE)) #Is Defensive (Aka "Defensive Rating")
 }
 
 df2 <- data.frame(Teams = uniqueTeams, #Identifier
@@ -205,8 +213,10 @@ df2 <- data.frame(Teams = uniqueTeams, #Identifier
                   Habitat_Level_SD = c39, Habitat_Points_SD = c40, Hatch_Total_SD = c41, Cargo_Total_SD = c42,
                   Hatch_GP_SD = c43, Hatch_SP_SD = c44,
                   
+                  #Maxima
+                  Hatch_Total_Max = c45, Cargo_Total_Max = c46, Habitat_Points_Max = c47,
                   #Boolean Means
-                  Is_Defensive = c45)
+                  Is_Defensive = c48)
 
 df2 <- df2[with(df2, order(Teams)), ]
 
@@ -365,7 +375,8 @@ df9 <- data.frame(Teams = df2$Teams, Offensive_Rating = df2$Cargo_Total_Mean * 3
                       sqrt(9 * (df2$Cargo_Total_SD ** 2) +
                             4 * (df2$Hatch_Total_SD ** 2) +
                            (df2$Habitat_Points_SD ** 2)),
-                  Defensive_Rating = df2$Is_Defensive)
+                  Defensive_Rating = df2$Is_Defensive,
+                  Max_Offensive_Rating = )
 
 plot4 <- plot_ly(data = df9, x = ~paste(Teams), y = ~Offensive_Rating, type = 'bar', name = 'Total Offensive Points',
                  marker = list(color = 'blue'),
@@ -433,7 +444,8 @@ probability_of_winning <- function(allianceA, allianceB) {
                     Offensive_Rating_SD =
                       sqrt(9 * (df2$Cargo_Total_SD ** 2) +
                             4 * (df2$Hatch_Total_SD ** 2) +
-                           (df2$Habitat_Points_SD ** 2)))
+                           (df2$Habitat_Points_SD ** 2)),
+                    df2$Cargo_Max)
 
   #In other words, this algorithm will try to find the most offensive robot's point total
   allianceAMaxOffensiveRating <- mvpIndex(allianceA)
@@ -911,36 +923,38 @@ setwd("../alliance-selection")
 
 #To maximize # of points and probability of winning champions:
 
-#Let's say that we want to maximize the probability of our team winning.
 
-TEAM <- 5401
 
-#Best Offensive Team vs. Best Defensive Team - which is a better addition? We will have to find out.
-
-df16 <- df9[with(df9, order(-Offensive_Rating)), ]
-
-df17 <- df9[with(df9, order(-Defensive_Rating)), ]
-
-#Alliance Captains - Play around... (Unfinished alliances should have up to 3 teams each.)
-
-setwd("..")
-setwd("..")
+setwd("../..")
 
 df18 <- read.csv("Alliance_Selection.txt", header = T)
 
+#Best Offensive Team vs. Best Defensive Team - which is a better addition? We will have to find out.
 
-#Let's say we are an alliance captain... what shall we pick? Let's find out...
+i <- 0
 
-#Add "defensive potential" of the best offensive rating - assume the worst:
-df19 <- df16[!df16$Teams %in% unique(unlist(df18)), ]
-df20 <- df17[!df17$Teams %in% unique(unlist(df18)), ]
+selectedTeams <- c()
+allianceCaptains <- c()
+firstPicks <- c()
+#Start Alliance Selection Progress
+defensiveBots <- rep(0, 8)
 
-# Create another script that will: 
+df21 <- data.frame(Teams = df2$Teams,
+                   Defensive_Potential = 5/6 *
+                     df2$Is_Defensive *
+                     max(2 * df2$Hatch_Total_Mean +
+                           3 * df2$Cargo_Total_Mean +
+                           df2$Habitat_Points_Mean))
+defensiveTeams <- df21$Teams[rank(-df21$Defensive_Potential) <= 10]
+
+TEAM <- 5401
+
+# Create another script that will:
 # Score all robots out of 100 using this test***:
 #
-# 30 points - Compatibility
-# 50 points - Consistency (average) - for Alliances 1-4 only
-# 50 points - Competitiveness (maximum) - for Alliances 5-8 only
+# 50 points - Compatibility
+# 30 points - Consistency (average) - for Alliances 1-4 only
+# 30 points - Competitiveness (maximum) - for Alliances 5-8 only
 # 20 points - Conservation (minimizing breakage)
 #
 # Offensive Bots will be scored for compatibility - that means that the bots will have to
@@ -960,30 +974,24 @@ df20 <- df17[!df17$Teams %in% unique(unlist(df18)), ]
 #
 # Conservation: Recent matches will be weighted more than early matches by a factor of 1.2 per QM.
 # Disabled - 1 point lost
-# 
+#
 # Total points: 20 * (1 - (Disabled Points) / (Maximum Disabled Points))
 #
 # *** Disclaimer: This test is not 100% accurate, but helps to see which teams to select. ***
 #
 
 # Rocket Cargo/HP Distribution
-df21 <- data.frame(Teams = df2$Teams, Offensive_Rating = 2 * df2$Hatch_Total_Mean +
-                    3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
-                  S_Hatch_CS_Mean = df2$S_Hatch_CS_Mean, S_Hatch_R_Mean =
-                    df2$S_Hatch_R1_Mean + df2$S_Hatch_R2_Mean + df2$S_Hatch_R3_Mean,
-                  T_Hatch_CS_Mean = df2$T_Hatch_CS_Mean,
-                  T_Hatch_R_Mean = df2$T_Hatch_R1_Mean + df2$T_Hatch_R2_Mean + df2$T_Hatch_R3_Mean)
-#Hatches
 
 # Weight is as follows: Rockets can be full with 4 spots and cargo ships full with 8 spots.
-# Points Lost = 15 * (Rocket Fraction + 1) / Maximum
-
+# Points Lost = 15 * (Rocket Fraction * 2 + 1) / Maximum
 
 #Compatiblity - 50 points
 
 df22 <- data.frame(Teams = df2$Teams,
                    Offensive_Rating = 2 * df2$Hatch_Total_Mean +
                      3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+                   Max_Rating = 2 * df2$Habitat_Points_Max +
+                     3 * df2$Cargo_Total_Max + df2$Habitat_Points_Max,
                    Defensive_Potential = 5/6 * df2$Is_Defensive * max(2 * df2$Hatch_Total_Mean + 3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean),
                    S_CS_Mean = df2$S_Hatch_CS_Mean + df2$S_Cargo_CS_Mean,
                    S_R_Mean =
@@ -996,9 +1004,10 @@ df22 <- data.frame(Teams = df2$Teams,
 df22$S_Rocket_Frac <- df22$S_R_Mean / (df22$S_R_Mean + df22$S_CS_Mean)
 df22$T_Rocket_Frac <- df22$T_R_Mean / (df22$T_R_Mean + df22$T_CS_Mean)
 
-team_rocket_frac_s <- df22[df22$Teams == TEAM, 8]
+team_rocket_frac_s <- df22[df22$Teams == TEAM, 9]
 
-team_rocket_frac_t <- df22[df22$Teams == TEAM, 9]
+team_rocket_frac_t <- df22[df22$Teams == TEAM, 10]
+
 #NA - any compatibility will be given 15 points.
 df22 <- df22[df22$Teams != TEAM, ]
 df23 <- data.frame(Teams = df22$Teams, Score = 0, stringsAsFactors = F)
@@ -1008,7 +1017,7 @@ df23 <- data.frame(Teams = df22$Teams, Score = 0, stringsAsFactors = F)
 if (is.nan(team_rocket_frac_s)) {
   df23$Score = df23$Score + 25
 } else {
-  #Close to 1 as possible for the rocket fractions.
+  # Close to 1 as possible for the rocket fractions.
   # Points Earned = 15 * ((1 + 2 * Rocket Fraction) / Maximum) - NA means that the player can go anywhere.
   df23$Score = df23$Score + 25 * ifelse(is.nan(df22$S_Rocket_Frac),
                                         1, (1 + 2 * abs(df22$S_Rocket_Frac - team_rocket_frac_s)) /
@@ -1024,21 +1033,604 @@ if (is.nan(team_rocket_frac_t)) {
 }
 
 # Defensive Potential and Offensive Potential - 30 points
-df23$Score = df23$Score + 30 * (df22$Defensive_Potential + df22$Offensive_Rating) /
-  max(df22$Defensive_Potential + df22$Offensive_Rating, na.rm = T)
+if (i <= 4) {
+  df23$Score = df23$Score + 30 * (df22$Defensive_Potential + df22$Offensive_Rating) /
+    max(df22$Defensive_Potential + df22$Offensive_Rating, na.rm = T)
+} else {
+  df23$Score = df23$Score + 30 * (df22$Defensive_Potential + df22$Max_Rating) /
+    max(df22$Defensive_Potential + df22$Max_Rating, na.rm = T)
+}
 
 # Trends and what not account for 20 points - Soon to be implemented.
 df23$Score = df23$Score + 20
 
-# Top-ranked robot cannot be picked, second pick will have to be chosen.
+# In other words, there will be rounds... for the likeliest pick of all.
 plot14 <- plot_ly(data = df23, x = ~paste(Teams), y = ~Score, type = 'bar', hoverinfo = 'text',
                   text = ~paste("Team ", Teams, "<br>Rank: ", rank(-Score, ties.method = "random"),
                                 "<br>Score: ", floor(Score * 100) / 100, "<br>",
-                                ifelse(rank(-df22$Defensive_Potential, ties.method = "random") < 10,
+                                ifelse(df22$Teams %in% defensiveTeams,
                                        "Defensive", "Offensive"), sep = ""),
-                  marker = list(color = c('red', 'blue')[1 + (rank(-df22$Defensive_Potential,
-                                                                   ties.method = "random") < 10)])
-                  ) %>%
-  layout(title = "Scores", xaxis = list(title = "Team", categoryorder = "array", categoryarray = ~Score))
-setwd("html_files/alliance-selection")
-htmlwidgets::saveWidget(as_widget(plot14), "selection_scores.html")
+                  marker = list(color = c('red', 'blue')[1 + (df22$Teams %in% defensiveTeams)])
+) %>%
+  layout(title = paste("Scores - Team", TEAM), xaxis = list(title = "Team", categoryorder = "array", categoryarray = ~Score))
+print(plot14)
+
+# for (i in 1:8) {
+#   ranks <- read.csv("Rankings.txt")
+#   
+#   #Remove already selected teams 
+#   ranks <- ranks[!ranks$Team %in% selectedTeams, ]
+#   
+#   # Create another script that will: 
+#   # Score all robots out of 100 using this test***:
+#   #
+#   # 50 points - Compatibility
+#   # 30 points - Consistency (average) - for Alliances 1-4 only
+#   # 30 points - Competitiveness (maximum) - for Alliances 5-8 only
+#   # 20 points - Conservation (minimizing breakage)
+#   #
+#   # Offensive Bots will be scored for compatibility - that means that the bots will have to
+#   # complement each other. Defensive bots, on the other hand, get a free 50 points.
+#   #
+#   # 25 points will be earned for autonomous and another 25 for the location for teleop.
+#   #
+#   #
+#   # Consistency: The mean potential defensive points will be graded for defense bots,
+#   # while the mean potential offensive points will be graded for offensive bots. Less
+#   # standard deviation is better.
+#   #
+#   # Score = 50 * (Mean Defensive Potential + Mean Offensive Potential) / Maximum
+#   #
+#   # Competitiveness: The maximum potential of defensive/offensive points will be graded.
+#   # Score = 50 * (Mean Defensive Potential + Max Offensive Potential) / Maximum
+#   #
+#   # Conservation: Recent matches will be weighted more than early matches by a factor of 1.2 per QM.
+#   # Disabled - 1 point lost
+#   # 
+#   # Total points: 20 * (1 - (Disabled Points) / (Maximum Disabled Points))
+#   #
+#   # *** Disclaimer: This test is not 100% accurate, but helps to see which teams to select. ***
+#   #
+#   
+#   # Rocket Cargo/HP Distribution
+#   
+#   # Weight is as follows: Rockets can be full with 4 spots and cargo ships full with 8 spots.
+#   # Points Lost = 15 * (Rocket Fraction * 2 + 1) / Maximum
+#   
+#   #Compatiblity - 50 points
+#   
+#   df22 <- data.frame(Teams = df2$Teams,
+#                      Offensive_Rating = 2 * df2$Hatch_Total_Mean +
+#                        3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+#                      Max_Rating = 2 * df2$Habitat_Points_Max +
+#                        3 * df2$Cargo_Total_Max + df2$Habitat_Points_Max,
+#                      Defensive_Potential = 5/6 * df2$Is_Defensive * max(2 * df2$Hatch_Total_Mean + 3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean),
+#                      S_CS_Mean = df2$S_Hatch_CS_Mean + df2$S_Cargo_CS_Mean,
+#                      S_R_Mean =
+#                        df2$S_Hatch_R1_Mean + df2$S_Hatch_R2_Mean + df2$S_Hatch_R3_Mean +
+#                        df2$S_Cargo_R1_Mean + df2$S_Cargo_R2_Mean + df2$S_Cargo_R3_Mean,
+#                      T_CS_Mean = df2$T_Hatch_CS_Mean,
+#                      T_R_Mean = df2$T_Hatch_R1_Mean + df2$T_Hatch_R2_Mean + df2$T_Hatch_R3_Mean +
+#                        df2$T_Cargo_R1_Mean + df2$T_Cargo_R2_Mean + df2$T_Cargo_R3_Mean)
+#   
+#   #Removes defensive bots if there already is one:
+#   defensiveBots[i] = defensiveBots[i] + (TEAM %in% defensiveTeams)
+#   
+#   if (defensiveBots[i] > 0) {
+#     df22 <- df22[!df22$Teams %in% defensiveTeams, ]
+#   }
+#   df22 <- df22[df22$Teams %in% ranks$Team, ]
+#   
+#   TEAM <- ranks[1, 2]
+#   
+#   df22$S_Rocket_Frac <- df22$S_R_Mean / (df22$S_R_Mean + df22$S_CS_Mean)
+#   df22$T_Rocket_Frac <- df22$T_R_Mean / (df22$T_R_Mean + df22$T_CS_Mean)
+#   
+#   team_rocket_frac_s <- df22[df22$Teams == TEAM, 9]
+#   
+#   team_rocket_frac_t <- df22[df22$Teams == TEAM, 10]
+#   
+#   #NA - any compatibility will be given 15 points.
+#   df22 <- df22[df22$Teams != TEAM, ]
+#   df23 <- data.frame(Teams = df22$Teams, Score = 0, stringsAsFactors = F)
+#   
+#   
+#   
+#   if (is.nan(team_rocket_frac_s)) {
+#     df23$Score = df23$Score + 25
+#   } else {
+#     # Close to 1 as possible for the rocket fractions.
+#     # Points Earned = 15 * ((1 + 2 * Rocket Fraction) / Maximum) - NA means that the player can go anywhere.
+#     df23$Score = df23$Score + 25 * ifelse(is.nan(df22$S_Rocket_Frac),
+#                                           1, (1 + 2 * abs(df22$S_Rocket_Frac - team_rocket_frac_s)) /
+#                                             max(1 + 2 * abs(df22$S_Rocket_Frac - team_rocket_frac_s), na.rm = T))
+#   }
+#   
+#   if (is.nan(team_rocket_frac_t)) {
+#     df23$Score = df23$Score + 25
+#   } else {
+#     df23$Score = df23$Score + 25 * ifelse(is.nan(df22$T_Rocket_Frac),
+#                                           1, abs(1 + 2 * (df22$T_Rocket_Frac - team_rocket_frac_t)) /
+#                                             max(abs(1 + 2 * (df22$T_Rocket_Frac - team_rocket_frac_t)), na.rm = T))
+#   }
+#   
+#   # Defensive Potential and Offensive Potential - 30 points
+#   if (i <= 4) {
+#     df23$Score = df23$Score + 30 * (df22$Defensive_Potential + df22$Offensive_Rating) /
+#       max(df22$Defensive_Potential + df22$Offensive_Rating, na.rm = T)
+#   } else {
+#     df23$Score = df23$Score + 30 * (df22$Defensive_Potential + df22$Max_Rating) /
+#       max(df22$Defensive_Potential + df22$Max_Rating, na.rm = T)
+#   }
+#   
+#   # Trends and what not account for 20 points - Soon to be implemented.
+#   df23$Score = df23$Score + 20
+#   
+#   # Top-scored robot not already selected will be selected.
+#   selectedTeams <- c(selectedTeams, top_n(df23, 1, df23$Score)$Teams[1])
+#   firstPicks <- c(firstPicks, top_n(df23, 1, df23$Score)$Teams[1])
+#   # In other words, there will be rounds... for the likeliest pick of all.
+#   plot14 <- plot_ly(data = df23, x = ~paste(Teams), y = ~Score, type = 'bar', hoverinfo = 'text',
+#                     text = ~paste("Team ", Teams, "<br>Rank: ", rank(-Score, ties.method = "random"),
+#                                   "<br>Score: ", floor(Score * 100) / 100, "<br>",
+#                                   ifelse(df22$Teams %in% defensiveTeams,
+#                                          "Defensive", "Offensive"), sep = ""),
+#                     marker = list(color = c('red', 'blue')[1 + (df22$Teams %in% defensiveTeams)])
+#   ) %>%
+#     layout(title = paste("Scores - Team", ranks$Team[1]), xaxis = list(title = "Team", categoryorder = "array", categoryarray = ~Score))
+#   print(plot14)
+#   selectedTeams <- c(selectedTeams, ranks$Team[1])
+#   allianceCaptains <- c(allianceCaptains, ranks$Team[1])
+# }
+# 
+# secondPicks <- c()
+# 
+# for (i in 1:8) {
+#   ranks <- read.csv("Rankings.txt")
+#   
+#   #Remove already selected teams 
+#   ranks <- ranks[!ranks$Team %in% selectedTeams, ]
+#   
+#   TEAM_CAPTAIN <- allianceCaptains[9 - i]
+#   FIRST_PICK <- firstPicks[9 - i]
+#   
+#   df22 <- data.frame(Teams = df2$Teams,
+#                      Offensive_Rating = 2 * df2$Hatch_Total_Mean +
+#                        3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean,
+#                      Max_Rating = 2 * df2$Habitat_Points_Max +
+#                        3 * df2$Cargo_Total_Max + df2$Habitat_Points_Max,
+#                      Defensive_Potential = 5/6 * df2$Is_Defensive * max(2 * df2$Hatch_Total_Mean + 3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean),
+#                      S_CS_Mean = df2$S_Hatch_CS_Mean + df2$S_Cargo_CS_Mean,
+#                      S_R_Mean =
+#                        df2$S_Hatch_R1_Mean + df2$S_Hatch_R2_Mean + df2$S_Hatch_R3_Mean +
+#                        df2$S_Cargo_R1_Mean + df2$S_Cargo_R2_Mean + df2$S_Cargo_R3_Mean,
+#                      T_CS_Mean = df2$T_Hatch_CS_Mean,
+#                      T_R_Mean = df2$T_Hatch_R1_Mean + df2$T_Hatch_R2_Mean + df2$T_Hatch_R3_Mean +
+#                        df2$T_Cargo_R1_Mean + df2$T_Cargo_R2_Mean + df2$T_Cargo_R3_Mean)
+#   
+#   df22$S_Rocket_Frac <- df22$S_R_Mean / (df22$S_R_Mean + df22$S_CS_Mean)
+#   df22$T_Rocket_Frac <- df22$T_R_Mean / (df22$T_R_Mean + df22$T_CS_Mean)
+#   
+#   #Removes defensive bots if there already is one:
+#   team1_rocket_frac_s <- df22[df22$Teams == TEAM_CAPTAIN, 9]
+#   
+#   team1_rocket_frac_t <- df22[df22$Teams == TEAM_CAPTAIN, 10]
+#   
+#   team2_rocket_frac_s <- df22[df22$Teams == FIRST_PICK, 9]
+#   
+#   team2_rocket_frac_t <- df22[df22$Teams == FIRST_PICK, 10]
+#   defensiveBots[i] = defensiveBots[i] + (FIRST_PICK %in% defensiveTeams)
+#   
+#   if (defensiveBots[i] > 0) {
+#     df22 <- df22[!df22$Teams %in% defensiveTeams, ]
+#   }
+#   df22 <- df22[df22$Teams %in% ranks$Team, ]
+#   
+#   df22$S_Rocket_Frac <- df22$S_R_Mean / (df22$S_R_Mean + df22$S_CS_Mean)
+#   df22$T_Rocket_Frac <- df22$T_R_Mean / (df22$T_R_Mean + df22$T_CS_Mean)
+#   
+#   #NA - any compatibility will be given 15 points.
+#   df22 <- df22[df22$Teams != TEAM, ]
+#   df23 <- data.frame(Teams = df22$Teams, Score = 0, stringsAsFactors = F)
+#   
+#   #Now each is worth 12.5 points
+#   if (is.nan(team1_rocket_frac_s)) {
+#     df23$Score = df23$Score + 12.5
+#   } else {
+#     df23$Score = df23$Score + 12.5 * ifelse(is.nan(df22$S_Rocket_Frac),
+#                                             1, (1 + 2 * abs(df22$S_Rocket_Frac - team1_rocket_frac_s)) /
+#                                               max(1 + 2 * abs(df22$S_Rocket_Frac - team1_rocket_frac_s), na.rm = T))
+#   }
+#   
+#   if (is.nan(team1_rocket_frac_t)) {
+#     df23$Score = df23$Score + 12.5
+#   } else {
+#     df23$Score = df23$Score + 12.5 * ifelse(is.nan(df22$T_Rocket_Frac),
+#                                             1, abs(1 + 2 * (df22$T_Rocket_Frac - team1_rocket_frac_t)) /
+#                                               max(abs(1 + 2 * (df22$T_Rocket_Frac - team1_rocket_frac_t)), na.rm = T))
+#   }
+#   
+#   if (is.nan(team2_rocket_frac_s)) {
+#     df23$Score = df23$Score + 12.5
+#   } else {
+#     df23$Score = df23$Score + 12.5 * ifelse(is.nan(df22$S_Rocket_Frac),
+#                                             1, (1 + 2 * abs(df22$S_Rocket_Frac - team2_rocket_frac_s)) /
+#                                               max(1 + 2 * abs(df22$S_Rocket_Frac - team2_rocket_frac_s), na.rm = T))
+#   }
+#   
+#   if (is.nan(team2_rocket_frac_t)) {
+#     df23$Score = df23$Score + 12.5
+#   } else {
+#     df23$Score = df23$Score + 12.5 * ifelse(is.nan(df22$T_Rocket_Frac),
+#                                             1, abs(1 + 2 * (df22$T_Rocket_Frac - team2_rocket_frac_t)) /
+#                                               max(abs(1 + 2 * (df22$T_Rocket_Frac - team2_rocket_frac_t)), na.rm = T))
+#   }
+#   
+#   # Defensive Potential and Offensive Potential - 30 points
+#   if (i > 4) {
+#     df23$Score = df23$Score + 30 * (df22$Defensive_Potential + df22$Offensive_Rating) /
+#       max(df22$Defensive_Potential + df22$Offensive_Rating, na.rm = T)
+#   } else {
+#     df23$Score = df23$Score + 30 * (df22$Defensive_Potential + df22$Max_Rating) /
+#       max(df22$Defensive_Potential + df22$Max_Rating, na.rm = T)
+#   }
+#   
+#   # Trends and what not account for 20 points - Soon to be implemented.
+#   df23$Score = df23$Score + 20
+#   
+#   # Top-scored robot not already selected will be selected.
+#   selectedTeams <- c(selectedTeams, top_n(df23, 1, df23$Score)$Teams[1])
+#   secondPicks <- c(secondPicks, top_n(df23, 1, df23$Score)$Teams[1])
+#   # In other words, there will be rounds... for the likeliest pick of all.
+#   plot15 <- plot_ly(data = df23, x = ~paste(Teams), y = ~Score, type = 'bar', hoverinfo = 'text',
+#                     text = ~paste("Team ", Teams, "<br>Rank: ", rank(-Score, ties.method = "random"),
+#                                   "<br>Score: ", floor(Score * 100) / 100, "<br>",
+#                                   ifelse(df22$Teams %in% defensiveTeams,
+#                                          "Defensive", "Offensive"), sep = ""),
+#                     marker = list(color = c('red', 'blue')[1 + (df22$Teams %in% defensiveTeams)])
+#   ) %>%
+#     layout(title = paste("Scores - Team", allianceCaptains[9 - i]), xaxis = list(title = "Team", categoryorder = "array", categoryarray = ~Score))
+#   print(plot15)
+# }
+# secondPicks <- rev(secondPicks)
+# 
+# alliances <- data.frame(Captains = allianceCaptains, First_Picks = firstPicks, Second_Picks = secondPicks)
+# 
+# first <- unlist(alliances[1, ])
+# second <- unlist(alliances[2, ])
+# third <- unlist(alliances[3, ])
+# fourth <- unlist(alliances[4, ])
+# fifth <- unlist(alliances[5, ])
+# sixth <- unlist(alliances[6, ])
+# seventh <- unlist(alliances[7, ])
+# eighth <- unlist(alliances[8, ])
+# 
+# #In that hypothetical world, what is the probability of alliances winning? Let's find out.
+# first_semis <- probability_of_winning(first, eighth)
+# second_semis <- probability_of_winning(second, seventh)
+# third_semis <- probability_of_winning(third, sixth)
+# fourth_semis <- probability_of_winning(fourth, fifth)
+# pw14 <- probability_of_winning(first, fourth)
+# pw15 <- probability_of_winning(first, fifth)
+# pw84 <- probability_of_winning(eighth, fourth)
+# pw85 <- probability_of_winning(eighth, fifth)
+# pw23 <- probability_of_winning(second, third)
+# pw26 <- probability_of_winning(second, sixth)
+# pw73 <- probability_of_winning(seventh, third)
+# pw76 <- probability_of_winning(seventh, sixth)
+# pw12 <- probability_of_winning(first, second)
+# pw13 <- probability_of_winning(first, third)
+# pw16 <- probability_of_winning(first, sixth)
+# pw17 <- probability_of_winning(first, seventh)
+# pw42 <- probability_of_winning(fourth, second)
+# pw43 <- probability_of_winning(fourth, third)
+# pw46 <- probability_of_winning(fourth, sixth)
+# pw47 <- probability_of_winning(fourth, seventh)
+# pw52 <- probability_of_winning(fifth, second)
+# pw53 <- probability_of_winning(fifth, third)
+# pw56 <- probability_of_winning(fifth, sixth)
+# pw57 <- probability_of_winning(fifth, seventh)
+# pw82 <- probability_of_winning(eighth, second)
+# pw83 <- probability_of_winning(eighth, third)
+# pw86 <- probability_of_winning(eighth, sixth)
+# pw87 <- probability_of_winning(eighth, seventh)
+# 
+# first_finals_given_semis <- fourth_semis * probability_of_winning(first, fourth) + (1 - fourth_semis) * probability_of_winning(first, fifth)
+# 
+# second_finals_given_semis <- third_semis * probability_of_winning(second, third) + (1 - third_semis) * probability_of_winning(second, sixth)
+# 
+# third_finals_given_semis <- second_semis * probability_of_winning(third, second) + (1 - second_semis) * probability_of_winning(third, seventh)
+# 
+# fourth_finals_given_semis <- first_semis * probability_of_winning(fourth, first) + (1 - first_semis) * probability_of_winning(fourth, eighth)
+# 
+# fifth_finals_given_semis <- first_semis * probability_of_winning(fifth, first) + (1 - first_semis) * probability_of_winning(fifth, eighth)
+# 
+# sixth_finals_given_semis <- second_semis * probability_of_winning(sixth, second) + (1 - second_semis) * probability_of_winning(sixth, seventh)
+# 
+# seventh_finals_given_semis <- third_semis * probability_of_winning(seventh, third) + (1 - third_semis) * probability_of_winning(seventh, sixth)
+# 
+# eighth_finals_given_semis <- fourth_semis * probability_of_winning(eighth, fourth) + (1 - fourth_semis) * probability_of_winning(eighth, fifth)
+# 
+# #Now, for the finals variables
+# first_finals <- first_semis * first_finals_given_semis
+# second_finals <- second_semis * second_finals_given_semis
+# third_finals <- third_semis * third_finals_given_semis
+# fourth_finals <- fourth_semis * fourth_finals_given_semis
+# fifth_finals <- (1 - fourth_semis) * fifth_finals_given_semis
+# sixth_finals <- (1 - third_semis) * sixth_finals_given_semis
+# seventh_finals <- (1 - second_semis) * seventh_finals_given_semis
+# eighth_finals <- (1 - first_semis) * eighth_finals_given_semis
+# 
+# #Again, they do not necessarily add up to 200%, so this should adjust for that.
+# total_finals <- first_finals + second_finals + third_finals + fourth_finals + fifth_finals + sixth_finals + seventh_finals + eighth_finals
+# 
+# first_finals <- first_finals * 2 / total_finals
+# second_finals <- second_finals * 2 / total_finals
+# third_finals <- third_finals * 2 / total_finals
+# fourth_finals <- fourth_finals * 2 / total_finals
+# fifth_finals <- fifth_finals * 2 / total_finals
+# sixth_finals <- sixth_finals * 2 / total_finals
+# seventh_finals <- seventh_finals * 2 / total_finals
+# eighth_finals <- eighth_finals * 2 / total_finals
+# 
+# #Now, for the finals variables
+# first_finals <- first_semis * first_finals_given_semis
+# second_finals <- second_semis * second_finals_given_semis
+# third_finals <- third_semis * third_finals_given_semis
+# fourth_finals <- fourth_semis * fourth_finals_given_semis
+# fifth_finals <- (1 - fourth_semis) * fifth_finals_given_semis
+# sixth_finals <- (1 - third_semis) * sixth_finals_given_semis
+# seventh_finals <- (1 - second_semis) * seventh_finals_given_semis
+# eighth_finals <- (1 - first_semis) * eighth_finals_given_semis
+# 
+# #Again, they do not necessarily add up to 200%, so this should adjust for that.
+# total_finals <- first_finals + second_finals + third_finals + fourth_finals + fifth_finals + sixth_finals + seventh_finals + eighth_finals
+# 
+# first_finals <- first_finals * 2 / total_finals
+# second_finals <- second_finals * 2 / total_finals
+# third_finals <- third_finals * 2 / total_finals
+# fourth_finals <- fourth_finals * 2 / total_finals
+# fifth_finals <- fifth_finals * 2 / total_finals
+# sixth_finals <- sixth_finals * 2 / total_finals
+# seventh_finals <- seventh_finals * 2 / total_finals
+# eighth_finals <- eighth_finals * 2 / total_finals
+# 
+# #First - 2nd, 3rd, 6th, and 7th
+# first_champions_given_finals <-
+#   second_semis * second_finals_given_semis * probability_of_winning(first, second) +
+#   third_semis * third_finals_given_semis * probability_of_winning(first, third) +
+#   (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(first, sixth) +
+#   (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(first, seventh)
+# 
+# #Second - 1st, 4th, 5th, and 8th
+# second_champions_given_finals <-
+#   first_semis * first_finals_given_semis * probability_of_winning(second, first) +
+#   fourth_semis * fourth_finals_given_semis * probability_of_winning(second, fourth) +
+#   (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(second, fifth) +
+#   (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(second, eighth)
+# 
+# #Third - 1st, 4th, 5th, and 8th
+# third_champions_given_finals <-
+#   first_semis * first_finals_given_semis * probability_of_winning(third, first) +
+#   fourth_semis * fourth_finals_given_semis * probability_of_winning(third, fourth) +
+#   (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(third, fifth) +
+#   (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(third, eighth)
+# 
+# #Fourth - 2nd, 3rd, 6th, and 7th
+# fourth_champions_given_finals <-
+#   second_semis * second_finals_given_semis * probability_of_winning(fourth, second) +
+#   third_semis * third_finals_given_semis * probability_of_winning(fourth, third) +
+#   (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(fourth, sixth) +
+#   (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(fourth, seventh)
+# 
+# #Fifth - 2nd, 3rd, 6th, and 7th
+# fifth_champions_given_finals <-
+#   second_semis * second_finals_given_semis * probability_of_winning(fifth, second) +
+#   third_semis * third_finals_given_semis * probability_of_winning(fifth, third) +
+#   (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(fifth, sixth) +
+#   (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(fifth, seventh)
+# 
+# #Sixth - 1st, 4th, 5th, and 8th
+# sixth_champions_given_finals <-
+#   first_semis * first_finals_given_semis * probability_of_winning(sixth, first) +
+#   fourth_semis * fourth_finals_given_semis * probability_of_winning(sixth, fourth) +
+#   (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(sixth, fifth) +
+#   (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(sixth, eighth)
+# 
+# #Seventh - 1st, 4th, 5th, and 8th
+# seventh_champions_given_finals <-
+#   first_semis * first_finals_given_semis * probability_of_winning(seventh, first) +
+#   fourth_semis * fourth_finals_given_semis * probability_of_winning(seventh, fourth) +
+#   (1 - fourth_semis) * fifth_finals_given_semis * probability_of_winning(seventh, fifth) +
+#   (1 - first_semis) * eighth_finals_given_semis * probability_of_winning(seventh, eighth)
+# 
+# #Eighth - 2nd, 3rd, 6th, and 7th
+# eighth_champions_given_finals <-
+#   second_semis * second_finals_given_semis * probability_of_winning(eighth, second) +
+#   third_semis * third_finals_given_semis * probability_of_winning(eighth, third) +
+#   (1 - third_semis) * sixth_finals_given_semis * probability_of_winning(eighth, sixth) +
+#   (1 - second_semis) * seventh_finals_given_semis * probability_of_winning(eighth, seventh)
+# 
+# #Probability that each alliance will make it to become the champions:
+# first_champions <- first_semis * first_finals_given_semis * first_champions_given_finals
+# second_champions <- second_semis * second_finals_given_semis * second_champions_given_finals
+# third_champions <- third_semis * third_finals_given_semis * third_champions_given_finals
+# fourth_champions <- fourth_semis * fourth_finals_given_semis * fourth_champions_given_finals
+# fifth_champions <- (1 - fourth_semis) * fifth_finals_given_semis * fifth_champions_given_finals
+# sixth_champions <- (1 - third_semis) * sixth_finals_given_semis * sixth_champions_given_finals
+# seventh_champions <- (1 - second_semis) * seventh_finals_given_semis * seventh_champions_given_finals
+# eighth_champions <- (1 - first_semis) * eighth_finals_given_semis * eighth_champions_given_finals
+# 
+# total <- first_champions + second_champions + third_champions + fourth_champions + fifth_champions + sixth_champions + seventh_champions + eighth_champions
+# #The percentages calculated in the 8 variables above
+# #may not add up to 100% due to the random distribution, so they will be adjusted.
+# first_champions <- first_champions / total
+# second_champions <- second_champions / total
+# third_champions <- third_champions / total
+# fourth_champions <- fourth_champions / total
+# fifth_champions <- fifth_champions / total
+# sixth_champions <- sixth_champions / total
+# seventh_champions <- seventh_champions / total
+# eighth_champions <- eighth_champions / total
+# 
+# 
+# 
+# finals <- data.frame(Red = c(1, 4, 5, 8),
+#                      Blue = c(2, 3, 6, 7),
+#                      Matches_First = c(1 - pw12, 1 - pw13, 1 - pw16, 1 - pw17),
+#                      Matches_Second = c(pw12, pw42, pw52, pw82),
+#                      Matches_Third = c(pw13, pw43, pw53, pw83),
+#                      Matches_Fourth = c(1 - pw42, 1 - pw43, 1 - pw46, 1 - pw47),
+#                      Matches_Fifth = c(1 - pw52, 1 - pw53, 1 - pw56, 1 - pw57),
+#                      Matches_Sixth = c(pw16, pw46, pw56, pw86),
+#                      Matches_Seventh = c(pw17, pw47, pw57, pw87),
+#                      Matches_Eighth = c(1 - pw82, 1 - pw83, 1 - pw86, 1 - pw87))
+# 
+# setwd("html_files/alliance-selection")
+# 
+# plot12 <- plot_ly(data = finals, x = ~paste("Alliance", Red), y = ~Matches_Second, type = 'bar',
+#                   hoverinfo = 'text', name = "vs. Alliance 2", text = ~paste("Alliance ", Red, ": ",
+#                                                                              dec_to_frac_of_vector(Matches_Second),
+#                                                                              " (", floor(10000 * Matches_Second) / 100,
+#                                                                              "%) vs. Alliance 2", sep = "")) %>%
+#   add_trace(y = ~Matches_Third, name = "vs. Alliance 3", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+#                                                                                            dec_to_frac_of_vector(Matches_Third),
+#                                                                                            " (", floor(10000 * Matches_Third) / 100,
+#                                                                                            "%) vs. Alliance 3", sep = "")) %>%
+#   add_trace(y = ~Matches_Sixth, name = "vs. Alliance 6", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+#                                                                                            dec_to_frac_of_vector(Matches_Sixth),
+#                                                                                            " (", floor(10000 * Matches_Sixth) / 100,
+#                                                                                            "%) vs. Alliance 6", sep = "")) %>%
+#   add_trace(y = ~Matches_Seventh, name = "vs. Alliance 7", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+#                                                                                              dec_to_frac_of_vector(Matches_Seventh),
+#                                                                                              " (", floor(10000 * Matches_Seventh) / 100,
+#                                                                                              "%) vs. Alliance 7", sep = "")) %>%
+#   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+#          yaxis = list(title = "Probability", tickformat = ".2%"))
+# htmlwidgets::saveWidget(as_widget(plot12), "Finals-red.html")
+# 
+# #Finals Probabilities if we are somehow in the Blue Alliance:
+# plot13 <- plot_ly(data = finals, x = ~paste("Alliance", Blue), y = ~Matches_First, type = 'bar',
+#                   hoverinfo = 'text', name = "vs. Alliance 1", text = ~paste("Alliance ", Blue, ": ",
+#                                                                              dec_to_frac_of_vector(Matches_First),
+#                                                                              " (", floor(10000 * Matches_First) / 100,
+#                                                                              "%) vs. Alliance 1", sep = "")) %>%
+#   add_trace(y = ~Matches_Fourth, name = "vs. Alliance 4", hoverinfo = 'text', text = ~paste("Alliance ", Blue, ": ",
+#                                                                                             dec_to_frac_of_vector(Matches_Fourth),
+#                                                                                             " (", floor(10000 * Matches_Fourth) / 100,
+#                                                                                             "%) vs. Alliance 4", sep = "")) %>%
+#   add_trace(y = ~Matches_Fifth, name = "vs. Alliance 5", hoverinfo = 'text', text = ~paste("Alliance ", Blue, ": ",
+#                                                                                            dec_to_frac_of_vector(Matches_Fifth),
+#                                                                                            " (", floor(10000 * Matches_Fifth) / 100,
+#                                                                                            "%) vs. Alliance 5", sep = "")) %>%
+#   add_trace(y = ~Matches_Eighth, name = "vs. Alliance 8", hoverinfo = 'text', text = ~paste("Alliance ", Blue, ": ",
+#                                                                                             dec_to_frac_of_vector(Matches_Eighth),
+#                                                                                             " (", floor(10000 * Matches_Eighth) / 100,
+#                                                                                             "%) vs. Alliance 8", sep = "")) %>%
+#   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+#          yaxis = list(title = "Probability", tickformat = ".2%"))
+# htmlwidgets::saveWidget(as_widget(plot13), "Finals-blue.html")
+# 
+# df11 <- data.frame(Alliance_Numbers = 1:8,
+#                    Semifinals_Probabilities = c(first_semis, second_semis, third_semis,
+#                                                 fourth_semis, 1 - fourth_semis,
+#                                                 1 - third_semis, 1 - second_semis,
+#                                                 1 - first_semis),
+#                    Finals_Probabilities = c(first_finals, second_finals, third_finals,
+#                                             fourth_finals, fifth_finals, sixth_finals,
+#                                             seventh_finals, eighth_finals),
+#                    Champion_Probabilities = c(first_champions, second_champions, third_champions,
+#                                               fourth_champions, fifth_champions, sixth_champions,
+#                                               seventh_champions, eighth_champions))
+# 
+# plot5 <- plot_ly(data = df11, x = ~Alliance_Numbers, y = ~Semifinals_Probabilities, type = 'bar',
+#                  hoverinfo = 'text', text = ~paste("Alliance ", Alliance_Numbers, ": ",
+#                                                    dec_to_frac_of_vector(Semifinals_Probabilities),
+#                                                    " (", floor(10000 * Semifinals_Probabilities) / 100, "%)",
+#                                                    sep = "")) %>%
+#   layout(title = "Quarterfinal Probabilities", xaxis = list(title = "Alliance #"),
+#          yaxis = list(title = "Probability", tickformat = ".2%"))
+# htmlwidgets::saveWidget(as_widget(plot5), "Quarterfinals.html")
+# 
+# plot6 <- plot_ly(data = df11, x = ~Alliance_Numbers, y = ~Finals_Probabilities, type = 'bar',
+#                  hoverinfo = 'text', text = ~paste("Alliance ", Alliance_Numbers, ": ",
+#                                                    dec_to_frac_of_vector(Finals_Probabilities),
+#                                                    " (", floor(10000 * Finals_Probabilities) / 100, "%)",
+#                                                    sep = "")) %>%
+#   layout(title = "Probability of Alliance going to Finals", xaxis = list(title = "Alliance #"),
+#          yaxis = list(title = "Probability", tickformat = ".2%"))
+# htmlwidgets::saveWidget(as_widget(plot6), "AllianceProbabilityFinals.html")
+# 
+# plot7 <- plot_ly(data = df11, x = ~Alliance_Numbers, y = ~Champion_Probabilities, type = 'bar',
+#                  hoverinfo = 'text', text = ~paste("Alliance ", Alliance_Numbers, ": ",
+#                                                    dec_to_frac_of_vector(Champion_Probabilities),
+#                                                    " (", floor(10000 * Champion_Probabilities) / 100, "%)",
+#                                                    sep = "")) %>%
+#   layout(title = "Championship Probabilities", xaxis = list(title = "Alliance #"),
+#          yaxis = list(title = "Probability", tickformat = ".2%"))
+# htmlwidgets::saveWidget(as_widget(plot7), "AllianceProbabilityChamps.html")
+# 
+# #Semifinals 1
+# semis1 <- data.frame(Red = c(1, 8),
+#                      Blue = c(4, 5),
+#                      First_Matches = c(1 - pw14, 1 - pw15),
+#                      Fourth_Matches = c(pw14, pw84),
+#                      Fifth_Matches = c(pw15, pw85),
+#                      Eighth_Matches = c(1 - pw84, 1 - pw85))
+# plot8 <- plot_ly(data = semis1, x = ~paste("Alliance", Red), y = ~Fourth_Matches, type = 'bar',
+#                  hoverinfo = 'text', name = "vs. Alliance 4", text = ~paste("Alliance ", Red, ": ",
+#                                                                             dec_to_frac_of_vector(Fourth_Matches),
+#                                                                             " (", floor(10000 * Fourth_Matches) / 100,
+#                                                                             "%) vs. Alliance 4", sep = "")) %>%
+#   add_trace(y = ~Fifth_Matches, name = "vs. Alliance 5", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+#                                                                                            dec_to_frac_of_vector(Fifth_Matches),
+#                                                                                            " (", floor(10000 * Fifth_Matches) / 100,
+#                                                                                            "%) vs. Alliance 5", sep = "")) %>%
+#   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+#          yaxis = list(title = "Probability", tickformat = ".2%"))
+# htmlwidgets::saveWidget(as_widget(plot8), "Semis1-red.html")
+# plot9 <- plot_ly(data = semis1, x = ~paste("Alliance", Blue), y = ~First_Matches, type = 'bar',
+#                  hoverinfo = 'text', name = "vs. Alliance 1", text = ~paste("Alliance ", Blue, ": ",
+#                                                                             dec_to_frac_of_vector(First_Matches),
+#                                                                             " (", floor(10000 * First_Matches) / 100,
+#                                                                             "%) vs. Alliance 1", sep = "")) %>%
+#   add_trace(y = ~Eighth_Matches, name = "vs. Alliance 8", hoverinfo = 'text', text = ~paste("Alliance ", Blue, ": ",
+#                                                                                             dec_to_frac_of_vector(Eighth_Matches),
+#                                                                                             " (", floor(10000 * Eighth_Matches) / 100,
+#                                                                                             "%) vs. Alliance 8", sep = "")) %>%
+#   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+#          yaxis = list(title = "Probability", tickformat = ".2%"))
+# htmlwidgets::saveWidget(as_widget(plot9), "Semis1-blue.html")
+# 
+# semis2 <- data.frame(Red = c(2, 7),
+#                      Blue = c(3, 6),
+#                      Second_Matches = c(1 - pw23, 1 - pw26),
+#                      Third_Matches = c(pw23, pw73),
+#                      Sixth_Matches = c(pw26, pw76),
+#                      Seventh_Matches = c(1 - pw73, 1 - pw76))
+# 
+# plot10 <- plot_ly(data = semis2, x = ~paste("Alliance", Red), y = ~Third_Matches, type = 'bar',
+#                   hoverinfo = 'text', name = "vs. Alliance 3", text = ~paste("Alliance ", Red, ": ",
+#                                                                              dec_to_frac_of_vector(Third_Matches),
+#                                                                              " (", floor(10000 * Third_Matches) / 100,
+#                                                                              "%) vs. Alliance 3", sep = "")) %>%
+#   add_trace(y = ~Sixth_Matches, name = "vs. Alliance 6", hoverinfo = 'text', text = ~paste("Alliance ", Red, ": ",
+#                                                                                            dec_to_frac_of_vector(Sixth_Matches),
+#                                                                                            " (", floor(10000 * Sixth_Matches) / 100,
+#                                                                                            "%) vs. Alliance 6", sep = "")) %>%
+#   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+#          yaxis = list(title = "Probability", tickformat = ".2%"))
+# htmlwidgets::saveWidget(as_widget(plot10), "Semis2-red.html")
+# 
+# plot11 <- plot_ly(data = semis2, x = ~paste("Alliance", Blue), y = ~Second_Matches, type = 'bar',
+#                   hoverinfo = 'text', name = "vs. Alliance 2", text = ~paste("Alliance ", Blue, ": ",
+#                                                                              dec_to_frac_of_vector(Second_Matches),
+#                                                                              " (", floor(10000 * Second_Matches) / 100,
+#                                                                              "%) vs. Alliance 2", sep = "")) %>%
+#   add_trace(y = ~Seventh_Matches, name = "vs. Alliance 7", hoverinfo = 'text', text = ~paste("Alliance ", Blue, ": ",
+#                                                                                              dec_to_frac_of_vector(Seventh_Matches),
+#                                                                                              " (", floor(10000 * Seventh_Matches) / 100,
+#                                                                                              "%) vs. Alliance 7", sep = "")) %>%
+#   layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+#          yaxis = list(title = "Probability", tickformat = ".2%"))
+# htmlwidgets::saveWidget(as_widget(plot11), "Semis2-blue.html")
