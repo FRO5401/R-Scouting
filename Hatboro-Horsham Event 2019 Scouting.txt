@@ -1,0 +1,293 @@
+David Fiel,6943,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,7 sec,Can quickly pick up and score cargo with ease. 
+David Fiel,6943,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Did pretty goofd
+Smeed I.,1807,2,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,2,3,0,0,0,0,1,null,didn't move an inch during the entire match
+Jakub Witesko,5401,3,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,7 seconds,It was pretty good at putting the hatches on the rocket. It didn't work all the time and that's all the bot did. Bit of a one trick pony.
+tom,5684,3,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,4,0,0,0,0,1,null,moved for 30 seconds then went back to spawn. Didn't move after that 
+tom,5684,3,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,4,0,0,0,0,3,7 seconds,It was pretty good at putting the hatches on the rocket. It didn't work all the time and that's all the bot did. Bit of a one trick pony.
+Jake dela Cruz,6808,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,moved for 30 seconds then went back to spawn. Didn't move after that 
+Rithik Mohanty,709,,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,1,null,Could place hatches and cargo
+Rithik Mohanty,709,,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,1,null,Put many cargo and hatches on. Maybe can climb 
+Jake dela Cruz,2607,1,2,1,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,2,0,0,1,null,Could place hatches and cargo
+Kush Patel,1391,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,null,didn't move an inch during the entire matchbrandon r
+Kush Patel,1391,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,null,Was very fast and effcient . Broke down near the end and got did not make it to the blue platform 
+Jakub W,5457,2,2,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,null,Put many cargo and hatches on. Maybe can climb 
+Tom,5895,2,2,0,1,0,0,0,0,0,0,0,2,1,0,0,0,1,2,0,0,0,0,1,null,Didn't do muvh 
+Tom,5895,2,2,0,1,0,0,0,0,0,0,0,2,1,0,0,0,1,2,0,0,0,0,1,null,Managed to get many cargo and hatch poinyts 
+Smeed I.,1218,3,2,1,0,0,0,0,0,0,0,0,1,1,2,0,0,3,0,0,0,0,0,1,null,Really good performance
+Rithik Mohanty,2095,,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Barely did anything
+Rithik Mohanty,2095,,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Didn't do much
+Jake dela Cruz,203,1,3,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,5 seconds,Very efficient with cargo
+Jakub w,708,1,3,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,5 sey,Was efficient with cargo
+Tom,293,2,3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,10 sec,spent about half the match trying to put its starting hatch panel on the cargo ship
+Tom,293,2,3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,null,Drove around doing nothing and dropped its hatch at the start. Didn't move during sandstorm
+Fayzaan Awan,6226,2,3,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,2,0,0,1,null,Was very efficient and fast with hatches and cargo
+Fayzaan Awan,6226,2,3,0,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,2,0,0,1,null,Went only for cargo
+Smeed I.,103,3,3,0,0,0,0,0,0,0,0,0,0,1,2,2,0,5,0,0,0,0,0,1,5 sec,took a while for it to get hatches on
+Rithik Mohanty,2559,,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,5 seconds?,Spun around in circles most of the match
+Rithik Mohanty,2559,,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,20 sec,Went on other side and tried to block some of the other robots from doing anhthing
+fayzaan,4652,1,4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,5 seconds?,Spun around in circles most of the match
+fayzaan,4652,1,4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,20 sec,Went on other side and tried to block some of the other robots from doing anhthing
+Smeed I.,3974,2,4,0,1,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,1,5 sec,Very fast and accurate
+jakub w,4373,2,4,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,10 sec,spent about half the match trying to put its starting hatch panel on the cargo ship
+Tom,2539,3,4,0,0,1,0,1,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,0,--,Fell backwards at the start of Match while trying to get hatch on Rocket level 3
+Tom,2539,3,4,0,0,1,0,1,0,0,0,0,0,2,0,2,0,0,0,0,0,0,0,1,5 sec,Spent a whole minute trying to put its hatch on the cargo ship.  inaccurate and too fast that it seemed like the driver didn't have much control over the robot. Hatch later fell off anyways
+jake dela cruz,4285,3,4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,5 sec,took a while for it to get hatches on
+Rithik Mohanty,5181,,4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,null,Drove around doing nothing and dropped its hatch at the start. Didn't move during sandstorm
+Rithik Mohanty,5181,,4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,10 sec,Takes a while for it to put the cargo in ships. Couldn't pick up hatches from station
+jake dela cruz,7414,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,--,Out of control at times and struggled to get cargo in 
+fayzaan,5666,2,5,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,10 sec,Unable to score its hatch during g sandstorm and all other hatches barely stayed attached and hung from one side
+fayzaan,5666,2,5,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,5 sec,Unable to score any cargo because it would launch it way too far and completely miss
+jakub w,1647,3,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,---,Took a while for it to pick up hatches and was unable to score them because they kept falling off. Went to opposing side afterwards to try and block other robots. Tried to reach habitat level 2 but failed
+Tom,2234,3,5,0,0,1,0,0,1,0,0,0,0,1,0,0,0,1,1,0,0,0,0,1,null,Accurate when scoring cargo but was unab!e to score its hatches
+Tom,2234,3,5,0,0,1,0,0,1,0,0,0,0,1,0,0,0,1,1,0,0,0,0,3,10 sec,null
+Smeed I.,2458,3,5,1,0,0,0,0,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,3,7 sec,Fast and accurate when scoring cargo but wasn't able to score its hatches 
+Rithik Mohanty,319,,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,--,stop moving in the middle of the match and didn't do anything after
+Rithik Mohanty,319,,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,1,5 sec,can't pick up hatches from the ground and isn't accurate when scoring them. 
+Brandon,816,1,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,5 sec,Tried to get on third bab level but fell back down to 1. Fast and accurate when scoring cargo. Reached the cargo ship during sandstorm but waited until it was over just to make sure they got the hatch on correctly .
+Brandon,816,1,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3 sec,Took a while for it to put hatch on rocket level 2 and was unable to pick up any more hatches from the station during the last half of the match
+jalen,4454,1,6,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,null
+jalen,4454,1,6,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Played defense
+sarah ,3929,2,6,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Had a lot of hatch failed attempts
+Patrick,6921,2,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Only moved forward in autonomous
+Justin T,708,3,6,1,0,0,0,0,0,0,0,0,0,2,1,0,0,3,0,0,0,0,1,1,null,Played defense
+brandon r,1143,3,6,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,2,10 sec,Tried to score hatch on rocket level 1 twice by couldn't line up the hatch
+brandon r,1143,3,6,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0 sec,Didn't move for over a minute
+Brandon,2539,1,7,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,1,null,In auto didn't move 
+Brandon,2539,1,7,0,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,null,Had a lot of hatch failed attempts
+jalen,203,2,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,null,Went only got putting cargo in cargo ship
+jalen,203,2,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,null,Didn't move for a little bit (broke down)
+Justin T,7414,2,7,0,0,0,0,0,0,0,0,0,1,2,1,0,0,2,0,0,0,0,0,1,null,Literally kept pushing one other robot  and spun in circles 
+Justin T,7414,2,7,0,0,0,0,0,0,0,0,0,1,2,1,0,0,2,0,0,0,0,0,1,null,Able to pick up balls from ground 
+Patrick,1218,3,7,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,1,null,Couldn't hold a ba!l
+sarah,2607,3,7,1,1,0,0,0,1,0,0,0,0,1,2,2,0,0,0,0,0,0,0,2,null,At the end when it got to habitat level back wheels only one went up
+brandon r,4285,3,7,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,null,In auto didn't move 
+brandon r,4285,3,7,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,null,Literally did nothing but bump into other robots 
+Brandon,293,1,8,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,1,0,0,0,0,1,null,Went mostly for cargo in cargo ship
+Brandon,293,1,8,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,1,0,0,0,0,1,null,Can easily be tipped over
+jalen,5401,1,8,1,0,0,0,0,0,0,0,0,1,1,0,0,0,2,0,0,0,0,0,3,null,Been able to c!omg all last 3 matches
+jalen,5401,1,8,1,0,0,0,0,0,0,0,0,1,1,0,0,0,2,0,0,0,0,0,1,null,Went mostly for the rocket 
+sarah,3974,2,8,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,n\a,Picked up hatch but dropped it bc 1 hand. Can make it to at least rocket 2 but didn't put anything in rocket 1. Didn't attempt climb at all 
+Justin T,5457,2,8,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,Went mostly for the rocket 
+Justin T,5457,2,8,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,Doesn't put hatch on anything during autonomous
+brandon r,2458,3,8,1,0,0,0,0,0,0,0,0,1,1,0,0,2,0,0,0,0,0,0,3,Finished climbing at 60s,Was all around putting cargo or hatch into the ship it rocket
+brandon r,2458,3,8,1,0,0,0,0,0,0,0,0,1,1,0,0,2,0,0,0,0,0,0,1,null,Had trouble in autonomous with hatch
+Patrick,3929,3,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,didn't move for nearly whole match
+Patrick,4454,1,9,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,N/A,Could get some cargo into cargo ship
+jalen,5895,2,9,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,4 seconds,Climbed fast
+jalen,5895,2,9,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,3,8 seconds,Able to put both hatches and cargo into cargo ship. climbed to level 3
+Brandon,6226,2,9,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,1,1,0,0,0,0,didn't attempt,Attempted rocket level 3
+Brandon,6226,2,9,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,1,1,0,0,0,0,N/a,Looks like it couldn't shoot/get rid of ball. Tried to get to level 1 and smacked into wall
+brandon r,1143,3,9,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,3 sec,Drive really fast and did absolutely nothing else. Got to hab level 1 though
+brandon r,1143,3,9,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,5 seconds ,Tried to pick up batch off ground but failed. Tried to shoot a piece of cargo but missed.
+Justin T,1807,3,9,0,1,0,0,0,0,0,0,0,1,2,0,0,0,3,3,2,0,0,0,1,level 1,didn't do anything but drive around. I can't even see where the hatch and cargo mechanism would be. Attempted level 2 but failed
+Justin T,1807,3,9,0,1,0,0,0,0,0,0,0,1,2,0,0,0,3,3,2,0,0,0,1,Level 1,You can drop cargo ONTO the top of the robot
+sarah,2234,3,9,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,N/A,Got to put in one cargo before the cargo mechanism broke
+Brandon,6943,1,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,null,Able to get to level 3
+Brandon,6943,1,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Played defense and not much else
+Patrick,4373,2,10,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,null,Didn't do anything
+jalen,6808,2,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,5 seconds,Extremely reliable cargo pickup and placement
+jalen,6808,2,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,N/a,successful autonomous
+Justin T,103,3,10,0,1,0,0,0,0,0,0,0,0,2,0,0,0,2,2,1,0,0,0,3,At least 20,successful autonomous. Got cargo and placed hatch. I don't know if it counts as lvl 3
+Justin T,103,3,10,0,1,0,0,0,0,0,0,0,0,2,0,0,0,2,2,1,0,0,0,1,3 seconds from rocket,Barely successful sandstorm
+brandon r,816,3,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Had a really tough time with hatch station pickup
+brandon r,816,3,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,hab level 1,Cargo mechanism broke after 1 cargo
+sarah,5666,3,10,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,null,Didn't do anything
+,2559,1,11,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Not attempted,The robot broke halfway in. The robot tried to get cargo and failed. Didn't try to get  hatches 
+sami,2095,2,11,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,null,null
+Tom,709,3,11,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,null,Didn't even pick anything up or do anything in general
+jakub,1647,3,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Slow
+jakub,1647,3,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Non functioning and effector. Can't grab anything from human player.
+Rithik Mohanty,4652,,11,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Can and attempted to cargo ground pickup.
+Rithik Mohanty,4652,,11,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Functioning robot. Trash driving
+sami,5684,1,12,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,0,0,0,0,1,null,No hatches
+Tom,6921,2,12,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,Didn't do anything
+Smeed I,319,3,12,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,No hatches and had trouble holding cargo
+sami,6808,1,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,No hatches
+Tom,293,2,13,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,null,No hatches and had trouble holding cargo
+Rithik Mohanty,1807,2,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Didn't pick up anything was on the other sideshow game
+Rithik Mohanty,1807,2,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Didn't even pick anything up or do anything in general
+Smeed I.,4454,3,13,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Racked up penalty after penalty and cost them the match (was attacking other team in pickup)
+sami,708,1,14,1,0,1,0,0,0,0,0,0,2,1,0,0,0,0,1,1,0,0,0,1,null,Was able to pickup and place hatches at amazing speed
+jalen,2559,2,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Didn't do anything
+jalen,2559,2,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Didn't pick up anything was on the other sideshow game
+Tom,7414,2,14,0,1,0,0,0,0,1,1,0,0,1,1,0,0,2,0,0,0,0,0,1,null,Wasn't able to line up the cargo and put a second cargo in an occupied cargo hold
+Smeed I.,3929,3,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,null,Had trouble picking up hatches without losing them at times
+Patrick,2234,2,16,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,1,null,Couldn't get the elevator up
+sarah,4373,2,16,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,3 seconds,null
+,5401,3,16,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,10 sec,Couldn't pick up hatches from station
+Patrick,2095,2,17,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Didn't move entire match
+sarah,5666,3,17,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,null,Didn't do anything
+brandon r,6226,3,17,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,0,0,1,null,Couldn't get the elevator up
+sarah,5457,2,18,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,3,null,Had trouble with cargo
+Patrick,293,3,18,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,null,Worked well with cargo and was able to carry it reliably
+brandon r,2607,3,18,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,0,0,0,1,null,Focused on cargo couldn't get on third level
+Brandon,203,1,19,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,3,,Was cargo focused not sure if there's capabilities for hatches
+Patrick,709,3,19,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,null
+brandon r ,3929,3,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,null
+sarah,5684,3,19,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,1,0,0,0,1,null,null
+sami,319,1,20,0,0,1,0,0,0,0,0,0,0,1,0,1,0,3,1,0,0,0,0,1,null,Okay cargo game
+sarah,103,2,20,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,4,0,0,0,0,3,Two seconds ish,Actually good at everything
+Patrick,816,2,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Pretty good hatch worked
+brandon r,1391,3,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,It did nothing!
+Justin T,5895,3,20,0,1,0,0,0,0,0,0,0,2,1,0,0,0,2,2,0,0,0,0,1,null,Pretty good hatch work
+Jake dela Cruz,2539,2,21,0,1,0,0,0,1,0,0,0,2,0,0,0,0,0,1,0,0,0,0,1,null,Pretty good hatch worked
+sami,5457,2,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Okay cargo game
+Tom,7414,2,21,0,1,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,3,Four or five seconds,Good at everythimf
+fayzaan,4454,3,21,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,Four or five seconds,Good at everythimf
+Smeed I.,5401,3,21,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,3,Two seconds ish,Actually good at everything
+Jake dela Cruz,1143,1,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Bad stuff
+sami,6921,1,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Pretty ok
+Tom,2458,2,22,0,0,1,0,0,0,0,0,0,1,1,0,0,0,2,0,0,0,0,0,1,null,Good stuff
+fayzaa,6808,2,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,null,BADDD GOT ONE THING IN AUTONIMOUS AND NOTHINGELSE
+Smeed I.,5666,3,22,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,0,null,Trash
+Rithik Mohanty,5181,,22,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,Good stuff with great ground work play and hard on rocket
+fayzaan,4285,1,23,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,1,0,null,It played defense all the time and didn't do much scoring
+Tom,1647,2,23,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,null,Meh okay nothing speacil
+Jake dela Cruz,2559,2,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Meh 
+Smeed I.,6226,3,23,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,3,Ten seconds ish,Good ball game lost it a few times though probably driver or operator fault
+Rithik Mohanty ,1218,,23,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Got some cargo and that's it has a large slow clumsy arm
+Jake dela Cruz,2095,1,24,0,1,0,0,0,0,0,0,0,1,0,0,0,0,2,0,0,0,0,0,1,null,null
+sami,4373,2,24,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,0,0,0,0,0,0,null,Can't pick up off of ground and can't climb
+Tom,203,3,24,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,5,0,0,0,0,1,null,Collided with the cargo ship on sandstorm. Disabled for quite some time.
+Smeed I.,2234,3,24,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,null,Can't pick up off of ground and can't climb
+Fayzaan,6943,3,24,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,null
+Rithik Mohanty,5401,,24,1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,0,0,0,1,null,null
+sami,4454,1,25,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Touched an enemy robot and penalized it.
+Jake dela Cruz,5457,1,25,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,3,0,0,0,0,1,null,Almost put in the hatch on the cargo ship.
+fayzaan,816,2,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,null
+Tom,103,3,25,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,3,0,0,0,0,0,null,null
+Smeed i.,709,3,25,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,null
+Rithik Mohanty,7414,,25,0,1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,1,1,null,Played defense for most of the time.
+Patrick,708,1,26,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Tried unsuccessfully to climb to second habitat level at the end.
+jalen,1807,2,26,0,0,0,0,0,0,0,0,0,2,3,0,0,0,4,0,0,0,0,1,1,null,Plays defense for most of the game.
+Brandon,6226,2,26,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,10s,null
+Justin ,2458,3,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Tried multiple times and failed to put another batch panel in.
+ brandon r,5895,3,26,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,1,0,null,Smashed some robots and almost broke the alliance wall. In addition
+sarah,4652,,26,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Plays defense against the enemy team.
+Brandon,5181,1,27,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,4,0,0,0,0,3,15s,null
+Patrick,3974,2,27,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,null,At one point did the cargo get stuck in the mechanism of the robot.
+jalen,4373,2,27,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,0,1,0,0,1,null,null
+sarah,1218,3,27,1,1,0,0,0,1,0,0,0,0,2,2,2,0,0,0,0,0,0,1,1,null,Plays defense against the enemy team most of the time.
+Justin T,5684,3,27,0,0,0,0,0,0,0,0,0,0,2,2,0,0,3,1,0,0,0,0,1,null,null
+brandon r,6921,3,27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,null,null
+Patrick,4285,1,28,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Tried unsuccessfully to climb to the second habitat level.
+Brandon,319,2,28,0,1,0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,null,Disabled for the game after the sandstorm.
+jalen,293,3,28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,5s,null
+sarah,2607,3,28,1,1,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,3,null,Cannot get hatches
+Justin T,5666,3,28,1,0,0,0,0,0,0,0,0,0,2,0,0,0,1,0,0,0,0,0,2,5s,Was attacked by an enemy robot but managed to persist even with the enemy robot.
+brandon r,6808,3,28,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,3,5s,Plays defense against the enemy team for most of the game.
+Brandon,1647,1,29,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,null,Did not make it to habitat and wasn't able to do any hatches got penalty at end
+Justin T,3929,1,29,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,null,Could not climb to level 2 but tried. Very good with picking up and placing cargo
+jalen,2539,2,29,0,0,0,0,0,0,0,0,0,0,2,1,0,0,2,0,0,0,0,0,1,null,Trouble shooting and picking up cargo. May be driver error
+brandon r,1143,3,29,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,null,Arm Machine Broke. Arm is outside of habitat
+sarah,1391,3,29,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,null,Did not make it to habitat and wasn't able to do any hatches got penalty at end
+Patrick,2559,3,29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,null,Cannot get hatches
+Brandon,4285,1,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,Arm Machine Broke. Arm is outside of habitat
+jalen,6943,2,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Could not climb to level 2 but tried. Very good with picking up and placing cargo
+Justin T,7414,2,30,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,null,Unable to place hatches may be driver error
+Patrick,293,3,30,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,null,null
+brandon r,2095,3,30,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,1,null,Trouble shooting and picking up cargo. May be driver error
+sarah,2458,3,30,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Struggles to get cargo in cargo ship
+sami,709,1,31,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,0,0,0,0,1,null,null
+Tom,6226,2,31,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,null,Struggles to pick up hatches and does not have a stable grip
+Smeed I.,6808,2,31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,null,Put 2 cargo in 1 slot
+Jake dela Cruz,1391,3,31,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,null,Unable to place hatches may be driver error
+fayzaan,4652,3,31,1,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,1,null,Placed hatches very easily 
+Rithik Mohanty,2607,,31,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,null,null
+Smeed I.,2559,1,32,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Dropped hatch immediately. could not move after sandstorm
+sami,5401,2,32,0,0,0,0,0,0,0,0,0,0,2,0,0,0,1,1,0,1,0,0,1,null,Only can do cargo 
+fayzaan,5457,2,32,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,0,0,0,0,2,null,Best robot on field
+Tom,203,3,32,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0,2,1,0,0,0,3,null,has difficulty grabbing cargo 
+Jake dela Cruz,5895,3,32,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,6,0,0,0,0,0,null,could not keep good grip on cargo
+Rithik mohanty ,6921,,32,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Played defense entire round. Knocked enemy robot over 
+Sami,4454,1,33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,2095's robot only put hatches on the cargo ship two times.  But
+jake dela cruz,1218,2,33,0,1,0,0,0,0,0,0,0,0,2,0,0,0,1,0,0,0,0,0,3,null,Struggles to pick up and hold hatches
+Tom,3974,2,33,0,1,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,1,null,Dropped hatch during sandstorm.  Struggles to receive hatch form human player.  Remained stationary for majority of the game.
+Smeed I.,5666,3,33,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,null,Struggled to pick up cargos at times.  Also had a hard time putting on a hatch on a cargo ship at the beginning of the match.
+fayzaan,6943,3,33,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,null,Stuggles to place  hatches 
+Rithik mohanty,1647,,33,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,null,Did not do anything in the round was only able to get off of habitat and not back on
+Sami,5181,1,34,0,0,0,0,0,0,0,0,0,0,1,0,0,0,2,4,0,0,0,1,1,null,Robot got physical with the robots on the opposing alliance by pushing them throughout the game. 
+jake dela cruz,319,2,34,0,1,0,0,0,1,0,0,0,2,0,0,0,0,1,2,0,0,0,0,2,7 seconds,At one point it struggled to hold on to balls.
+fayzaan,708,3,34,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,0,0,0,0,1,null,Good ability to pick up cargos.  However
+Smeed I.,816,3,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Primarily focused on receiving cargos from human player
+Tom,2234,3,34,0,0,0,1,1,0,0,0,0,0,1,1,0,0,1,0,0,0,0,0,1,null,Before March begun
+Rithik mohanty,1807,,34,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Despite how careful and skilled the driver was
+sami,2539,1,35,0,0,0,0,0,0,0,0,0,0,1,0,3,0,3,0,0,0,0,0,1,null,Had trouble putting on hatch omce.  Pushed its fellow alliance robot to 3rd habitat level.  Good ability to gather and put cargos in cargo ship.  Good ability to carry hatches but found difficulty placing them on rockets.
+Jake dela Cruz,103,2,35,0,1,1,0,0,0,1,1,0,1,1,0,0,0,1,0,2,1,0,0,2,5 seconds but multiple attempts.,Impressive robot.  At times it struggled to pick up some of trouble cargo balls
+Tom,1143,3,35,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,Didn't climb,null
+Smeed I.,3929,3,35,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,16 s,Robot focused only on putting hatches on rockets
+fayzaan,4373,3,35,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,15 s,Amazing ability to gather cargos and place them in cargo ship.  Impressing ability to climb.  when this robot climbed to the 3rd habitat level with ease at the end of this match
+Rithik mohanty,5684,,35,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,1,1,null,literally just hit other robots
+Brandon,5401,1,36,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,1,0,0,0,0,3 seconds,null
+Justin T,1647,2,36,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,1,10 seconds,null
+jalen,5457,2,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3 seconds,null
+sarah,708,3,36,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,5 seconds,null
+brandon r,4652,3,36,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,2,10 seconds,null
+Patrick,5666,3,36,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,1,5 seconds,null
+Brandon,1807,1,37,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,3,2,0,0,0,3,10 seconds,103 is a GOD
+jalen,319,2,37,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,1 second,Dropped first hatch panel and can't pick up
+Patrick,4373,2,37,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,4,0,0,0,0,1,1 second,null
+brandon r,293,3,37,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,7 seconds,Tried to get to level 3 but fell over and lopsided
+sarah,1391,3,37,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,3 seconds,Did nothing in auto
+Justin T,2559,3,37,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Didn't climb,Can pick up hatches
+jalen,203,1,38,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,1,1 second,null
+Brandon,4285,1,38,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,10 seconds,null
+Patrick,5684,2,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,Didn't climb,Fought people and got stuck
+brandon r,2095,3,38,0,1,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,1,10 seconds,Tried for 3 rd step but didn't make it in time
+sarah,5181,3,38,1,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,null,Robot stopped moving
+Justin T,6921,3,38,0,0,0,0,0,0,0,0,0,1,2,0,0,0,3,0,0,0,0,0,3,5 seconds,null
+Brandon,2559,1,39,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,3,1,0,0,0,2,10 seconds,Couldn't get hatch panel on
+Justin T,2234,2,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,Tried but couldn't get to habitat level two,It had a little trouble getting cargo
+brandon r,103,3,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,Climbed earky,null
+jalen,1218,3,39,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,5 seconds,Robot didn't move during sandstorm.
+sarah,3974,3,39,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,2,1,0,0,0,3,It was tipped over. It was about to fall as the final seconds were up. ,It's good for hatches but never really attempted to get cargo.
+Patrick,6808,3,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,For on level 3 in around 5 sec.,The robot carried the whole team.  It has no trouble in anything.
+jalen,3974,1,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,1,It used 40 sec. To try and fail to get on level 2,It had a lot of trouble trying to get hatches on the rocket and cargo ship. However
+Patrick,6943,1,40,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,It didn't attempt to go higher. It climbed to the first level  with 40 seconds remaining.,It struggled to do much of anything. It stopped hatches and didn't go for cargo. Also the thing that hold the cargo is crooked.
+Brandon,5895,2,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,1,0,0,Tried to climb to level 3 but ran out of time . Also got out of habitat 1.,They can pretty much get all the hatches on the rocket.
+Justin T,709,3,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,1,1,No attempt to go further.,All this robot did was play really good defense. It caused the other team to get 23 penalty points
+brandon r,1143,3,40,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,It got blocked from a ball  to go only on the first level.,The robot spent half the time trying to get cargo
+Tom,3929,1,41,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,Tried to climb to level 3 but was too unstable for the leg/wheel things,Could potentially do both hatches and cargo though it did only show hatches it and failed on cargo.
+Smeed I.,2539,2,41,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,4,0,0,0,0,1,Standard but didn't attempt to climb.,It stopped midway through. Returned back from consciousness and went to habitat. Failed putting hatch on level one but could on level two.
+fayzaan,6226,2,41,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,1,0,0,0,3,It's 709, it is really good when it comes to climbing.
+Jake dela Cruz,2607,3,41,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,-1,It fell on its side,It was alright
+Rithik Mohanty,816,,41,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,It's our robot owo,That was a solid cargo run. No hatches tho
+Smeed I.,293,1,42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,Standerd, didn't attempt to go higher
+Jake dela Cruz,1143,2,42,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,Standard ,It was playing really good defense and caused the other team to get -10 points due to penalty.
+fayzaan,7414,2,42,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,Didn't attempt to go higher,Could only shoot out cargo. Couldnt get hatches at all. Unreliable.
+Tom,5684,3,42,0,0,1,0,0,1,0,0,0,1,1,0,0,0,1,2,0,0,0,0,1,Had trouble to get on the first level.,Climbed off and climbed back on. That was the entire game for them.
+Rithik Mohanty,5457,,42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,It got stuck ,Struggled to do much of anything. Couldn't reliably get the hatch and didn't attempt cargo.
+Tom,5401,1,43,1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,1,Barely made it on with 2 sec remaining,Really good
+Jake dela Cruz,3974,2,43,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,Didn't attempt to go ,It played defense
+fayzaan,6226,2,43,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,Easily got in the third level,It was faster then every other robot and could have gotten more done if there wasn't a defender
+Smeed I.,203,3,43,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,Fell off the second level last second.,REALLY good at cargo. Almost singlehandedly finished the cargo ship's cargo.
+Rithik Mohanty,2234,,43,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Didn't ,Solid at getting cargo
+Tom,4373,2,44,0,0,0,0,0,1,0,0,0,2,0,0,0,0,0,0,0,0,0,0,1,null,Capable of making level 2
+Smeed I.,5895,2,44,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,4,1,0,0,0,2,7-10 seconds,null
+fayzaan1,708,3,44,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,0,0,0,0,1,null,null
+Jake dela Cruz,2458,3,44,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,null
+Rithik Mohanty,709,,44,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,null
+Smeed I.,2607,1,45,1,0,0,0,0,1,0,0,0,0,0,1,0,0,0,4,0,0,0,0,2,7-10 seconds,null
+Cindy,2607,2,45,1,0,0,0,0,1,0,0,0,0,1,0,0,0,2,4,0,0,0,0,1,null,null
+Jake dela Cruz,1647,3,45,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,null,null
+Tom,1807,3,45,0,1,1,0,0,1,0,0,0,1,1,0,0,0,2,5,0,0,0,0,1,null,Capable of making level 2Smeed I.
+Rithik Mohanty,2095,,45,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,null,null
+Justin T,1391,2,46,0,1,0,0,0,0,0,0,0,1,2,0,0,0,1,1,0,0,0,0,1,null,Broke arm
+brandon r,319,3,46,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,8 seconds,Plays for cargo
+sarah,2559,3,46,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,null
+Patrick,4454,3,46,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Plays for hatches
+jalen,6943,3,46,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,null
+jalen,3929,1,47,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,Struggles to move
+Patrick,103,2,47,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,0,1,null,null
+sarah,6808,2,47,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,15 sec,null
+brandon r,1218,3,47,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,3,0,0,0,0,1,null,null
+Justin T,1807,3,47,0,1,0,0,0,0,0,0,0,1,0,0,0,0,2,1,0,0,0,0,1,null,null
+jalen,293,1,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,25,null
+Patrick,5895,1,48,1,1,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,3,20,null
+sarah,2095,3,48,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Didn't move iin sandstorm
+Justin T,2539,3,48,0,0,0,0,0,0,0,0,0,0,2,1,0,0,3,1,0,0,0,0,3,7,Very effective ha lift
+brandon r,5666,3,48,1,0,0,0,0,0,0,0,0,1,1,1,0,0,2,0,0,0,0,0,1,null,null
+sarah,103,2,49,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,10,Very good with cargo
+Justin T,1647,2,49,0,1,0,0,0,0,0,0,0,1,0,0,0,0,2,1,0,0,0,0,2,30,null
+brandon r,2607,3,49,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,3,0,0,0,0,1,null,null
+Patrick,5181,3,49,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,null,null
