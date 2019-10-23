@@ -1,0 +1,139 @@
+Dev,271,2,2,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,1,0,0,1,0,null,null
+dev,2729,1,3,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,2,0,0,0,0,15 sec,They played well.
+dev,816,2,4,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,null,didn't even move
+dev,2180,2,5,0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,2,1,3,1,0,null,Confused team
+John,6326,1,1,1,1,0,0,0,0,0,0,0,2,0,0,0,0,3,0,0,0,0,0,1,null,null
+John,5420,1,2,1,0,0,0,0,0,0,0,0,1,1,0,0,0,3,1,0,0,0,0,2,8,null
+John,341,3,3,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,null,Low battery
+John,484,2,4,0,1,0,0,0,0,0,0,0,1,0,0,0,0,1,3,0,0,0,0,1,10s,Tried climbing to level 2 but fell back
+john w,6921,1,5,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Dropped cargo a few times
+Patrick,3314,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,10s,null
+Patrick,3151,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Threw out a hatch panel during autonomous and could not hold cargos tightly enough.
+Patrick,694,2,3,0,1,0,0,0,0,0,0,0,0,2,2,0,0,4,1,2,1,0,0,1,2s,Tried to get onto Level 3.
+Patrick,365,3,4,0,0,0,0,0,0,0,0,0,0,2,1,0,0,3,3,1,0,0,0,0,null,null
+Patrick,225,3,5,1,0,0,0,0,0,0,0,0,1,1,0,0,1,1,2,0,0,0,0,3,9s,null
+Josif Collazo,533,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,null
+Josif C,6226,3,2,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,null
+Josif C,4342,2,3,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,3,10,null
+Josif C,4505,1,4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,,null
+Josif C,2495,1,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,null
+joe hennessey,6226,2,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2seconds,null
+Brian Olsen,271,2,7,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2 secs,null
+Joey Hennessey,271,3,8,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,4,0,0,0,0,3,5Seconds,null
+joey hennessey,816,2,9,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,null,null
+Joey HennesseY,2495,2,10,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,3seconds,null
+Joey H Mama,5401,3,1,0,0,1,0,0,0,0,0,0,3,1,2,1,0,0,1,0,0,0,0,2,4 Seconds,null
+joey h ,203,3,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,1,null,null
+joey h,321,3,3,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,0,0,0,0,1,A while,null
+joey h,2539,3,4,0,0,1,0,0,0,0,0,0,0,1,2,1,0,5,0,0,1,0,0,3,Speedy Quick,null
+Joey H,9539,3,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Idk,null
+Brandon,484,3,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Failed to place hatches
+Brandon,3941,2,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,1,null,One trick pony. Good with cargo but looks like it can't really pick up hatches . Also looks like it can't climb. Cool claw 
+Brandon,3151,2,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,Didn't do anything the first half of the match 
+Brandon,4342,2,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,null,Dropped hatches A lot 
+Brandon,7110,2,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,9,Slow and only goes for cargo ship point although can climb to hab 2
+David Miller,1626,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,1,null,null
+David Miller,316,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,3,About 5-8 seconds,
+David Miller,1712,1,3,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,,null
+David Miller,7110,2,4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,About 7 seconds ,
+David Miller,1640,1,5,1,0,1,0,0,0,0,0,0,1,1,1,0,0,3,1,0,0,0,0,1,null,null
+Eggie Hartman Velez,5420,1,6,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1 second,null
+Eggie Hartman Velez,321,1,7,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,3,0,0,0,0,2,3 Seconds,null
+Eggie Hartman Velez,1626,1,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1 second,null
+Eggie Hartman Velez,2180,1,9,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,null
+Eggie,341,1,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,2 seconds,null
+Shihab,2729,1,6,1,1,0,0,0,0,0,0,0,0,1,0,0,0,3,0,1,0,0,0,3,null,null
+Shihab,9539,1,7,1,1,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,1,1,null,null
+shihab,365,1,8,0,0,0,0,0,0,0,0,0,1,1,0,0,0,2,3,1,0,0,0,1,null,null
+Shihab,203,3,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,1,0,0,0,1,null,
+Shihab,316,1,10,1,0,0,0,0,0,0,0,0,0,2,0,0,0,3,3,0,0,0,0,3,null,null
+jawnathan,3151,1,11,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,1,0,0,0,0,1,null,null
+JÃ³hÃ±,4505,2,12,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,null
+John,5401,1,13,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,2,null,null
+John Winward,7110,2,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,5,null
+John,203,2,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,null
+David Larbi,6326,2,6,0,0,0,0,0,0,0,0,0,3,2,0,0,0,0,0,0,0,0,0,1,No,
+David Larbi,6921,2,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,No,Kept on dropping the balls and collect them to a long time
+David Larbi,1712,2,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,No,Played defense the whole time
+David Larbi,3314,2,9,0,0,1,0,0,0,0,0,0,0,2,0,0,0,0,1,0,0,0,0,1,No,Tried to climb but fell over on teammate
+David Larbi,5401,2,10,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,2,1,0,2,1,null
+dev,694,3,11,1,1,0,0,1,0,0,0,0,0,3,2,0,0,3,3,0,1,0,0,1,,Played really well..
+dev,225,2,12,1,0,1,1,1,0,0,0,0,0,2,2,1,0,0,0,1,1,1,0,2,5 sec,Played really aggressively
+dev,1712,3,13,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Literally fell and did not get up.
+dev,1626,3,14,1,0,1,0,0,1,0,0,0,0,1,1,0,0,1,1,2,1,0,0,2, 5 sec,Nice moves
+dev,365,1,15,1,0,1,0,0,0,0,0,0,3,0,0,0,0,2,2,0,0,0,0,1,null,Good plays
+brandon r,4505,3,6,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Attempted to hatch a cargo ship during autonomous but failed.  Then
+brandon r,2539,3,7,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,1,0,0,0,0,1,null,Was being blocked off by a defense bot and dropped most of the cargo it picked up
+brandon r,694,3,8,1,1,0,0,0,0,0,0,0,0,2,2,0,0,4,2,2,0,0,0,3,10 s,Fast and accurate. Could've scored more but was being blocked by another bot during the last half of the match
+brandon r,533,3,9,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,5s,Extremely slow
+brandon r,1640,3,10,1,0,1,0,0,0,0,0,0,0,1,2,2,0,5,0,1,0,1,0,2,5 s ,Fast and accurate
+Patrick,816,2,11,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,Almost tipped over a robot. The defense is not that tough.,Was at the left position
+Patrick,321,3,12,1,1,0,0,0,0,0,0,0,1,1,0,0,0,2,4,0,0,0,0,2,4s,null
+Patrick,2180,2,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,null
+Patrick,6226,1,14,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Tough defense is played.
+Patrick,2495,3,15,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,2,0,0,0,1,1,null,Pried the hatch panel away from the cargo ship.
+Joey H,6921,3,11,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,N/A,null
+Joey H,316,3,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,The Entire Match,null
+Joey H,1640,3,13,0,0,1,0,0,0,0,0,0,0,2,1,0,0,3,0,1,0,0,0,2,null,null
+Joey H,2539,3,14,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,0,0,0,0,3,6seconds,null
+Joey H,9539,3,15,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,Not much time,null
+brandon,1626,3,16,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,3,2,0,0,0,0,null,Pretty rounded playstyle
+brandon,1712,3,17,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,4,1,0,0,0,1,null,Well rounded 
+brandon,3314,1,18,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,null,Didn't do anything
+brandon,2729,3,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,0,0,0,2,5,Went mainly for cargo
+brandon,5420,3,20,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,3,2,0,0,0,1,null,Mainly went for cargo 
+Josif C,5420,3,11,0,0,1,0,0,0,0,0,0,0,2,0,0,0,0,0,2,0,0,0,1,null,null
+Josif C,6326,1,12,1,1,0,0,0,0,0,0,0,0,3,0,0,0,4,0,0,0,0,0,1,null,
+Josif C,1640,3,13,1,0,0,0,0,0,0,0,0,0,2,1,0,0,3,0,2,0,0,0,1,null,null
+Josif C,2539,3,14,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,3,null,Good at outmanuvuring defense bot
+Josif C,2729,1,15,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,0,0,0,1,null,null
+brian,2180,2,16,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,null,null
+Joey Hennessey,6326,2,17,0,0,0,0,0,0,0,0,0,2,1,0,0,0,0,0,0,0,0,0,1,1second,null
+Joey Hennessey,341,2,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,7seconds,null
+Joey Hennesssy,533,2,19,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,2seconds,null
+Joey Hennessey,4342,2,20,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,3,4seconds,null
+David Miller,3941,1,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,1,1,null,null
+David Miller,4342,2,12,0,1,0,0,0,0,0,0,0,3,2,0,0,0,0,0,0,0,0,1,1,null,null
+David Miller,484,2,13,0,0,0,0,0,0,0,0,0,1,2,0,0,0,2,2,0,0,0,0,2,null,null
+David Miller,533,1,14,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,null,null
+David Miller,3314,3,15,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,2,0,0,0,0,1,null,null
+Eggie Hartman Velez,1640,1,16,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,0,0,0,0,0,null,null
+Eggie Hartman Velez,225,1,17,0,1,0,0,0,0,0,0,0,0,2,2,2,0,0,0,2,0,2,0,1,1 second,null
+Eggie Hartman Velez,3314,1,18,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,1 seconds,null
+Eggie Hartman Velez,365,1,19,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,2,0,0,0,0,1,2 seconds,null
+Eggie,694,1,20,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,4,0,0,0,0,3,3 seconds,null
+Shihab,816,1,16,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,Didn't get to do anything 
+Shihab,3941,1,17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,null,null
+Shihab,9539,3,18,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,null,Good a defense
+Shihab,6921,,19,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Defence the whole time
+Shihab,2539,1,20,0,0,1,0,0,0,0,0,0,0,2,0,0,0,1,1,0,0,0,1,0,null,null
+John,6226,1,21,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,null
+John,271,1,22,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,1,null,null
+John,321,1,23,1,1,0,0,0,0,0,0,0,0,2,0,0,0,2,3,1,0,0,0,2,null,null
+John,4342,2,24,0,1,0,0,0,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,15,Climbed to 3 successfully bur rolled off
+David Larbi,321,2,16,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,5,null
+David Larbi,203,2,17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,1,null,null
+David Larbi,4505,1,18,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,null
+David Larbi,316,1,19,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,null
+David Larbi,5401,3,20,1,0,0,0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,1,1,null
+dev,9539,2,21,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,0,1,1,10,Got up successfully
+dev,7110,1,22,1,0,0,0,0,0,0,0,0,3,1,0,2,1,1,0,2,0,0,1,2,null,null
+dev,1626,3,23,1,0,1,0,0,0,0,0,0,2,2,0,0,2,2,3,2,0,2,1,0,null,null
+dev,341,3,24,1,1,0,0,0,1,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,null,Hmm
+Brian Olsen,1712,3,20,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,null
+Brian Olsen,4505,3,21,1,1,0,0,0,1,0,0,0,3,0,0,0,0,0,0,0,0,0,0,1,null,null
+Brian Olsen,203,3,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,1,null,null
+Brian O,2180,3,24,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,null
+brandon r,6226,3,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,Blocked 1640 from scoring as much as they usually do.
+Brandon r,7110,3,17,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,null,Slow
+Brandon r,484,2,18,0,0,1,0,0,0,0,0,0,0,1,0,0,0,1,1,2,0,0,0,0,null,Dropped cargo a few times and continued 
+Brandon r,271,3,19,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,1,null,Focused only on obtaining cargos and putting them in cargoships.  however
+Brandon R,2495,3,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,null,1 cargo right after autonomous ended.  Played defense rest of math and barely missed making habitat level 1.
+Patrick,6326,3,21,1,0,0,0,0,0,0,0,0,1,2,0,0,0,3,0,0,0,0,0,1,null,null
+Patrick,533,3,22,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,null,null
+Patrick,6921,2,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,null,null
+Patrick,341,3,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,null,
+Josif C,316,1,21,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,3,0,0,0,0,3,6,null
+Josif C,694,1,22,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,3,null,
+Josif C,484,2,23,0,0,0,0,0,0,0,0,0,0,2,0,0,0,2,0,2,0,0,0,1,null,null
+Josif C,365,1,24,0,0,0,0,0,1,0,0,0,0,2,0,0,0,0,3,1,0,0,0,1,null,null

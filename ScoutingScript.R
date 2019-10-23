@@ -24,7 +24,7 @@ library(plotly)
 # For now, I want the files to be all in html_files.
 setwd("C:/Users/Patrick/Documents/R-Scouting/")
 
-df <- read.csv("Hatboro-Horsham Event 2019 Scouting.txt", header = FALSE)
+df <- read.csv("DD 2019 Event Scouting.txt", header = FALSE)
 
 df[df == "null"] = NA
 
@@ -134,7 +134,7 @@ for (team in uniqueTeams) {
   
   v <- df$Is_Defensive
   
-  #Generally says seconds but can say something else in extreme cases. So that
+  #Generally says seconds but can say something else. So that
   #should also be out of the question.
   
   #w <- df$Time_For_Climb
@@ -408,6 +408,16 @@ htmlwidgets::saveWidget(as_widget(plot4), "frc_total_offensive_points.html")
 # 6th - 224, 316, 204 - 0 Def. Bots
 # 7th - 2016, 1089, 4361 - 1 Def. Bot [4361]
 # 8th - 708, 272, 321 - 1 Def. Bot [272]
+#
+# (Duel on the Delaware Event)
+# 1st - 694, 271, 3314
+# 2nd - 4505, 2539, 7110
+# 3rd - 316, 365, 533
+# 4th - 225, 1626, 9539
+# 5th - 1640, 6226, 341
+# 6th - 5401, 1712, 321
+# 7th - 2729, 816, 484
+# 8th - 6326, 4342, 2180
 
 # Playoffs Probabilities
 #
@@ -425,16 +435,16 @@ htmlwidgets::saveWidget(as_widget(plot4), "frc_total_offensive_points.html")
 # https://www.rstudio.com/products/rstudio/download/), but remember to
 # uncomment using the same shortcut once there is alliance selection.
 
-setwd("../alliances")
+setwd("../playoffs")
 
-first <- c(2539, 1807, 2559)
-second <- c(103, 5895, 4652)
-third <- c(4454, 5684, 5401)
-fourth <- c(6226, 319, 816)
-fifth <- c(1218, 3974, 2554)
-sixth <- c(709, 1647, 203)
-seventh <- c(5181, 2607, 708)
-eighth <- c(5666, 4285, 7414)
+first <- c(694, 271, 3314)
+second <- c(4505, 2539, 7110)
+third <- c(316, 365, 533)
+fourth <- c(225, 1626, 9539)
+fifth <- c(1640, 6226, 341)
+sixth <- c(5401, 1712, 321)
+seventh <- c(2729, 816, 484)
+eighth <- c(6326, 4342, 2180)
 
 #Then, here comes the ratings:
 
@@ -476,13 +486,13 @@ probability_of_winning <- function(allianceA, allianceB) {
 
   allianceAPointLoss <- allianceAMaxOffensiveRating * allianceBDefensiveRating
   allianceBPointLoss <- allianceBMaxOffensiveRating * allianceADefensiveRating
-
+  
   predictedAllianceANetGain <- sum(df10$Offensive_Rating[df10$Teams %in% allianceA]) - allianceAPointLoss
   predictedAllianceBNetGain <- sum(df10$Offensive_Rating[df10$Teams %in% allianceB]) - allianceBPointLoss
-
+  
   predictedAllianceAStdErr <- sqrt(sum(df10$Offensive_Rating_SD[df10$Teams %in% allianceA] ** 2))
   predictedAllianceBStdErr <- sqrt(sum(df10$Offensive_Rating_SD[df10$Teams %in% allianceB] ** 2))
-
+  
   #The core of all the probabilities - Meet the Ultimate Trial and Error (Standard Deviation +/- 0.05%)
   normDistA <- rnorm(1000000, mean = predictedAllianceANetGain, sd = predictedAllianceAStdErr)
   normDistB <- rnorm(1000000, mean = predictedAllianceBNetGain, sd = predictedAllianceBStdErr)
@@ -834,7 +844,7 @@ plot12 <- plot_ly(data = finals, x = ~paste("Alliance", Red), y = ~Matches_Secon
                                                                                              dec_to_frac_of_vector(Matches_Seventh),
                                                                                              " (", floor(10000 * Matches_Seventh) / 100,
                                                                                              "%) vs. Alliance 7", sep = "")) %>%
-  layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+  layout(title = "Finals Probabilities", xaxis = list(title = "Alliance #"),
          yaxis = list(title = "Probability", tickformat = ".2%"))
 htmlwidgets::saveWidget(as_widget(plot12), "Finals-red.html")
 
@@ -856,7 +866,7 @@ plot13 <- plot_ly(data = finals, x = ~paste("Alliance", Blue), y = ~Matches_Firs
                                                                                              dec_to_frac_of_vector(Matches_Eighth),
                                                                                              " (", floor(10000 * Matches_Eighth) / 100,
                                                                                              "%) vs. Alliance 8", sep = "")) %>%
-  layout(title = "Semifinals Probabilities", xaxis = list(title = "Alliance #"),
+  layout(title = "Finals Probabilities", xaxis = list(title = "Alliance #"),
          yaxis = list(title = "Probability", tickformat = ".2%"))
 htmlwidgets::saveWidget(as_widget(plot13), "Finals-blue.html")
 
