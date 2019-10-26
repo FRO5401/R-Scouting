@@ -238,9 +238,9 @@ probability_of_winning <- function(allianceA, allianceB) {
   # defending the other team (15-30 seconds, averaged to 22.5 seconds, for a round trip
   # of the field at around 5 ft/s), which is equal to 5/6 of the total.
   
-  allianceADefensiveRating <- defensiveRating(allianceA) * 5/6
+  allianceADefensiveRating <- max(defensiveRating(allianceA) - defensiveRating(allianceB), 0) * 5/6
   
-  allianceBDefensiveRating <- defensiveRating(allianceB) * 5/6
+  allianceBDefensiveRating <- max(defensiveRating(allianceB) - defensiveRating(allianceA), 0) * 5/6
   
   #Assuming the population variances are not equal:
   
