@@ -1,10 +1,13 @@
 library(dplyr)
 library(plotly)
 library(kableExtra)
-#This script will try to predict qualification match rankings. 
 
-setwd("C:/Users/Patrick/Documents/R-Scouting/")
-df <- read.csv("DD 2019 Event Scouting.txt", header = FALSE)
+#This script will try to predict qualification match rankings. 
+file <- "Hatboro-Horsham Event"
+
+
+setwd(paste("C:/Users/Patrick/Documents/R-Scouting/FRC-2019/", file, sep = ''))
+df <- read.csv(paste(file, "Scouting.txt"), header = FALSE)
 
 df[df == "null"] = NA
 
@@ -200,7 +203,7 @@ df2 <- data.frame(Teams = uniqueTeams, #Identifier
 
 df2 <- df2[with(df2, order(Teams)), ]
 
-setwd("html_files/quals")
+setwd("quals")
 
 #Qualification Matches - Rank
 

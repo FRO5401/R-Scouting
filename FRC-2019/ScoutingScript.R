@@ -21,10 +21,12 @@ library(plotly)
 #The path is necessary for the R script to read the file. To access the file, use that command:
 # setwd("Your file here")
 
-# For now, I want the files to be all in html_files.
-setwd("C:/Users/Patrick/Documents/R-Scouting/")
+file <- "Hatboro-Horsham Event"
 
-df <- read.csv("DD 2019 Event Scouting.txt", header = FALSE)
+setwd(paste("C:/Users/Patrick/Documents/R-Scouting/FRC-2019", file, sep = '/'))
+
+
+df <- read.csv(paste(file, "Scouting.txt"), header = FALSE)
 
 df[df == "null"] = NA
 
@@ -239,12 +241,12 @@ df2 <- df2[with(df2, order(Teams)), ]
 # To order by Hab Points, descending, use the following code:
 # df2 <- df2[with(df2, order(-Habitat_Points_Mean)), ]
 
-df3 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean)
-
-png("frc_teams.png", width = 1500, height = 900)
-plot(df3, main="FRC Teams", col = df2$Teams %>% length() %>% rainbow() %>% palette())
-text(df3$Cargos, df3$Hatches + 0.1, labels = df2$Teams, col = df2$Teams %>% length() %>% rainbow() %>% palette())
-dev.off()
+# df3 <- data.frame(Cargos = df2$Cargo_Total_Mean, Hatches = df2$Hatch_Total_Mean)
+# 
+# png("frc_teams.png", width = 1500, height = 900)
+# plot(df3, main="FRC Teams", col = df2$Teams %>% length() %>% rainbow() %>% palette())
+# text(df3$Cargos, df3$Hatches + 0.1, labels = df2$Teams, col = df2$Teams %>% length() %>% rainbow() %>% palette())
+# dev.off()
 
 df4 <- data.frame(Offensive_Rating = (2 * df2$Hatch_Total_Mean + 3 * df2$Cargo_Total_Mean + df2$Habitat_Points_Mean),
                   Defensive_Rating = df2$Is_Defensive)
@@ -252,7 +254,7 @@ df4 <- data.frame(Offensive_Rating = (2 * df2$Hatch_Total_Mean + 3 * df2$Cargo_T
 colors <- df2$Teams %>% length() %>% rainbow() %>% palette()
 total_rating <- df4$Defensive_Rating + df4$Offensive_Rating * max(df4$Defensive_Rating) / max(df4$Offensive_Rating)
 
-setwd("html_files/offensive_defensive_ratings")
+setwd("offensive_defensive_ratings")
 
 plot1 <- plot_ly(data = df4, x = ~Offensive_Rating, y = ~Defensive_Rating, 
              colors = ~colors, text = ~paste("Team: ", df2$Teams),
@@ -437,14 +439,14 @@ htmlwidgets::saveWidget(as_widget(plot4), "frc_total_offensive_points.html")
 
 setwd("../playoffs")
 
-first <- c(694, 271, 3314)
-second <- c(4505, 2539, 7110)
-third <- c(316, 365, 533)
-fourth <- c(225, 1626, 9539)
-fifth <- c(1640, 6226, 341)
-sixth <- c(5401, 1712, 321)
-seventh <- c(2729, 816, 484)
-eighth <- c(6326, 4342, 2180)
+first <- c(2539, 1807, 2559)
+second <- c(103, 5895, 4652)
+third <- c(4454, 5684, 5401)
+fourth <- c(6226, 319, 816)
+fifth <- c(1218, 3974, 1391)
+sixth <- c(709, 1647, 203)
+seventh <- c(5181, 2607, 708)
+eighth <- c(5666, 4285, 7414)
 
 #Then, here comes the ratings:
 
